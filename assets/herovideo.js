@@ -17,7 +17,7 @@
   var wrap = document.createElement("div");
   wrap.className = "hv";
   wrap.setAttribute("aria-hidden", "true");
-  var cn = navigator.connection, slow = cn && (cn.saveData || /(^|-)(2g|3g)$/.test(cn.effectiveType || ""));
+  var cn = navigator.connection, slow = cn && (cn.saveData || /(^|-)2g$/.test(cn.effectiveType || ""));
   wrap.innerHTML = slow ? "" : '<video autoplay muted loop playsinline preload="auto" poster="' + base + 'media/posters/dima-1.jpg"><source src="' + base + 'media/hero-dima.mp4" type="video/mp4"></video>';
   // Post-punk: в кадре лицо, а горы (ridgeline) и текст стоят внизу, поэтому видео сдвигаем вверх, чтобы лицо оставалось чистым
   if (/\/v7-/.test(location.pathname)) {
