@@ -128,12 +128,14 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128z"></script>
-<script src="../assets/store.js?v=20261128z"></script>
+<script src="../assets/config.js?v=20261128aa"></script>
+<script src="../assets/store.js?v=20261128aa"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
   var PX = 56; // пикселей на час
+  // Google Calendar: ветка на будущее, выключена в assets/config.js → own.googleCalendar
+  var GCAL = !!(window.SITE_CONFIG && window.SITE_CONFIG.own && window.SITE_CONFIG.own.googleCalendar);
   var st = { staff: [], svc: [], me: null, date: new Date(), hours: null, apps: [] };
   var DN = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"], MN = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   var WD = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
@@ -150,7 +152,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
   function showLogin() {
     $("app").classList.add("hide"); $("login").classList.remove("hide");
     if (S.mode !== "demo") {
-      $("who").innerHTML = '<button id="gBtn"><div><b>Войти через Google</b><span>мастеру нужен тот же Google-аккаунт, что подключён к календарю</span></div></button>';
+      $("who").innerHTML = '<button id="gBtn"><div><b>Войти через Google</b><span>аккаунт Google, почта которого записана в таблице мастеров</span></div></button>';
       S.authInfo().then(function (i) { if (i.signedIn) $("loginNote").innerHTML = "Аккаунт <b>" + esc(i.email) + "</b> не привязан ни к одному мастеру. Попросите администратора вписать вашу почту в таблицу мастеров."; });
       return;
     }
@@ -310,13 +312,13 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
       rows += '<div class="dayrow" data-i="' + i + '"><span>' + DN[i].toUpperCase() + '</span><input type="time" step="900" value="' + (h ? h[0] : "10:00") + '"' + (h ? "" : " disabled") + '><input type="time" step="900" value="' + (h ? h[1] : "20:00") + '"' + (h ? "" : " disabled") + '><input type="checkbox" ' + (h ? "checked" : "") + ' aria-label="Рабочий день" style="width:24px;height:24px"></div>';
     }
     $("shS").innerHTML = '<h3>Часы работы</h3><p class="k" style="margin-top:6px">отметьте рабочие дни</p>' + rows +
-      '<h3 style="margin-top:24px">Google Calendar</h3><div class="note" id="gNote" style="margin-top:10px">Проверяю…</div><div class="act"><button class="btn s" id="sReset">Сбросить демо-данные</button><button class="btn s" data-x>Закрыть</button><button class="btn" id="sSave">Сохранить</button></div>';
+      (GCAL ? '<h3 style="margin-top:24px">Google Calendar</h3><div class="note" id="gNote" style="margin-top:10px">Проверяю…</div>' : "") + '<div class="act"><button class="btn s" id="sReset">Сбросить демо-данные</button><button class="btn s" data-x>Закрыть</button><button class="btn" id="sSave">Сохранить</button></div>';
     openOv("ovS");
     $("shS").querySelectorAll(".dayrow").forEach(function (r) {
       var cb = r.querySelector("input[type=checkbox]"), ins = r.querySelectorAll("input[type=time]");
       cb.onchange = function () { ins.forEach(function (x) { x.disabled = !cb.checked; }); };
     });
-    S.googleStatus().then(function (g) { $("gNote").innerHTML = g.connected ? "Подключён: записи попадают в ваш Google Calendar." : "Не подключён. " + esc(g.reason || ""); });
+    if (GCAL) S.googleStatus().then(function (g) { $("gNote").innerHTML = g.connected ? "Подключён: записи попадают в ваш Google Calendar." : "Не подключён. " + esc(g.reason || ""); });
     $("sSave").onclick = function () {
       var out = [];
       $("shS").querySelectorAll(".dayrow").forEach(function (r) { var cb = r.querySelector("input[type=checkbox]"), ins = r.querySelectorAll("input[type=time]"); out.push(cb.checked ? [ins[0].value, ins[1].value] : null); });
