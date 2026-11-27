@@ -2210,6 +2210,21 @@ window.I18N_DICT = {
 "השעה הזו נתפסה הרגע. בחרו שעה אחרת.",
 "Ce créneau vient d'être pris. Choisissez-en un autre."
 ],
+"<b>Лучшие</b>Любимые версии": [
+"<b>Top picks</b>Favourite versions",
+"<b>הכי טובות</b>הגרסאות האהובות",
+"<b>Les meilleures</b>Versions préférées"
+],
+"Ещё сильные": [
+"Also strong",
+"עוד חזקות",
+"Aussi solides"
+],
+"Вертятся<br>диски": [
+"Records<br>spin",
+"תקליטים<br>מסתובבים",
+"Les disques<br>tournent"
+],
 "Онлайн-запись": [
 "Online booking",
 "הזמנת תור אונליין",

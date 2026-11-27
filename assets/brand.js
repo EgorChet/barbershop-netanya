@@ -39,6 +39,8 @@
     "a.logo .bl-word{height:.95em;width:auto}a.logo .bl-mark{height:1.5em;width:auto}" +
     "@media(max-width:420px){a.logo .bl-mark{height:1.35em}a.logo .bl-word{height:.85em}}" +
     "a.logo small{display:none}" +
+    /* iPhone: быстрые повторные нажатия по стрелкам и кнопкам не должны приближать страницу */
+    "button,a,[role=button],input[type=range],.wk-v,.vt,.gd-ar button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}" +
     /* loader */
     "#bl-load{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;" +
     "background:var(--bk-bg,#0d0d0d);color:var(--bk-fg,#fff);transition:opacity .5s ease,visibility .5s;direction:ltr}" +

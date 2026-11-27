@@ -43,15 +43,19 @@ window.SITE_CONFIG = {
   //   { before: "assets/ba/dima-1-before.jpg", after: "assets/ba/dima-1-after.jpg", who: "Дима" }
   // ],
 
-  // Косметика, с которой работают мастера (блок «Чем мы пользуемся»). Только названия.
-  brands: [
-    { name: "Reuzel", note: "помады и матовая глина для укладки",
-      imgs: ["assets/products/reuzel-blue.png","assets/products/reuzel-clay.jpg","assets/products/reuzel-fiber.png"] },
-    { name: "Clubman Pinaud", note: "классический тальк Finest Powder, с 1810 года",
-      imgs: ["assets/products/clubman-powder.jpg"] },
-    { name: "Uppercut Deluxe", note: "помады, глина, спреи и уход за бородой",
-      imgs: ["assets/products/uppercut-deluxe.jpg","assets/products/uppercut-clay-spray.jpg","assets/products/uppercut-salt-spray.jpg","assets/products/uppercut-beard-oil.jpg"] }
-    // { name: "...", note: "...", imgs: ["assets/products/..."] }
+  // Косметика, с которой работают мастера (блок «Чем мы пользуемся»). Фото лежат в assets/products/.
+  // Можно убирать и добавлять: { brand, name, note, img }
+  products: [
+    { brand: "Reuzel", name: "Blue", note: "сильная фиксация, блеск, смывается водой", img: "assets/products/reuzel-blue.png" },
+    { brand: "Reuzel", name: "Clay Matte", note: "средняя фиксация, матовый финиш", img: "assets/products/reuzel-clay.jpg" },
+    { brand: "Reuzel", name: "Fiber", note: "гибкая фиксация, текстура", img: "assets/products/reuzel-fiber.png" },
+    { brand: "Uppercut Deluxe", name: "Deluxe Pomade", note: "сильная фиксация, блеск", img: "assets/products/uppercut-deluxe.jpg" },
+    { brand: "Uppercut Deluxe", name: "Matte Pomade", note: "средняя фиксация, матовый финиш", img: "assets/products/uppercut-matte.jpg" },
+    { brand: "Uppercut Deluxe", name: "Clay", note: "сильная фиксация, матовый финиш", img: "assets/products/uppercut-clay.jpg" },
+    { brand: "Uppercut Deluxe", name: "Clay Spray", note: "спрей: объём и мат без липкости", img: "assets/products/uppercut-clay-spray.jpg" },
+    { brand: "Uppercut Deluxe", name: "Salt Spray", note: "солевой спрей: лёгкая пляжная текстура", img: "assets/products/uppercut-salt-spray.jpg" },
+    { brand: "Uppercut Deluxe", name: "Beard Oil", note: "масло для бороды: уход и мягкость", img: "assets/products/uppercut-beard-oil.jpg" },
+    { brand: "Clubman Pinaud", name: "Finest Powder", note: "тальк после стрижки и бритья, с 1810 года", img: "assets/products/clubman-powder.jpg" }
   ],
 
   contacts: {
