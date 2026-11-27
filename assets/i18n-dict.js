@@ -2275,6 +2275,16 @@ window.I18N_DICT = {
 "אין צורך<br>בהעתק.<span>מקור.</span>",
 "Pas de copie<br>nécessaire.<span>L'original.</span>"
 ],
+"Телефон, почта или @telegram": [
+"Phone, email or @telegram",
+"טלפון, אימייל או @telegram",
+"Téléphone, e-mail ou @telegram"
+],
+"Достаточно одного способа связи": [
+"One way to reach you is enough",
+"מספיק אמצעי קשר אחד",
+"Un seul moyen de contact suffit"
+],
 "Онлайн-запись": [
 "Online booking",
 "הזמנת תור אונליין",

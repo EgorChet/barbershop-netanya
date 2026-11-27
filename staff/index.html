@@ -128,8 +128,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128w"></script>
-<script src="../assets/store.js?v=20261128w"></script>
+<script src="../assets/config.js?v=20261128x"></script>
+<script src="../assets/store.js?v=20261128x"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -244,7 +244,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
   function fields(a, isNew) {
     var svcOpts = st.svc.map(function (s) { return '<option value="' + s.id + '"' + (a.serviceId === s.id ? " selected" : "") + ">" + esc(s.title) + " · " + s.minutes + " мин · ₪" + s.price + "</option>"; }).join("");
     return '<label>Клиент</label><input id="fName" value="' + esc(a.clientName) + '" placeholder="Имя">' +
-      '<label>Телефон</label><input id="fPhone" type="tel" value="' + esc(a.clientPhone) + '" placeholder="+972…">' +
+      '<label>Контакт</label><input id="fPhone" type="text" value="' + esc(a.clientPhone) + '" placeholder="Телефон, почта или @telegram">' +
       '<label>Услуга</label><select id="fSvc">' + svcOpts + "</select>" +
       '<div class="two"><div><label>Дата</label><input id="fDate" type="date" value="' + a.date + '"></div><div><label>Время</label><input id="fTime" type="time" step="900" value="' + a.time + '"></div></div>' +
       '<label>Заметка</label><textarea id="fNote" rows="2" placeholder="Например: машинка 3, без укладки">' + esc(a.note) + '</textarea><div class="warn" id="fWarn"></div>';

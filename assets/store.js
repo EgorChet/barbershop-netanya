@@ -108,9 +108,14 @@
     signOut: function () { var s = load(); s.session = null; save(s); return resolve(true); },
     googleStatus: function () { return resolve({ connected: false, reason: "Нужны Supabase и Google-проект (см. supabase/README.md)" }); },
     // демо: клиент находит свои записи по телефону (в реальном режиме — вход через Google)
-    findByPhone: function (phone) {
-      var d = String(phone || "").replace(/\D/g, "").slice(-9), s = load();
-      return resolve(d.length < 9 ? [] : s.apps.filter(function (a) { return String(a.clientPhone).replace(/\D/g, "").slice(-9) === d; }).sort(function (a, b) { return new Date(b.start) - new Date(a.start); }));
+    findByPhone: function (contact) {
+      var c = String(contact || "").trim().toLowerCase(), d = c.replace(/\D/g, "").slice(-9), s = load();
+      function same(v) {
+        v = String(v || "").trim().toLowerCase();
+        if (d.length >= 9 && v.replace(/\D/g, "").slice(-9) === d) return true;
+        return c.length > 3 && v.replace(/^@/, "") === c.replace(/^@/, "");
+      }
+      return resolve(s.apps.filter(function (a) { return same(a.clientPhone); }).sort(function (a, b) { return new Date(b.start) - new Date(a.start); }));
     },
     resetDemo: function () { var s = seed(); save(s); return resolve(true); }
   };
