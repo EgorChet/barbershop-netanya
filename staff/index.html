@@ -37,6 +37,9 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 .who button:hover{border-color:var(--acid)}
 .who img{width:56px;height:56px;border-radius:14px;object-fit:cover;filter:grayscale(1)}
 .who b{font-size:18px;display:block}.who span{color:var(--mut);font-size:13px}
+.who form .btn{display:flex;justify-content:center;align-items:center;background:var(--acid);color:#0b0b0b;border:0;padding:15px 18px;font-weight:800;font-size:16px;border-radius:12px}
+.who form .btn:hover{border:0}
+.who input{margin:0}
 .note{font-size:12px;color:var(--mut);line-height:1.5;border:1px dashed var(--line);border-radius:12px;padding:12px}
 /* шапка */
 .top{position:sticky;top:0;z-index:20;background:#0b0b0bee;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px}
@@ -128,8 +131,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128aa"></script>
-<script src="../assets/store.js?v=20261128aa"></script>
+<script src="../assets/config.js?v=20261128ac"></script>
+<script src="../assets/store.js?v=20261128ac"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -152,7 +155,12 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
   function showLogin() {
     $("app").classList.add("hide"); $("login").classList.remove("hide");
     if (S.mode !== "demo") {
-      $("who").innerHTML = '<button id="gBtn"><div><b>Войти через Google</b><span>аккаунт Google, почта которого записана в таблице мастеров</span></div></button>';
+      var inv = null; try { inv = localStorage.getItem("grind-invite"); } catch (e) {}
+      var q = new URLSearchParams(location.search).get("invite");
+      if (q) { inv = q; try { localStorage.setItem("grind-invite", q); history.replaceState(null, "", location.pathname); } catch (e) {} }
+      if (inv) { return showInvite(inv); }
+      $("who").innerHTML = '<form id="pwForm" style="display:grid;gap:10px"><input id="pwEmail" type="email" placeholder="Почта" autocomplete="email" required><input id="pwPass" type="password" placeholder="Пароль" autocomplete="current-password" required><button class="btn" type="submit">Войти</button><p class="k" id="pwMsg" style="min-height:16px"></p></form>' +
+        '<button id="gBtn"><div><b>Войти через Google</b><span>аккаунт Google, почта которого записана в таблице мастеров</span></div></button>';
       S.authInfo().then(function (i) { if (i.signedIn) $("loginNote").innerHTML = "Аккаунт <b>" + esc(i.email) + "</b> не привязан ни к одному мастеру. Попросите администратора вписать вашу почту в таблицу мастеров."; });
       return;
     }
@@ -164,6 +172,39 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
       ? "<b>Демо-режим.</b> Данные хранятся только в этом браузере, вход — просто выбор мастера. Когда подключим Supabase и Google, здесь появится кнопка «Войти через Google», а записи станут общими для всех устройств и синхронизируются с Google Calendar мастера."
       : "Войдите через Google, чтобы видеть свои записи.";
   }
+  // ---------- приглашение мастера ----------
+  function showInvite(token) {
+    $("loginNote").textContent = "";
+    S.inviteInfo(token).then(function (info) {
+      if (!info) {
+        try { localStorage.removeItem("grind-invite"); } catch (e) {}
+        $("who").innerHTML = '<p class="l" style="color:var(--mut)">Ссылка-приглашение недействительна или уже использована. Попросите администратора прислать новую.</p><button class="btn s" id="invBack">Войти обычным способом</button>';
+        return;
+      }
+      $("who").innerHTML = '<p style="font-size:20px;font-weight:800;margin-bottom:4px">Здравствуйте, ' + esc(info.name) + '!</p><p style="color:var(--mut);margin-bottom:12px">Создайте доступ в кабинет: укажите почту и придумайте пароль.</p>' +
+        '<form id="invForm" style="display:grid;gap:10px"><input id="invEmail" type="email" placeholder="Ваша почта" autocomplete="email" required><input id="invPass" type="password" placeholder="Пароль (не короче 8 символов)" autocomplete="new-password" minlength="8" required><input id="invPass2" type="password" placeholder="Повторите пароль" autocomplete="new-password" minlength="8" required><button class="btn" type="submit">Создать доступ</button><p class="k" id="invMsg" style="min-height:16px"></p></form>';
+      $("invForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var em = $("invEmail").value.trim(), p1 = $("invPass").value, p2 = $("invPass2").value, msg = $("invMsg");
+        if (p1.length < 8) { msg.textContent = "Пароль не короче 8 символов"; return; }
+        if (p1 !== p2) { msg.textContent = "Пароли не совпадают"; return; }
+        msg.textContent = "Создаю доступ…";
+        S.signUpStaff(em, p1).then(function (r) {
+          if (r.signedIn) return start();
+          $("who").innerHTML = '<p style="font-size:20px;font-weight:800">Проверьте почту</p><p style="color:var(--mut);margin-top:8px;line-height:1.5">Мы отправили письмо на ' + esc(em) + '. Нажмите ссылку в нём, и вы окажетесь в кабинете. Если письма нет, загляните в «Спам».</p>';
+        }, function (err) { msg.textContent = "Не получилось: " + err.message; });
+      });
+    });
+  }
+  document.addEventListener("submit", function (e) {
+    if (e.target.id !== "pwForm") return;
+    e.preventDefault();
+    var m = $("pwMsg"); m.textContent = "Вхожу…";
+    S.signInPassword($("pwEmail").value.trim(), $("pwPass").value).then(start, function (err) { m.textContent = "Не получилось: " + err.message; });
+  });
+  $("who").addEventListener("click", function (e) {
+    if (e.target.closest("#invBack")) { try { localStorage.removeItem("grind-invite"); } catch (x) {} showLogin(); return; }
+  });
   $("who").addEventListener("click", function (e) {
     if (e.target.closest("#gBtn")) { S.signInStaff(); return; }
     var b = e.target.closest("button[data-id]"); if (!b) return;

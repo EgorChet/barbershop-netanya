@@ -59,13 +59,24 @@
 
     // ---- вход ----
     authInfo: function () { return sb.auth.getSession().then(function (r) { var u = r.data && r.data.session && r.data.session.user; return { signedIn: !!u, email: u ? u.email : "" }; }); },
+    // ---- приглашения мастеров ----
+    inviteInfo: function (token) { return sb.rpc("staff_invite_info", { p_token: token }).then(fail).then(function (rows) { return rows && rows[0] ? rows[0] : null; }); },
+    signUpStaff: function (email, password) {
+      return sb.auth.signUp({ email: email, password: password, options: { emailRedirectTo: location.href.split("#")[0].split("?")[0] } }).then(function (r) {
+        if (r.error) throw new Error(r.error.message);
+        return { signedIn: !!r.data.session };
+      });
+    },
+    signInPassword: function (email, password) { return sb.auth.signInWithPassword({ email: email, password: password }).then(function (r) { if (r.error) throw new Error(r.error.message); return true; }); },
+    claimInvite: function (token) { return sb.rpc("claim_invite", { p_token: token }).then(fail); },
     staffSession: function () {
       return sb.auth.getSession().then(function (r) {
         if (!r.data.session) return null;
-        return sb.rpc("claim_staff").then(function (x) { return x.data && x.data.id ? { staffId: x.data.id } : null; });
+        var tk = null; try { tk = localStorage.getItem("grind-invite"); } catch (e) {}
+        var pre = tk ? sb.rpc("claim_invite", { p_token: tk }).then(function () { try { localStorage.removeItem("grind-invite"); } catch (e) {} }, function () {}) : Promise.resolve();
+        return pre.then(function () { return sb.rpc("claim_staff"); }).then(function (x) { return x.data && x.data.id ? { staffId: x.data.id } : null; });
       });
     },
-    // Вход мастера: обычный Google-вход (только почта и имя, без доступа к календарю). Календарь синхронизирует сервер.
     signInStaff: function () { return sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.href.split("#")[0] } }); },
     signInClient: function () { return sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.href.split("#")[0] } }); },
     signOut: function () { return sb.auth.signOut().then(function () { return true; }); },
