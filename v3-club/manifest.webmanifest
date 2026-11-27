@@ -11,19 +11,19 @@
   "theme_color": "#121110",
   "icons": [
     {
-      "src": "../assets/icons/grind-192.png",
+      "src": "../assets/icons/b3-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "../assets/icons/grind-512.png",
+      "src": "../assets/icons/b3-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "../assets/icons/grind-512.png",
+      "src": "../assets/icons/b3-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

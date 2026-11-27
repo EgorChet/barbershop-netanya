@@ -11,19 +11,19 @@
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "../assets/icons/pleasures-192.png",
+      "src": "../assets/icons/b7-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "../assets/icons/pleasures-512.png",
+      "src": "../assets/icons/b7-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "../assets/icons/pleasures-512.png",
+      "src": "../assets/icons/b7-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

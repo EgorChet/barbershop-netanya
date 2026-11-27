@@ -4,7 +4,7 @@
 //   --bk-bg, --bk-fg, --bk-mut, --bk-line, --bk-acc, --bk-acc-fg, --bk-radius, --bk-head
 (function () {
   var BASE = (document.currentScript && document.currentScript.src.replace(/assets\/booking\.js.*$/, "")) || "../";
-  var SERVICES = [
+  var SERVICES = (window.SITE_CONFIG && window.SITE_CONFIG.services) || [
     { id: "cut", t: "Стрижка", d: "60 мин", p: 120 },
     { id: "fade", t: "Fade / машинка", d: "45 мин", p: 100 },
     { id: "beard", t: "Борода", d: "30 мин", p: 70 },

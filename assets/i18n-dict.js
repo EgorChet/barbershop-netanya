@@ -1970,6 +1970,226 @@ window.I18N_DICT = {
 "GRIND — שם עבודה",
 "GRIND — nom provisoire"
 ],
+"Кто мы": [
+"Who we are",
+"מי אנחנו",
+"Qui sommes-nous"
+],
+"Работы": [
+"Work",
+"עבודות",
+"Réalisations"
+],
+"скоро открываемся": [
+"opening soon",
+"נפתחים בקרוב",
+"ouverture bientôt"
+],
+"Нетания 2026": [
+"Netanya 2026",
+"נתניה 2026",
+"Netanya 2026"
+],
+"Вертятся диски.<span>Стригутся люди.</span>": [
+"Records spin.<span>People get cut.</span>",
+"תקליטים מסתובבים.<span>אנשים מסתפרים.</span>",
+"Les disques tournent.<span>Les gens se font coiffer.</span>"
+],
+"Барбершоп для своих. Три барбера, винил в колонках, фильтр-кофе и стрижки, которые отрастают нормально.": [
+"A barbershop for our own people. Three barbers, vinyl on the speakers, filter coffee and haircuts that grow out properly.",
+"מספרה לשלנו. שלושה ספרים, ויניל ברמקולים, קפה פילטר ותספורות שצומחות כמו שצריך.",
+"Un barbershop pour les nôtres. Trois barbiers, du vinyle dans les enceintes, du café filtre et des coupes qui repoussent proprement."
+],
+"Смотреть работы": [
+"See the work",
+"לצפייה בעבודות",
+"Voir les réalisations"
+],
+"Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода · Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода · Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода · Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода ·": [
+"Fade · Texture · Classics · Long scissor cuts · Dreads · Beard · Fade · Texture · Classics · Long scissor cuts · Dreads · Beard · Fade · Texture · Classics · Long scissor cuts · Dreads · Beard · Fade · Texture · Classics · Long scissor cuts · Dreads · Beard ·",
+"פייד · טקסטורה · קלאסיקה · חיתוך ארוך במספריים · דרדלוקס · זקן · פייד · טקסטורה · קלאסיקה · חיתוך ארוך במספריים · דרדלוקס · זקן · פייד · טקסטורה · קלאסיקה · חיתוך ארוך במספריים · דרדלוקס · זקן · פייד · טקסטורה · קלאסיקה · חיתוך ארוך במספריים · דרדלוקס · זקן ·",
+"Dégradé · Texture · Classiques · Longs aux ciseaux · Dreads · Barbe · Dégradé · Texture · Classiques · Longs aux ciseaux · Dreads · Barbe · Dégradé · Texture · Classiques · Longs aux ciseaux · Dreads · Barbe · Dégradé · Texture · Classiques · Longs aux ciseaux · Dreads · Barbe ·"
+],
+"Кто <em>мы</em>": [
+"Who <em>we are</em>",
+"מי <em>אנחנו</em>",
+"Qui <em>sommes-nous</em>"
+],
+"Мужские стрижки: текстура, классика и «музейная» нишевая. Слушает винил, стрижёт под него.": [
+"Men's haircuts: texture, classics and a “museum-grade” niche cut. Listens to vinyl and cuts to it.",
+"תספורות גברים: טקסטורה, קלאסיקה ותספורת נישה «ברמת מוזיאון». מקשיב לויניל וגוזר לפיו.",
+"Coupes homme : texture, classiques et une coupe de niche « de musée ». Écoute du vinyle et coupe dessus."
+],
+"«приходите, и я уберу ваши волосы за деньги»": [
+"“come in and I'll take your hair off for money”",
+"«בואו ואסיר לכם את השיער תמורת כסף»",
+"« venez et je vous enlève les cheveux contre de l'argent »"
+],
+"Основатель · барбер · дреды": [
+"Founder · barber · dreads",
+"מייסדת · ספרית · דרדלוקס",
+"Fondatrice · barbière · dreads"
+],
+"Стрижёт с 2017 года, делает дреды. Лучшие стрижки в Нетании, по словам её клиентов.": [
+"Cutting since 2017 and making dreads. The best haircuts in Netanya, according to her clients.",
+"גוזרת משנת 2017 ועושה דרדלוקס. התספורות הכי טובות בנתניה, לפי הלקוחות שלה.",
+"Coiffe depuis 2017 et fait des dreads. Les meilleures coupes de Netanya, selon ses clients."
+],
+"дреды — по запросу": [
+"dreads — on request",
+"דרדלוקס — לפי בקשה",
+"dreads — sur demande"
+],
+"Стрижки, которые отрастают правильно. Покажет, что борода тебе идёт.": [
+"Haircuts that grow out right. He'll show you that a beard suits you.",
+"תספורות שצומחות נכון. הוא יראה לך שזקן מתאים לך.",
+"Des coupes qui repoussent bien. Il vous montrera que la barbe vous va."
+],
+"твой барбер в Израиле": [
+"your barber in Israel",
+"הספר שלך בישראל",
+"votre barbier en Israël"
+],
+"Наши <em>работы</em>": [
+"Our <em>work</em>",
+"ה<em>עבודות</em> שלנו",
+"Nos <em>réalisations</em>"
+],
+"видео ребят, без фильтров": [
+"videos by the guys, unfiltered",
+"סרטונים של החבר'ה, בלי פילטרים",
+"des vidéos des gars, sans filtre"
+],
+"стрижка": [
+"haircut",
+"תספורת",
+"coupe"
+],
+"длинные": [
+"long",
+"ארוך",
+"longs"
+],
+"косметика": [
+"products",
+"קוסמטיקה",
+"produits"
+],
+"Видео принадлежат барберам и опубликованы с их согласия. Нажмите на ролик, чтобы включить звук.": [
+"The videos belong to the barbers and are published with their consent. Tap a video to turn on sound.",
+"הסרטונים שייכים לספרים ומפורסמים בהסכמתם. הקישו על סרטון כדי להפעיל קול.",
+"Les vidéos appartiennent aux barbiers et sont publiées avec leur accord. Touchez une vidéo pour activer le son."
+],
+"Услуги и <em>цены</em>": [
+"Services and <em>prices</em>",
+"שירותים <em>ומחירים</em>",
+"Services et <em>tarifs</em>"
+],
+"в шекелях": [
+"in shekels",
+"בשקלים",
+"en shekels"
+],
+"Удлинённая ножницами": [
+"Long cut with scissors",
+"חיתוך ארוך במספריים",
+"Coupe longue aux ciseaux"
+],
+"длинные волосы, форма, которая держится": [
+"long hair, a shape that holds",
+"שיער ארוך, צורה שמחזיקה",
+"cheveux longs, une forme qui tient"
+],
+"Дреды": [
+"Dreads",
+"דרדלוקס",
+"Dreads"
+],
+"мастер Таша": [
+"barber Tasha",
+"הספרית טאשה",
+"la barbière Tasha"
+],
+"по запросу": [
+"on request",
+"לפי בקשה",
+"sur demande"
+],
+"цены ориентировочные — подтвердим до открытия": [
+"prices are approximate — we'll confirm before opening",
+"המחירים משוערים — נאשר לפני הפתיחה",
+"prix indicatifs — à confirmer avant l'ouverture"
+],
+"Что <em>на полке</em>": [
+"What's <em>on the shelf</em>",
+"מה <em>על המדף</em>",
+"Ce qu'il y a <em>sur l'étagère</em>"
+],
+"то, чем стрижём сами": [
+"what we cut with ourselves",
+"מה שאנחנו עצמנו משתמשים בו",
+"ce que nous utilisons nous-mêmes"
+],
+"сильная фиксация, блеск": [
+"strong hold, shine",
+"החזקה חזקה, ברק",
+"tenue forte, brillance"
+],
+"Reuzel и Uppercut Deluxe — торговые марки их владельцев. Фото товаров с официальных сайтов производителей. Мы пользуемся этой косметикой, но не являемся официальным дилером.": [
+"Reuzel and Uppercut Deluxe are trademarks of their owners. Product photos are from the manufacturers' official websites. We use these products but are not an official dealer.",
+"Reuzel ו-Uppercut Deluxe הם סימנים מסחריים של בעליהם. תמונות המוצרים מהאתרים הרשמיים של היצרנים. אנחנו משתמשים בקוסמטיקה הזו אך איננו משווקים רשמיים.",
+"Reuzel et Uppercut Deluxe sont des marques de leurs propriétaires. Les photos des produits proviennent des sites officiels des fabricants. Nous utilisons ces produits mais ne sommes pas revendeur officiel."
+],
+"Что <em>играет</em>": [
+"What's <em>playing</em>",
+"מה <em>מתנגן</em>",
+"Ce qui <em>passe</em>"
+],
+"Пост-панк и новая русская волна<small>черновик плейлиста: уточним у ребят</small>": [
+"Post-punk and the new Russian wave<small>draft playlist: to be confirmed with the guys</small>",
+"פוסט-פאנק והגל הרוסי החדש<small>טיוטת פלייליסט: נאשר עם החבר'ה</small>",
+"Post-punk et nouvelle vague russe<small>playlist provisoire : à confirmer avec les gars</small>"
+],
+"Винил, пока не закончится сторона<small>вертятся диски</small>": [
+"Vinyl until the side runs out<small>records spin</small>",
+"ויניל עד שהצד נגמר<small>תקליטים מסתובבים</small>",
+"Du vinyle jusqu'à la fin de la face<small>les disques tournent</small>"
+],
+"Кино — вечный референс<small>по настроению</small>": [
+"Kino — the eternal reference<small>depending on the mood</small>",
+"קינו — ההשראה הנצחית<small>לפי מצב הרוח</small>",
+"Kino — la référence éternelle<small>selon l'humeur</small>"
+],
+"Приходите<br>стричься": [
+"Come in<br>for a cut",
+"בואו<br>להסתפר",
+"Passez<br>vous faire coiffer"
+],
+"Запись онлайн, без звонков. Выберите барбера, время, и всё.": [
+"Book online, no phone calls. Pick a barber, a time, and that's it.",
+"הזמנה אונליין, בלי טלפונים. בוחרים ספר, שעה, וזהו.",
+"Réservation en ligne, sans coup de fil. Choisissez un barbier, un créneau, et c'est tout."
+],
+"© GRIND · Нетания — рабочее название. Название, адрес и цены уточняются.": [
+"© GRIND · Netanya — working name. Name, address and prices to be confirmed.",
+"© GRIND · נתניה — שם עבודה. השם, הכתובת והמחירים יאושרו.",
+"© GRIND · Netanya — nom provisoire. Nom, adresse et tarifs à confirmer."
+],
+"&nbsp;Все": [
+"&nbsp;All",
+"&nbsp;הכל",
+"&nbsp;Tout"
+],
+"@GRIND — барбершоп в Нетании · Underground": [
+"GRIND — barbershop in Netanya · Underground",
+"GRIND — מספרת גברים בנתניה · Underground",
+"GRIND — barbershop à Netanya · Underground"
+],
+"@Барбершоп для своих в Нетании. Дима, Таша и Кирилл: стрижки, которые отрастают правильно, винил в колонках и кофе.": [
+"A barbershop for our own people in Netanya. Dima, Tasha and Kirill: haircuts that grow out right, vinyl on the speakers and coffee.",
+"מספרה לשלנו בנתניה. דימה, טאשה וקיריל: תספורות שצומחות נכון, ויניל ברמקולים וקפה.",
+"Un barbershop pour les nôtres à Netanya. Dima, Tasha et Kirill : des coupes qui repoussent bien, du vinyle dans les enceintes et du café."
+],
 "Онлайн-запись": [
 "Online booking",
 "הזמנת תור אונליין",
@@ -2114,5 +2334,20 @@ window.I18N_DICT = {
 "“For the first time in Israel, I actually enjoyed both the haircut and the result.”",
 "«בפעם הראשונה בישראל נהניתי גם מהתהליך וגם מהתוצאה.»",
 "« Pour la première fois en Israël, j'ai vraiment aimé à la fois la coupe et le résultat. »"
+],
+"@Восемь вариантов сайта барбершопа в Нетании.": [
+"Eight website concepts for a barbershop in Netanya.",
+"שמונה גרסאות לאתר של מספרת גברים בנתניה.",
+"Huit concepts de site pour un barbershop à Netanya."
+],
+"Барбершоп Димы и Таши в Нетании. Восемь вариантов сайта: каждый построен на одном референсе. Откройте карточку; переключаться между версиями можно панелью внизу.": [
+"Dima and Tasha's barbershop in Netanya. Eight site concepts, each built on a single reference. Open a card; you can switch between versions with the bar at the bottom.",
+"מספרת הגברים של דימה וטאשה בנתניה. שמונה גרסאות לאתר, כל אחת מבוססת על השראה אחת. פתחו כרטיס; אפשר לעבור בין הגרסאות בעזרת הסרגל שלמטה.",
+"Le barbershop de Dima et Tasha à Netanya. Huit concepts de site, chacun inspiré d'une seule référence. Ouvrez une carte ; la barre en bas permet de passer d'une version à l'autre."
+],
+"По брифу ребят: московский андеграунд, скейт, винил, ксерокс, кислотный акцент. Видео работ, до/после, форма лица.": [
+"From the guys' brief: Moscow underground, skate, vinyl, xerox, acid accent. Work videos, before/after, face shapes.",
+"לפי הבריף של החבר'ה: אנדרגראונד מוסקבאי, סקייט, ויניל, קסרוקס, אקסנט חומצי. סרטוני עבודות, לפני/אחרי, צורות פנים.",
+"D'après le brief des gars : underground moscovite, skate, vinyle, xerox, accent acide. Vidéos de travaux, avant/après, formes de visage."
 ]
 };

@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND — барбершоп в Нетании · Underground</title>
+<meta name="description" content="Барбершоп для своих в Нетании. Дима, Таша и Кирилл: стрижки, которые отрастают правильно, винил в колонках и кофе.">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GRIND">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/b8-180.png">
+<link rel="icon" href="../assets/icons/b8.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0b0b;--paper:#efefea;--acid:#d7ff1a;--mut:#9a9a94;--line:#2b2b2b;
+  --disp:"Rubik Mono One","Archivo Black",Impact,sans-serif;--sans:Manrope,system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;--hand:Caveat,cursive;
+  --bk-bg:#0b0b0b;--bk-fg:#efefea;--bk-mut:#9a9a94;--bk-line:#2b2b2b;--bk-acc:#d7ff1a;--bk-acc-fg:#0b0b0b;--bk-radius:4px;--bk-head:"Rubik Mono One",sans-serif;
+  --vsw-bottom:86px;--safe:env(safe-area-inset-bottom,0px)
+}
+@media(min-width:900px){:root{--vsw-bottom:16px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:calc(76px + var(--safe))}
+@media(min-width:900px){body{padding-bottom:0}}
+a{color:inherit;text-decoration:none}img,video{display:block;max-width:100%}
+/* зерно плёнки поверх всего */
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.16;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.w{max-width:1240px;margin:0 auto;padding:0 16px}
+@media(min-width:760px){.w{padding:0 36px}}
+.k{font:500 11px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+/* шапка */
+header.top{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(10px + env(safe-area-inset-top,0px)) 0 10px;background:linear-gradient(#0b0b0bee,#0b0b0b00)}
+header .w{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{font-size:17px;color:var(--paper)}
+header nav{display:none;gap:26px;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+header nav a:hover{color:var(--acid)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--acid);color:var(--ink);font:800 13px var(--sans);letter-spacing:.04em;text-transform:uppercase;padding:13px 20px;border-radius:2px;box-shadow:4px 4px 0 var(--paper);transition:transform .15s,box-shadow .15s}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--paper)}
+.btn.o{background:transparent;color:var(--paper);border:2px solid var(--paper);box-shadow:none}
+@media(min-width:900px){header nav{display:flex}}
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding:110px 0 150px}
+@media(min-width:900px){.hero{padding-bottom:54px}}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25) brightness(.62)}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0b0b0b66,#0b0b0bcc 70%,#0b0b0b)}
+.hero .w{position:relative;z-index:2;width:100%}
+.hero h1{font:400 clamp(40px,10.5vw,150px)/.92 var(--disp);text-transform:uppercase;letter-spacing:-.02em}
+.hero h1 span{color:var(--acid);display:block}
+.hero p{max-width:520px;margin-top:20px;font-size:17px;color:#d8d8d2}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.stk{position:absolute;z-index:3;display:inline-block;background:var(--acid);color:var(--ink);font:400 12px/1.15 var(--disp);text-transform:uppercase;padding:10px 12px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--paper);transform:rotate(var(--r,-6deg))}
+.stk.p{background:var(--paper)}
+.hero .stk.a{right:14px;top:96px;--r:7deg}
+.hero .stk.b{right:30px;bottom:200px;--r:-5deg}
+@media(min-width:900px){.hero .stk.a{right:8%;top:22%}.hero .stk.b{right:16%;bottom:30%}}
+/* бегущая строка */
+.tick{background:var(--acid);color:var(--ink);overflow:hidden;white-space:nowrap;font:400 15px var(--disp);text-transform:uppercase;padding:13px 0;transform:rotate(-1deg);margin:-8px 0 0;position:relative;z-index:4;width:100%}
+.tick span{display:inline-block;padding-right:0;animation:mq 26s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* секции */
+section{padding:clamp(64px,9vw,120px) 0}
+.sh{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+.sh h2{font:400 clamp(30px,6vw,72px)/.95 var(--disp);text-transform:uppercase;letter-spacing:-.02em}
+.sh h2 em{font-style:normal;color:var(--acid)}
+/* кто мы: деки */
+.crew{display:grid;gap:34px 18px;grid-template-columns:1fr}
+@media(min-width:700px){.crew{grid-template-columns:repeat(3,1fr)}}
+.deck{position:relative;transform:rotate(var(--r,0deg));transition:transform .3s}
+.deck:hover{transform:rotate(0) translateY(-6px)}
+.deck:nth-child(1){--r:-1.6deg}.deck:nth-child(2){--r:1.2deg}.deck:nth-child(3){--r:-.8deg}
+.deck .ph{position:relative;aspect-ratio:3/4.4;border-radius:36px 36px 120px 120px/36px 36px 90px 90px;overflow:hidden;border:3px solid var(--paper);background:#222}
+.deck .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.35) brightness(.92)}
+.deck .ph:after{content:"";position:absolute;inset:0;background:radial-gradient(circle,#0000 40%,#0b0b0b55 100%),repeating-radial-gradient(circle at 0 0,#0000 0 2px,#0b0b0b22 2px 3px);mix-blend-mode:multiply}
+.deck .tape{position:absolute;z-index:3;top:-12px;left:50%;width:96px;height:28px;margin-left:-48px;background:#efefeacc;transform:rotate(-4deg);box-shadow:0 2px 6px #0006}
+.deck h3{font:400 clamp(26px,3.4vw,38px)/1 var(--disp);text-transform:uppercase;margin-top:16px;letter-spacing:-.02em}
+.deck .role{display:inline-block;margin-top:8px;background:var(--acid);color:var(--ink);font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:5px 8px}
+.deck p{margin-top:12px;color:#cfcfc9;font-size:15px}
+.deck .q{font:700 22px/1.1 var(--hand);color:var(--acid);margin-top:10px}
+.deck .ig{display:inline-block;margin-top:12px;font:500 12px var(--mono);letter-spacing:.06em;border-bottom:2px solid var(--acid)}
+.deck .ig+.ig{margin-left:14px}
+/* работы */
+.work{columns:2;column-gap:10px}
+@media(min-width:760px){.work{columns:4;column-gap:14px}}
+.vt{position:relative;margin:0 0 10px;break-inside:avoid;background:#161616;overflow:hidden;border:2px solid var(--paper);transform:rotate(var(--r,0deg))}
+@media(min-width:760px){.vt{margin-bottom:14px}}
+.vt video{width:100%;height:auto;aspect-ratio:var(--ar,9/16);object-fit:cover;filter:grayscale(1) contrast(1.2)}
+.vt.on video{filter:none}
+.vt .who{position:absolute;left:0;bottom:0;background:var(--ink);color:var(--paper);font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px}
+.vt .tp{position:absolute;right:6px;top:6px;font:500 10px var(--mono);background:var(--acid);color:var(--ink);padding:3px 6px}
+.note{margin-top:18px;color:var(--mut);font-size:13px}
+/* прайс */
+.price{background:var(--paper);color:var(--ink);position:relative}
+.price .k{color:#555}
+.price .sh h2 em{color:var(--ink);background:var(--acid);padding:0 .15em}
+.rc{border:3px solid var(--ink);background:#f6f6f1;max-width:760px;position:relative;transform:rotate(-.6deg)}
+.rc li{list-style:none;display:flex;gap:12px;align-items:baseline;padding:17px 18px;border-bottom:2px dashed var(--ink)}
+.rc li:last-child{border-bottom:0}
+.rc b{font:400 clamp(17px,2.6vw,24px) var(--disp);text-transform:uppercase;flex:0 1 auto}
+.rc i{flex:1;border-bottom:3px dotted var(--ink);transform:translateY(-5px);min-width:20px}
+.rc em{font:400 clamp(18px,2.8vw,26px) var(--disp);font-style:normal;white-space:nowrap}
+.rc small{display:block;font:500 12px var(--mono);color:#555;letter-spacing:.03em;margin-top:4px;text-transform:none}
+.price .stk{position:static;display:inline-block;margin-top:28px;--r:-3deg}
+/* косметика */
+.shelf{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:800px){.shelf{grid-template-columns:repeat(4,1fr)}}
+.tin{border:2px solid var(--paper);padding:14px;background:#141414}
+.tin .c{aspect-ratio:1;background:#f1ede4;display:grid;place-items:center;overflow:hidden}
+.tin .c img{width:88%;height:88%;object-fit:contain;mix-blend-mode:multiply}
+.tin h4{font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:12px}
+.tin p{font-size:13px;color:var(--mut);margin-top:2px}
+.fine{margin-top:20px;color:var(--mut);font-size:12px;max-width:680px}
+/* винил */
+.vinyl{display:grid;gap:34px;align-items:center}
+@media(min-width:800px){.vinyl{grid-template-columns:.8fr 1.2fr}}
+.rec{width:min(78vw,360px);aspect-ratio:1;border-radius:50%;margin:0 auto;position:relative;background:repeating-radial-gradient(circle,#0d0d0d 0 3px,#1b1b1b 3px 5px);box-shadow:0 0 0 4px #222,0 30px 60px -20px #000;animation:sp 5s linear infinite}
+.rec:before{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--acid)}
+.rec:after{content:"";position:absolute;inset:48.2%;border-radius:50%;background:var(--ink)}
+@keyframes sp{to{transform:rotate(360deg)}}
+.tr li{list-style:none;display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);font-size:17px}
+.tr li span{font:500 12px var(--mono);color:var(--acid);min-width:34px;padding-top:4px}
+.tr li small{display:block;color:var(--mut);font-size:13px}
+/* запись */
+.visit{background:var(--acid);color:var(--ink)}
+.visit .k{color:#3a4200}
+.visit h2{font:400 clamp(34px,8vw,110px)/.92 var(--disp);text-transform:uppercase;letter-spacing:-.03em}
+.visit .grid{display:grid;gap:28px;margin-top:30px}
+@media(min-width:800px){.visit .grid{grid-template-columns:1.1fr .9fr;align-items:end}}
+.visit .btn{background:var(--ink);color:var(--acid);box-shadow:5px 5px 0 var(--paper);font-size:15px;padding:17px 26px}
+.visit .btn.o{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none}
+.visit ul{list-style:none}
+.visit li{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:2px solid var(--ink);font-weight:600}
+.visit h3{font:400 24px var(--disp);text-transform:uppercase;margin-bottom:8px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+footer{padding:36px 0 40px;font-size:12px;color:var(--mut)}
+footer .w{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer .logo{color:var(--paper);font-size:15px}
+/* мобильная панель */
+.appbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:8px;padding:10px 12px calc(10px + var(--safe));background:rgba(11,11,11,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.appbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;font:500 11px var(--mono);text-transform:uppercase}
+.appbar a svg{width:20px;height:20px}
+.appbar a.main{background:var(--acid);color:var(--ink);font-size:13px;letter-spacing:.06em}
+@media(min-width:900px){.appbar{display:none}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.tick span,.rec{animation:none}}
+</style>
+<script src="../assets/brand.js?v=20261128h"></script>
+</head>
+<body>
+<header class="top"><div class="w">
+  <a class="logo" href="#">GRIND</a>
+  <nav><a href="#crew">Кто мы</a><a href="#work">Работы</a><a href="#price">Прайс</a><a href="#visit">Запись</a></nav>
+  <a class="btn" href="#visit" data-book>Записаться</a>
+</div></header>
+
+<div class="hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="../media/posters/dima-1.jpg"><source src="../media/dima-1.mp4" type="video/mp4"></video>
+  <span class="stk a">скоро открываемся</span>
+  <span class="stk p b">Нетания 2026</span>
+  <div class="w">
+    <span class="k">Барбершоп · Нетания</span>
+    <h1>Вертятся диски.<span>Стригутся люди.</span></h1>
+    <p>Барбершоп для своих. Три барбера, винил в колонках, фильтр-кофе и стрижки, которые отрастают нормально.</p>
+    <div class="row"><a class="btn" href="#visit" data-book>Записаться</a><a class="btn o" href="#work">Смотреть работы</a></div>
+  </div>
+</div>
+
+<div class="tick"><span>Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода · Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода · Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода · Fade · Текстура · Классика · Длинные ножницами · Дреды · Борода ·</span></div>
+
+<section id="crew"><div class="w">
+  <div class="sh rv"><h2>Кто <em>мы</em></h2><span class="k">трое, все свои</span></div>
+  <div class="crew">
+    <article class="deck rv"><span class="tape"></span>
+      <div class="ph"><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"></div>
+      <h3>Дима</h3><span class="role">Основатель · барбер</span>
+      <p>Мужские стрижки: текстура, классика и «музейная» нишевая. Слушает винил, стрижёт под него.</p>
+      <div class="q">«приходите, и я уберу ваши волосы за деньги»</div>
+      <a class="ig" href="https://instagram.com/combpunk" target="_blank" rel="noopener">@combpunk</a>
+    </article>
+    <article class="deck rv"><span class="tape"></span>
+      <div class="ph"><img src="../assets/img/tasha.jpg" alt="Таша" loading="lazy" style="object-position:center 25%"></div>
+      <h3>Таша</h3><span class="role">Основатель · барбер · дреды</span>
+      <p>Стрижёт с 2017 года, делает дреды. Лучшие стрижки в Нетании, по словам её клиентов.</p>
+      <div class="q">дреды — по запросу</div>
+      <a class="ig" href="https://instagram.com/tasha.msltn" target="_blank" rel="noopener">@tasha.msltn</a><a class="ig" href="https://instagram.com/tashadreads_il" target="_blank" rel="noopener">@tashadreads_il</a>
+    </article>
+    <article class="deck rv"><span class="tape"></span>
+      <div class="ph"><img src="../media/posters/kirill-1.jpg" alt="Кирилл" loading="lazy" style="object-position:center 30%"></div>
+      <h3>Кирилл</h3><span class="role">Барбер</span>
+      <p>Стрижки, которые отрастают правильно. Покажет, что борода тебе идёт.</p>
+      <div class="q">твой барбер в Израиле</div>
+      <a class="ig" href="https://instagram.com/kirill.barber.il" target="_blank" rel="noopener">@kirill.barber.il</a>
+    </article>
+  </div>
+</div></section>
+
+<section id="work" style="padding-top:0"><div class="w">
+  <div class="sh rv"><h2>Наши <em>работы</em></h2><span class="k">видео ребят, без фильтров</span></div>
+  <div class="work">
+    <div class="vt" style="--ar:9/16;--r:-.6deg"><video muted loop playsinline preload="none" poster="../media/posters/dima-2.jpg" data-src="../media/dima-2.mp4"></video><span class="who">@combpunk</span></div>
+    <div class="vt" style="--ar:1;--r:.8deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-3.jpg" data-src="../media/kirill-3.mp4"></video><span class="who">@kirill.barber.il</span><span class="tp">стрижка</span></div>
+    <div class="vt" style="--ar:9/16;--r:.5deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-7.jpg" data-src="../media/kirill-7.mp4"></video><span class="who">@kirill.barber.il</span></div>
+    <div class="vt" style="--ar:1;--r:-.7deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-4.jpg" data-src="../media/kirill-4.mp4"></video><span class="who">@kirill.barber.il</span><span class="tp">длинные</span></div>
+    <div class="vt" style="--ar:9/16;--r:.7deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-1.jpg" data-src="../media/kirill-1.mp4"></video><span class="who">@kirill.barber.il</span></div>
+    <div class="vt" style="--ar:1;--r:-.4deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-5.jpg" data-src="../media/kirill-5.mp4"></video><span class="who">@kirill.barber.il</span><span class="tp">борода</span></div>
+    <div class="vt" style="--ar:1;--r:.6deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-6.jpg" data-src="../media/kirill-6.mp4"></video><span class="who">@kirill.barber.il</span></div>
+    <div class="vt" style="--ar:1;--r:-.5deg"><video muted loop playsinline preload="none" poster="../media/posters/kirill-2.jpg" data-src="../media/kirill-2.mp4"></video><span class="who">@kirill.barber.il</span><span class="tp">косметика</span></div>
+  </div>
+  <p class="note">Видео принадлежат барберам и опубликованы с их согласия. Нажмите на ролик, чтобы включить звук.</p>
+</div></section>
+
+<section class="price" id="price"><div class="w">
+  <div class="sh rv"><h2>Услуги и <em>цены</em></h2><span class="k">в шекелях</span></div>
+  <ul class="rc rv">
+    <li><b>Стрижка</b><i></i><em>150 ₪</em></li>
+    <li><b>Борода</b><i></i><em>100 ₪</em></li>
+    <li><b>Стрижка + борода</b><i></i><em>230 ₪</em></li>
+    <li><div><b>Удлинённая ножницами</b><small>длинные волосы, форма, которая держится</small></div><i></i><em>180–250 ₪</em></li>
+    <li><div><b>Дреды</b><small>мастер Таша</small></div><i></i><em>по запросу</em></li>
+  </ul>
+  <span class="stk">цены ориентировочные — подтвердим до открытия</span>
+</div></section>
+
+<section id="shelf"><div class="w">
+  <div class="sh rv"><h2>Что <em>на полке</em></h2><span class="k">то, чем стрижём сами</span></div>
+  <div class="shelf">
+    <div class="tin rv"><div class="c"><img src="../assets/products/reuzel-blue.png" alt="Reuzel Blue" loading="lazy"></div><h4>Reuzel Blue</h4><p>сильная фиксация, блеск, смывается водой</p></div>
+    <div class="tin rv"><div class="c"><img src="../assets/products/reuzel-clay.jpg" alt="Reuzel Clay Matte" loading="lazy"></div><h4>Reuzel Clay Matte</h4><p>средняя фиксация, матовый финиш</p></div>
+    <div class="tin rv"><div class="c"><img src="../assets/products/reuzel-fiber.png" alt="Reuzel Fiber" loading="lazy"></div><h4>Reuzel Fiber</h4><p>гибкая фиксация, текстура</p></div>
+    <div class="tin rv"><div class="c"><img src="../assets/products/uppercut-deluxe.jpg" alt="Uppercut Deluxe Pomade" loading="lazy"></div><h4>Uppercut Deluxe Pomade</h4><p>сильная фиксация, блеск</p></div>
+  </div>
+  <p class="fine">Reuzel и Uppercut Deluxe — торговые марки их владельцев. Фото товаров с официальных сайтов производителей. Мы пользуемся этой косметикой, но не являемся официальным дилером.</p>
+</div></section>
+
+<section id="vinyl" style="background:#101010"><div class="w">
+  <div class="vinyl">
+    <div class="rec" aria-hidden="true"></div>
+    <div>
+      <div class="sh rv"><h2>Что <em>играет</em></h2></div>
+      <ul class="tr rv">
+        <li><span>A1</span><div>Пост-панк и новая русская волна<small>черновик плейлиста: уточним у ребят</small></div></li>
+        <li><span>A2</span><div>Винил, пока не закончится сторона<small>вертятся диски</small></div></li>
+        <li><span>B1</span><div>Кино — вечный референс<small>по настроению</small></div></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="visit" id="visit"><div class="w">
+  <span class="k">Запись</span>
+  <h2>Приходите<br>стричься</h2>
+  <div class="grid">
+    <div>
+      <p style="max-width:460px;font-size:18px;font-weight:600">Запись онлайн, без звонков. Выберите барбера, время, и всё.</p>
+      <div class="row"><a class="btn" href="#" data-book>Записаться онлайн</a><a class="btn o" href="#" data-cfg-ig target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+    <div>
+      <h3 data-cfg="address">Адрес скоро</h3>
+      <ul data-cfg-hours></ul>
+      <div class="row"><a class="btn o" href="#" data-cfg-route>Маршрут</a></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="w">
+  <a class="logo" href="#">GRIND</a>
+  <span>© GRIND · Нетания — рабочее название. Название, адрес и цены уточняются.</span>
+</div></footer>
+
+<nav class="appbar" aria-label="Быстрые действия">
+  <a href="#" data-cfg-ig target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>Instagram</a>
+  <a href="#" data-cfg-route><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Маршрут</a>
+  <a class="main" href="#visit" data-book>Записаться</a>
+</nav>
+
+<script src="../assets/config.js?v=20261128h"></script>
+<script>
+// цены этой версии (ориентир от ребят, нужно подтвердить)
+window.SITE_CONFIG.services = [
+  { id: "cut", t: "Стрижка", d: "60 мин", p: 150 },
+  { id: "beard", t: "Борода", d: "30 мин", p: 100 },
+  { id: "combo", t: "Стрижка + борода", d: "90 мин", p: 230 },
+  { id: "long", t: "Удлинённая ножницами", d: "90 мин", p: 180 }
+];
+</script>
+<script src="../assets/site.js?v=20261128h"></script>
+<script src="../assets/switcher.js?v=20261128h"></script>
+<script src="../assets/booking.js?v=20261128h"></script>
+<script>
+(function () {
+  // появление при прокрутке
+  var rv = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 });
+    rv.forEach(function (n) { io.observe(n); });
+    setTimeout(function () { rv.forEach(function (n) { n.classList.add("in"); }); }, 2600);
+  } else rv.forEach(function (n) { n.classList.add("in"); });
+  // видео: грузим и играем только то, что на экране
+  var vs = document.querySelectorAll(".vt video");
+  var vo = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var v = e.target, box = v.parentNode;
+      if (e.isIntersecting) {
+        if (!v.src && v.dataset.src) v.src = v.dataset.src;
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      } else { v.pause(); }
+    });
+  }, { threshold: .35 });
+  vs.forEach(function (v) {
+    vo.observe(v);
+    v.parentNode.addEventListener("click", function () { v.muted = !v.muted; v.parentNode.classList.toggle("on", !v.muted); });
+  });
+})();
+</script>
+<script src="../assets/guide.js?v=20261128h"></script>
+<script src="../assets/i18n-dict.js?v=20261128h"></script>
+<script src="../assets/i18n.js?v=20261128h"></script>
+</body>
+</html>
