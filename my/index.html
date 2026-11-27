@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND · Мои записи</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" href="../assets/icons/b8.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0b;--panel:#141414;--line:#2a2a2a;--paper:#efefea;--mut:#9a9a94;--acid:#d7ff1a;--red:#ff5a4d;--bk-bg:#0b0b0b;--bk-fg:#efefea;--bk-mut:#9a9a94;--bk-line:#2a2a2a;--bk-acc:#d7ff1a;--bk-acc-fg:#0b0b0b;--bk-radius:14px;--bk-head:Manrope,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--paper);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:560px;margin:0 auto;padding:calc(34px + env(safe-area-inset-top,0px)) 18px 60px}
+.k{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+h1{font-weight:800;font-size:34px;line-height:1.05;margin:10px 0 8px}
+p.l{color:var(--mut);line-height:1.5}
+input{font:inherit;color:var(--paper);background:#1b1b1b;border:1px solid var(--line);border-radius:12px;padding:14px;width:100%;margin-top:18px}
+input:focus{outline:2px solid var(--acid);outline-offset:-1px}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;background:var(--acid);color:#0b0b0b;font:800 16px Manrope;border:0;border-radius:12px;padding:15px;margin-top:12px;cursor:pointer}
+.btn.s{background:#222;color:var(--paper);border:1px solid var(--line)}
+.btn.r{background:transparent;color:var(--red);border:1px solid #5b2a26;padding:10px;font-size:14px;margin-top:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px}
+.card b{display:block;font-size:20px}.card span{color:var(--mut);font-size:14px}
+.card.cx{opacity:.5}.tag{display:inline-block;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:3px 8px;margin-top:8px;color:var(--mut)}
+.empty{text-align:center;color:var(--mut);padding:30px 10px}
+.note{font-size:12px;color:var(--mut);line-height:1.5;border:1px dashed var(--line);border-radius:12px;padding:12px;margin-top:22px}
+.hide{display:none!important}
+a.back{color:var(--mut);font-size:14px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="w">
+  <a class="back" href="../">← на сайт</a>
+  <div style="margin-top:22px"><span class="k">GRIND · клиент</span></div>
+  <h1>Мои записи</h1>
+  <p class="l" id="lead"></p>
+
+  <form id="find" class="hide">
+    <input id="phone" type="tel" placeholder="Телефон, с которого записывались" autocomplete="tel" required>
+    <button class="btn" type="submit">Показать мои записи</button>
+  </form>
+  <div id="gl" class="hide"><button class="btn" id="gBtn">Войти через Google</button></div>
+
+  <div id="list"></div>
+  <button class="btn s hide" id="newBtn">Записаться ещё раз</button>
+  <div class="note" id="note"></div>
+</div>
+<script src="../assets/config.js?v=20261128r"></script>
+<script src="../assets/store.js?v=20261128r"></script>
+<script>
+(function () {
+  var S = window.GrindStore, $ = function (i) { return document.getElementById(i); };
+  var MN = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"], WD = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
+  var staff = {}, svc = {}, phone = "";
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  function show(apps) {
+    var now = Date.now();
+    if (!apps || !apps.length) { $("list").innerHTML = '<div class="empty">Записей не найдено.</div>'; $("newBtn").classList.remove("hide"); return; }
+    $("list").innerHTML = apps.map(function (a) {
+      var d = new Date(a.start), past = d.getTime() < now, cx = a.status === "cancelled", m = staff[a.staffId] || { name: a.staffId }, sv = svc[a.serviceId] || { title: "Услуга" };
+      return '<div class="card' + (cx || past ? " cx" : "") + '"><b>' + d.getDate() + " " + MN[d.getMonth()] + ", " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + "</b><span>" + WD[d.getDay()] + " · " + esc(sv.title) + " · " + esc(m.name) + '</span><br><span class="tag">' + (cx ? "отменена" : past ? "прошла" : "ждём вас") + "</span>" +
+        (!cx && !past ? '<button class="btn r" data-id="' + a.id + '">Отменить запись</button>' : "") + "</div>";
+    }).join("");
+    $("newBtn").classList.remove("hide");
+  }
+  function lookup() { return (S.mode === "demo" ? S.findByPhone(phone) : S.myAppointments()).then(show); }
+
+  Promise.all([S.listStaff(), S.listServices()]).then(function (r) {
+    r[0].forEach(function (m) { staff[m.id] = m; }); r[1].forEach(function (s) { svc[s.id] = s; });
+    if (S.mode === "demo") {
+      $("lead").textContent = "Введите телефон, с которого записывались, и увидите свои записи.";
+      $("find").classList.remove("hide");
+      $("note").innerHTML = "<b>Демо-режим.</b> Записи хранятся только в этом браузере. В боевом режиме клиент входит через Google, и записи видны на любом устройстве.";
+    } else {
+      $("lead").textContent = "Войдите, чтобы увидеть свои записи и отменить, если планы изменились.";
+      $("note").textContent = "Перенос: отмените запись и выберите новое время на сайте.";
+      S.myAppointments().then(function (apps) { if (apps) show(apps); else $("gl").classList.remove("hide"); });
+    }
+  });
+  $("find").addEventListener("submit", function (e) { e.preventDefault(); phone = $("phone").value; lookup(); });
+  $("gBtn").onclick = function () { S.signInClient(); };
+  $("newBtn").onclick = function () { if (window.openBooking) window.openBooking(); else location.href = "../"; };
+  $("list").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-id]"); if (!b) return;
+    if (!confirm("Отменить запись?")) return;
+    S.updateAppointment(b.getAttribute("data-id"), { status: "cancelled" }).then(lookup);
+  });
+})();
+</script>
+<script src="../assets/booking.js?v=20261128r"></script>
+</body>
+</html>

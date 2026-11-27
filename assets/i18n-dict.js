@@ -2190,6 +2190,16 @@ window.I18N_DICT = {
 "מספרה לשלנו בנתניה. דימה, טאשה וקיריל: תספורות שצומחות נכון, ויניל ברמקולים וקפה.",
 "Un barbershop pour les nôtres à Netanya. Dima, Tasha et Kirill : des coupes qui repoussent bien, du vinyle dans les enceintes et du café."
 ],
+"На этот день нет свободных окон. Попробуйте другой день.": [
+"No free slots on this day. Try another day.",
+"אין תורים פנויים ביום הזה. נסו יום אחר.",
+"Aucun créneau libre ce jour-là. Essayez un autre jour."
+],
+"<b>Своя запись:</b> <a href=\"staff/\" style=\"color:#c9f23a\">кабинет мастера</a> (календарь, перенос, отмена) и <a href=\"my/\" style=\"color:#c9f23a\">мои записи</a> для клиента. Пока в демо-режиме, данные хранятся в браузере.": [
+"<b>Own booking:</b> <a href=\"staff/\" style=\"color:#c9f23a\">barber dashboard</a> (calendar, move, cancel) and <a href=\"my/\" style=\"color:#c9f23a\">my appointments</a> for clients. Demo mode for now: data stays in your browser.",
+"<b>הזמנת תורים עצמאית:</b> <a href=\"staff/\" style=\"color:#c9f23a\">אזור הספר</a> (יומן, העברה, ביטול) ו<a href=\"my/\" style=\"color:#c9f23a\">התורים שלי</a> ללקוחות. בינתיים במצב הדגמה, הנתונים נשמרים בדפדפן.",
+"<b>Réservation maison :</b> <a href=\"staff/\" style=\"color:#c9f23a\">espace barbier</a> (agenda, déplacer, annuler) et <a href=\"my/\" style=\"color:#c9f23a\">mes rendez-vous</a> pour les clients. Mode démo pour l'instant : les données restent dans votre navigateur."
+],
 "Онлайн-запись": [
 "Online booking",
 "הזמנת תור אונליין",

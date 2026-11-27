@@ -23,6 +23,36 @@
   function LOC() { return window.I18N ? window.I18N.locale() : "ru-RU"; }
   var SLOTS = ["10:00", "11:00", "12:00", "13:30", "15:00", "16:00", "17:30", "19:00"];
   var DAYS = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+  // Режим "own": настоящие свободные окна из assets/store.js (мастера, часы работы, уже занятые записи).
+  var OWN = !!(window.SITE_CONFIG && window.SITE_CONFIG.booking && window.SITE_CONFIG.booking.provider === "own" && window.GrindStore);
+  var OWN_MAP = { b3: "tasha" };
+  var hoursBy = {};
+  function ownLoad() {
+    var G = window.GrindStore;
+    return Promise.all([G.listServices(), G.listStaff()]).then(function (r) {
+      SERVICES = r[0].map(function (x) { return { id: x.id, t: x.title, d: x.minutes + " мин", p: x.price, min: x.minutes }; });
+      MASTERS = [{ id: "any", n: "Любой свободный", r: "ближайшее время", img: null }].concat(r[1].map(function (x) { return { id: x.id, n: x.name, r: x.role.toLowerCase().replace(" · ", " · "), img: x.img }; }));
+      return Promise.all(r[1].map(function (m) { return G.getHours(m.id).then(function (h) { hoursBy[m.id] = h; }); }));
+    });
+  }
+  // сразу показываем ближайший день со свободными окнами, а не пустое «сегодня»
+  function ownFirstDay() {
+    var i = 0;
+    (function next() {
+      s.day = i;
+      if (isOff(dayDate(i)) && i < 13) { i++; return next(); }
+      ownRefresh(function () { if (!(s.times && s.times.length) && i < 13) { i++; return next(); } if (!(s.times && s.times.length)) s.day = 0; render(); });
+    })();
+  }
+  function ownStaffIds() { return s.m === "any" ? MASTERS.filter(function (x) { return x.id !== "any"; }).map(function (x) { return x.id; }) : [s.m]; }
+  function ownRefresh(cb) {
+    var G = window.GrindStore, ds = G.helpers.ymd(dayDate(s.day)), mins = (svc() && svc().min) || 60, ids = ownStaffIds();
+    Promise.all(ids.map(function (id) { return G.slots(id, ds, mins); })).then(function (res) {
+      s.map = {}; var all = [];
+      res.forEach(function (list, i) { list.forEach(function (t) { if (!s.map[t]) { s.map[t] = ids[i]; all.push(t); } }); });
+      all.sort(); s.times = all; cb();
+    });
+  }
 
   var css =
     ".bk-ov{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}" +
@@ -78,7 +108,7 @@
     s = { step: 0, svc: null, m: master || null, day: 0, time: null, name: "", phone: "", base: d };
   }
   function dayDate(i) { var d = new Date(s.base); d.setDate(d.getDate() + i); return d; }
-  function isOff(d) { return d.getDay() === 6; } // Saturday closed
+  function isOff(d) { if (OWN && s.m) return ownStaffIds().every(function (id) { return !(hoursBy[id] && hoursBy[id][d.getDay()]); }); return d.getDay() === 6; } // Saturday closed
   function busy(i, t) { var h = (i * 7 + t.charCodeAt(1) * 3 + (s.m ? s.m.length : 1)) % 5; return h === 0; }
   function svc() { return SERVICES.filter(function (x) { return x.id === s.svc; })[0]; }
   function mst() { return MASTERS.filter(function (x) { return x.id === s.m; })[0]; }
@@ -117,9 +147,10 @@
       }
       h += '</div><div class="bk-l">' + T("Время") + '</div><div class="bk-t">';
       var day = dayDate(s.day);
-      var slots = day.getDay() === 5 ? SLOTS.slice(0, 4) : SLOTS;
+      var slots = OWN ? (s.times || []) : (day.getDay() === 5 ? SLOTS.slice(0, 4) : SLOTS);
+      if (OWN && !slots.length) h += '<p style="grid-column:1/-1;text-align:center;color:var(--bk-mut,#777);padding:18px 8px;line-height:1.5">' + T("На этот день нет свободных окон. Попробуйте другой день.") + "</p>";
       slots.forEach(function (t) {
-        var dis = busy(s.day, t);
+        var dis = OWN ? false : busy(s.day, t);
         h += "<button " + (dis ? "disabled" : "") + (s.time === t ? ' class="sel"' : "") + ' data-t="' + t + '">' + t + "</button>";
       });
       h += "</div>" + foot(!!s.time);
@@ -135,10 +166,10 @@
       h = '<div class="bk-h"><b></b><button class="bk-x" data-x aria-label="' + T("Закрыть") + '">×</button></div>' +
         '<div class="bk-ok"><div class="ic">✓</div><b style="font-size:24px;font-family:var(--bk-head,inherit)">' + T("Вы записаны!") + '</b>' +
         "<p>" + T("{n} ждёт вас {d} в {t}.").replace("{n}", T(mst().n)).replace("{d}", dayDate(s.day).toLocaleDateString(LOC(), { day: "numeric", month: "long" })).replace("{t}", s.time) +
-        "<br>" + T("Напомним в WhatsApp за 2 часа до визита.") + "</p></div>" +
+        (OWN ? "" : "<br>" + T("Напомним в WhatsApp за 2 часа до визита.")) + "</p></div>" +
         '<div class="bk-f"><button class="bk-btn" data-x>' + T("Готово") + '</button></div>';
     }
-    h += '<div class="bk-demo">' + T("Демо записи — на реальном сайте подключим онлайн-запись") + '</div>';
+    if (!OWN || window.GrindStore.mode === "demo") h += '<div class="bk-demo">' + T("Демо записи — на реальном сайте подключим онлайн-запись") + '</div>';
     box.innerHTML = h;
   }
 
@@ -149,12 +180,23 @@
     if (b.hasAttribute("data-back")) { s.step--; return render(); }
     if (b.hasAttribute("data-next")) {
       if (s.step === 1 && s.m === null) return;
+      if (OWN && s.step === 1) { s.step = 2; return ownFirstDay(); }
+      if (OWN && s.step === 3) {
+        var G = window.GrindStore, sid = s.map && s.map[s.time], ds = G.helpers.ymd(dayDate(s.day));
+        b.disabled = true;
+        return G.slots(sid, ds, svc().min || 60).then(function (free) {
+          if (free.indexOf(s.time) < 0) { s.time = null; s.step = 2; return ownRefresh(function () { render(); }); }
+          return G.createAppointment({ staffId: sid, serviceId: s.svc, date: ds, time: s.time, clientName: s.name.trim(), clientPhone: s.phone.trim(), source: "site" }).then(function () {
+            s.m = sid; s.step = 4; render();
+          });
+        });
+      }
       s.step++;
       return render();
     }
-    if (b.dataset.svc) { s.svc = b.dataset.svc; render(); }
+    if (b.dataset.svc) { s.svc = b.dataset.svc; s.time = null; render(); }
     if (b.dataset.m) { s.m = b.dataset.m; s.time = null; render(); }
-    if (b.dataset.day) { s.day = +b.dataset.day; s.time = null; render(); }
+    if (b.dataset.day) { s.day = +b.dataset.day; s.time = null; if (OWN) return ownRefresh(render); render(); }
     if (b.dataset.t) { s.time = b.dataset.t; render(); }
   });
   box.addEventListener("input", function (e) {
@@ -169,6 +211,13 @@
 
   function open(master) {
     reset(master);
+    if (OWN) {
+      if (master && OWN_MAP[master]) master = OWN_MAP[master];
+      return ownLoad().then(function () {
+        reset(master && MASTERS.some(function (x) { return x.id === master; }) ? master : null);
+        render(); ov.classList.add("open"); document.documentElement.style.overflow = "hidden";
+      });
+    }
     if (master) s.step = 0;
     render();
     ov.classList.add("open");

@@ -4,11 +4,12 @@
 // ============================================================================
 window.SITE_CONFIG = {
   booking: {
+    // "own"     — своя запись (assets/store.js): свободные окна, записи мастеров, кабинет /staff/
     // "demo"    — встроенная демо-запись (ничего не отправляет)
     // "altegio" — виджет Altegio (w<widgetId>.alteg.io/widgetJS)
     // "yclients"— виджет YCLIENTS (w<widgetId>.yclients.com/widgetJS)
     // "link"    — любая ссылка (WhatsApp, Fresha, Calendly…), открывается в новой вкладке
-    provider: "demo",
+    provider: "own",
 
     // Altegio / YCLIENTS: номер формы онлайн-записи.
     // Пример: ссылка формы https://b123456.alteg.io → widgetId: "123456"
@@ -24,6 +25,10 @@ window.SITE_CONFIG = {
     // Для provider: "link"
     link: ""
   },
+
+  // Своя запись (provider: "own"). Пока ключи пустые — демо-режим в браузере.
+  // Реальный режим: впишите Project URL и публичный anon-ключ из Supabase (инструкция: supabase/README.md).
+  own: { supabaseUrl: "", anonKey: "" },
 
   // Сертификаты (раздел «История»). Пока пусто — показываются макеты.
   // Когда будут сканы: положите файлы в assets/certs/ и раскомментируйте:

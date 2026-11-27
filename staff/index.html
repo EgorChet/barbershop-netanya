@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND · Кабинет мастера</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GRIND Staff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/b8-180.png">
+<link rel="icon" href="../assets/icons/b8.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0b;--panel:#141414;--line:#2a2a2a;--paper:#efefea;--mut:#9a9a94;--acid:#d7ff1a;--red:#ff5a4d;--safe:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--paper);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{min-height:100svh;padding-bottom:calc(96px + var(--safe))}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input,select,textarea{font:inherit;color:var(--paper);background:#1b1b1b;border:1px solid var(--line);border-radius:10px;padding:12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--acid);outline-offset:-1px}
+label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin:14px 0 6px}
+.k{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--acid);color:#0b0b0b;font-weight:800;border-radius:12px;padding:13px 18px}
+.btn.s{background:#222;color:var(--paper);border:1px solid var(--line)}
+.btn.r{background:transparent;color:var(--red);border:1px solid #5b2a26}
+.btn.sm{padding:9px 12px;font-size:13px;border-radius:10px}
+.hide{display:none!important}
+/* вход */
+.login{max-width:520px;margin:0 auto;padding:calc(40px + env(safe-area-inset-top,0px)) 18px 40px}
+.login h1{font-weight:800;font-size:34px;line-height:1.05;margin:10px 0 8px}
+.login p{color:var(--mut);line-height:1.5}
+.who{display:grid;gap:10px;margin:26px 0}
+.who button{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px;text-align:left}
+.who button:hover{border-color:var(--acid)}
+.who img{width:56px;height:56px;border-radius:14px;object-fit:cover;filter:grayscale(1)}
+.who b{font-size:18px;display:block}.who span{color:var(--mut);font-size:13px}
+.note{font-size:12px;color:var(--mut);line-height:1.5;border:1px dashed var(--line);border-radius:12px;padding:12px}
+/* шапка */
+.top{position:sticky;top:0;z-index:20;background:#0b0b0bee;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.me{display:flex;align-items:center;gap:10px;min-width:0}
+.me img{width:36px;height:36px;border-radius:10px;object-fit:cover;filter:grayscale(1)}
+.me b{font-size:16px;display:block;line-height:1.1}.me span{font-size:12px;color:var(--mut)}
+.ic{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;font-size:18px}
+.dn{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
+.dn h2{font-size:18px;font-weight:800;text-align:center;flex:1;text-transform:capitalize}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+.week button{border:1px solid var(--line);border-radius:12px;padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:2px;background:#101010}
+.week button small{font:500 10px 'JetBrains Mono',monospace;color:var(--mut);text-transform:uppercase}
+.week button b{font-size:16px}
+.week button i{font-style:normal;font-size:10px;color:var(--mut);min-height:12px}
+.week button.on{background:var(--acid);color:#0b0b0b;border-color:var(--acid)}
+.week button.on small,.week button.on i{color:#0b0b0b99}
+.week button.off{opacity:.4}
+/* календарь */
+.cal{position:relative;margin:14px 12px 0;display:grid;grid-template-columns:44px 1fr}
+.tm{position:relative}
+.tm span{position:absolute;right:8px;font:500 11px 'JetBrains Mono',monospace;color:var(--mut);transform:translateY(-50%)}
+.grid{position:relative;border-left:1px solid var(--line);background:repeating-linear-gradient(#0000 0 55px,var(--line) 55px 56px)}
+.ev{position:absolute;left:6px;right:6px;border-radius:12px;padding:8px 10px;overflow:hidden;background:#1d1d1d;border:1px solid var(--line);border-left:5px solid var(--c,var(--acid));text-align:left;cursor:pointer}
+.ev b{display:block;font-size:14px;line-height:1.15}.ev span{font-size:12px;color:var(--mut)}
+.ev.cx{opacity:.4;text-decoration:line-through}
+.blk{position:absolute;left:6px;right:6px;border-radius:12px;padding:8px 10px;overflow:hidden;background:repeating-linear-gradient(135deg,#1a1a1a 0 8px,#222 8px 16px);border:1px dashed #444;font-size:12px;color:var(--mut)}
+.blk button{position:absolute;right:6px;top:6px;color:var(--red);font-size:16px;width:28px;height:28px}
+.now{position:absolute;left:-4px;right:0;height:2px;background:var(--red);z-index:3}
+.now:before{content:"";position:absolute;left:0;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.empty{text-align:center;color:var(--mut);padding:40px 20px}
+/* нижняя панель */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 12px calc(10px + var(--safe));background:#0b0b0bf2;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.bar .btn{flex:1}
+/* окно */
+.ov{position:fixed;inset:0;z-index:50;background:#000a;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.ov.open{opacity:1;pointer-events:auto}
+.sheet{width:min(560px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:22px 22px 0 0;padding:20px 18px calc(20px + var(--safe));transform:translateY(30px);transition:transform .25s}
+.ov.open .sheet{transform:none}
+@media(min-width:640px){.ov{align-items:center}.sheet{border-radius:22px}}
+.sheet h3{font-size:22px;font-weight:800}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.act .btn{flex:1 1 auto}
+.dayrow{display:grid;grid-template-columns:70px 1fr 1fr 40px;gap:8px;align-items:center;margin-top:8px}
+.dayrow span{font-weight:700}
+.warn{margin-top:10px;font-size:13px;color:#ffc14d;background:#2a2108;border:1px solid #574410;border-radius:10px;padding:10px;display:none}
+.toast{position:fixed;left:50%;bottom:calc(92px + var(--safe));transform:translateX(-50%);background:var(--paper);color:#0b0b0b;font-weight:700;padding:10px 16px;border-radius:999px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="login" id="login">
+  <span class="k">GRIND · кабинет мастера</span>
+  <h1>Кто сегодня<br>за креслом?</h1>
+  <p>Здесь мастер видит свои записи, переносит их, меняет и отменяет, блокирует время и настраивает часы работы.</p>
+  <div class="who" id="who"></div>
+  <div class="note" id="loginNote"></div>
+</div>
+
+<div id="app" class="hide">
+  <header class="top">
+    <div class="row">
+      <div class="me"><img id="meImg" alt=""><div><b id="meName"></b><span id="meRole"></span></div></div>
+      <div style="display:flex;gap:8px">
+        <button class="ic" id="bSet" aria-label="Настройки">⚙</button>
+        <button class="ic" id="bOut" aria-label="Выйти">⎋</button>
+      </div>
+    </div>
+    <div class="dn">
+      <button class="ic" id="bPrev" aria-label="Назад">‹</button>
+      <h2 id="dTitle"></h2>
+      <button class="ic" id="bNext" aria-label="Вперёд">›</button>
+    </div>
+    <div class="week" id="week"></div>
+  </header>
+  <div class="cal" id="cal"><div class="tm" id="tm"></div><div class="grid" id="grid"></div></div>
+  <div class="empty hide" id="dayOff">Выходной. Можно изменить часы в настройках.</div>
+  <div class="bar">
+    <button class="btn s" id="bToday">Сегодня</button>
+    <button class="btn s" id="bBlock">Закрыть время</button>
+    <button class="btn" id="bNew">＋ Запись</button>
+  </div>
+</div>
+
+<div class="ov" id="ovA"><div class="sheet" id="shA"></div></div>
+<div class="ov" id="ovB"><div class="sheet" id="shB"></div></div>
+<div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="../assets/config.js?v=20261128r"></script>
+<script src="../assets/store.js?v=20261128r"></script>
+<script>
+(function () {
+  var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
+  var PX = 56; // пикселей на час
+  var st = { staff: [], svc: [], me: null, date: new Date(), hours: null, apps: [] };
+  var DN = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"], MN = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  var WD = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function toast(t) { var e = $("toast"); e.textContent = t; e.classList.add("on"); clearTimeout(toast._t); toast._t = setTimeout(function () { e.classList.remove("on"); }, 2200); }
+  function openOv(id) { $(id).classList.add("open"); }
+  function closeOv(id) { $(id).classList.remove("open"); }
+  function dayStart(d) { var x = new Date(d); x.setHours(0, 0, 0, 0); return x; }
+  function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  function svcOf(id) { return st.svc.filter(function (s) { return s.id === id; })[0] || { title: "Услуга", minutes: 60, price: 0 }; }
+
+  // ---------- вход ----------
+  function showLogin() {
+    $("app").classList.add("hide"); $("login").classList.remove("hide");
+    if (S.mode !== "demo") {
+      $("who").innerHTML = '<button id="gBtn"><div><b>Войти через Google</b><span>мастеру нужен тот же Google-аккаунт, что подключён к календарю</span></div></button>';
+      S.authInfo().then(function (i) { if (i.signedIn) $("loginNote").innerHTML = "Аккаунт <b>" + esc(i.email) + "</b> не привязан ни к одному мастеру. Попросите администратора вписать вашу почту в таблицу мастеров."; });
+      return;
+    }
+    S.listStaff().then(function (list) {
+      st.staff = list;
+      $("who").innerHTML = list.map(function (m) { return '<button data-id="' + m.id + '"><img src="../' + m.img + '" alt=""><div><b>' + esc(m.name) + "</b><span>" + esc(m.role) + "</span></div></button>"; }).join("");
+    });
+    $("loginNote").innerHTML = S.mode === "demo"
+      ? "<b>Демо-режим.</b> Данные хранятся только в этом браузере, вход — просто выбор мастера. Когда подключим Supabase и Google, здесь появится кнопка «Войти через Google», а записи станут общими для всех устройств и синхронизируются с Google Calendar мастера."
+      : "Войдите через Google, чтобы видеть свои записи.";
+  }
+  $("who").addEventListener("click", function (e) {
+    if (e.target.closest("#gBtn")) { S.signInStaff(); return; }
+    var b = e.target.closest("button[data-id]"); if (!b) return;
+    S.signInStaff(b.getAttribute("data-id")).then(start);
+  });
+
+  function start() {
+    Promise.all([S.listStaff(), S.listServices(), S.staffSession()]).then(function (r) {
+      st.staff = r[0]; st.svc = r[1];
+      if (!r[2]) return showLogin();
+      st.me = st.staff.filter(function (m) { return m.id === r[2].staffId; })[0];
+      if (!st.me) return showLogin();
+      $("login").classList.add("hide"); $("app").classList.remove("hide");
+      $("meName").textContent = st.me.name; $("meRole").textContent = st.me.role; $("meImg").src = "../" + st.me.img;
+      st.date = new Date();
+      render();
+    });
+  }
+  $("bOut").onclick = function () { S.signOut().then(showLogin); };
+
+  // ---------- календарь ----------
+  function render() {
+    var d = dayStart(st.date), wd = d.getDay();
+    $("dTitle").textContent = WD[wd] + ", " + d.getDate() + " " + MN[d.getMonth()];
+    var weekStart = addDays(d, -wd); // неделя с воскресенья
+    Promise.all([
+      S.getHours(st.me.id),
+      S.listAppointments(st.me.id, weekStart.toISOString(), addDays(weekStart, 7).toISOString()),
+      S.listBlocks(st.me.id, weekStart.toISOString(), addDays(weekStart, 7).toISOString())
+    ]).then(function (r) {
+      st.hours = r[0]; var apps = r[1].filter(function (a) { return a.status !== "cancelled"; }), blocks = r[2];
+      // полоса недели
+      var wk = "";
+      for (var i = 0; i < 7; i++) {
+        var di = addDays(weekStart, i), n = apps.filter(function (a) { return ymdOf(new Date(a.start)) === ymdOf(di); }).length;
+        wk += '<button data-d="' + ymdOf(di) + '" class="' + (i === wd ? "on " : "") + (st.hours[i] ? "" : "off") + '"><small>' + DN[i] + "</small><b>" + di.getDate() + "</b><i>" + (n ? n + " зап." : "") + "</i></button>";
+      }
+      $("week").innerHTML = wk;
+      // сетка дня
+      var h = st.hours[wd], dayApps = apps.filter(function (a) { return ymdOf(new Date(a.start)) === ymdOf(d); }), dayBlocks = blocks.filter(function (b) { return ymdOf(new Date(b.start)) === ymdOf(d); });
+      if (!h) { $("cal").classList.add("hide"); $("dayOff").classList.remove("hide"); }
+      else { $("cal").classList.remove("hide"); $("dayOff").classList.add("hide"); }
+      var o = h ? H.toMin(h[0]) : 600, c = h ? H.toMin(h[1]) : 1200;
+      dayApps.concat(dayBlocks).forEach(function (x) { var s = new Date(x.start), e = new Date(x.end); o = Math.min(o, s.getHours() * 60 + s.getMinutes()); c = Math.max(c, e.getHours() * 60 + e.getMinutes()); });
+      o = Math.floor(o / 60) * 60; c = Math.ceil(c / 60) * 60;
+      st.o = o; st.c = c;
+      var tm = "", g = "";
+      for (var m = o; m <= c; m += 60) tm += '<span style="top:' + ((m - o) / 60 * PX) + 'px">' + H.fromMin(m) + "</span>";
+      $("tm").style.height = ((c - o) / 60 * PX) + "px"; $("grid").style.height = ((c - o) / 60 * PX) + "px"; $("tm").innerHTML = tm;
+      dayBlocks.forEach(function (b) {
+        var s = new Date(b.start), e = new Date(b.end), top = (s.getHours() * 60 + s.getMinutes() - o) / 60 * PX, hh = (e - s) / 3600000 * PX;
+        g += '<div class="blk" style="top:' + top + "px;height:" + hh + 'px">Закрыто' + (b.reason ? ": " + esc(b.reason) : "") + '<button data-bid="' + b.id + '" aria-label="Открыть время">✕</button></div>';
+      });
+      dayApps.forEach(function (a) {
+        var s = new Date(a.start), e = new Date(a.end), top = (s.getHours() * 60 + s.getMinutes() - o) / 60 * PX, hh = Math.max(34, (e - s) / 3600000 * PX - 2);
+        g += '<button class="ev" data-id="' + a.id + '" style="top:' + top + "px;height:" + hh + 'px;--c:' + st.me.color + '"><b>' + H.hm(s) + " · " + esc(a.clientName || "Без имени") + "</b><span>" + esc(svcOf(a.serviceId).title) + (a.clientPhone ? " · " + esc(a.clientPhone) : "") + "</span></button>";
+      });
+      var now = new Date();
+      if (ymdOf(now) === ymdOf(d)) { var nm = now.getHours() * 60 + now.getMinutes(); if (nm >= o && nm <= c) g += '<div class="now" style="top:' + ((nm - o) / 60 * PX) + 'px"></div>'; }
+      $("grid").innerHTML = g;
+      st.apps = apps; st.blocks = blocks;
+    });
+  }
+  function ymdOf(d) { return H.ymd(d); }
+  $("bPrev").onclick = function () { st.date = addDays(st.date, -1); render(); };
+  $("bNext").onclick = function () { st.date = addDays(st.date, 1); render(); };
+  $("bToday").onclick = function () { st.date = new Date(); render(); };
+  $("week").addEventListener("click", function (e) { var b = e.target.closest("button[data-d]"); if (!b) return; st.date = H.at(b.getAttribute("data-d"), "12:00"); render(); });
+  $("grid").addEventListener("click", function (e) {
+    var bx = e.target.closest("button[data-bid]");
+    if (bx) { S.removeBlock(bx.getAttribute("data-bid")).then(function () { toast("Время открыто"); render(); }); return; }
+    var ev = e.target.closest(".ev");
+    if (ev) { return editAppt(ev.getAttribute("data-id")); }
+    if (e.target.closest(".blk")) return;
+    var r = $("grid").getBoundingClientRect(), y = e.clientY - r.top, m = Math.floor((y / PX * 60 + st.o) / 30) * 30;
+    newAppt(H.fromMin(Math.max(0, m)));
+  });
+
+  // ---------- запись: создание и правка ----------
+  function fields(a, isNew) {
+    var svcOpts = st.svc.map(function (s) { return '<option value="' + s.id + '"' + (a.serviceId === s.id ? " selected" : "") + ">" + esc(s.title) + " · " + s.minutes + " мин · ₪" + s.price + "</option>"; }).join("");
+    return '<label>Клиент</label><input id="fName" value="' + esc(a.clientName) + '" placeholder="Имя">' +
+      '<label>Телефон</label><input id="fPhone" type="tel" value="' + esc(a.clientPhone) + '" placeholder="+972…">' +
+      '<label>Услуга</label><select id="fSvc">' + svcOpts + "</select>" +
+      '<div class="two"><div><label>Дата</label><input id="fDate" type="date" value="' + a.date + '"></div><div><label>Время</label><input id="fTime" type="time" step="900" value="' + a.time + '"></div></div>' +
+      '<label>Заметка</label><textarea id="fNote" rows="2" placeholder="Например: машинка 3, без укладки">' + esc(a.note) + '</textarea><div class="warn" id="fWarn"></div>';
+  }
+  function readForm() {
+    var svc = svcOf($("fSvc").value), start = H.at($("fDate").value, $("fTime").value);
+    return { staffId: st.me.id, serviceId: $("fSvc").value, minutes: svc.minutes, start: start.toISOString(), end: new Date(start.getTime() + svc.minutes * 60000).toISOString(), clientName: $("fName").value.trim(), clientPhone: $("fPhone").value.trim(), note: $("fNote").value.trim() };
+  }
+  function overlap(v, exceptId) {
+    var s = new Date(v.start), e = new Date(v.end);
+    var a = st.apps.filter(function (x) { return x.id !== exceptId && new Date(x.start) < e && new Date(x.end) > s; })[0];
+    var b = (st.blocks || []).filter(function (x) { return new Date(x.start) < e && new Date(x.end) > s; })[0];
+    return a ? "Пересекается с записью: " + H.hm(new Date(a.start)) + " " + (a.clientName || "") : b ? "Это время закрыто" : "";
+  }
+  function watchWarn(exceptId) {
+    var f = function () { var v = readForm(), w = overlap(v, exceptId), el = $("fWarn"); el.textContent = w; el.style.display = w ? "block" : "none"; };
+    ["fDate", "fTime", "fSvc"].forEach(function (i) { $(i).addEventListener("input", f); });
+    f();
+  }
+  function newAppt(time) {
+    var a = { serviceId: st.svc[0].id, date: ymdOf(st.date), time: time || "12:00", clientName: "", clientPhone: "", note: "" };
+    $("shA").innerHTML = "<h3>Новая запись</h3>" + fields(a, true) + '<div class="act"><button class="btn s" data-x>Закрыть</button><button class="btn" id="fSave">Сохранить</button></div>';
+    openOv("ovA"); watchWarn(null);
+    $("fSave").onclick = function () {
+      var v = readForm(); if (!v.clientName) { toast("Введите имя клиента"); return; }
+      var w = overlap(v, null); if (w && !confirm(w + ". Всё равно записать?")) return;
+      v.source = "staff"; S.createAppointment(v).then(function () { closeOv("ovA"); toast("Запись добавлена"); render(); });
+    };
+  }
+  function editAppt(id) {
+    var a = st.apps.filter(function (x) { return x.id === id; })[0]; if (!a) return;
+    var s = new Date(a.start), f = { serviceId: a.serviceId, date: ymdOf(s), time: H.hm(s), clientName: a.clientName, clientPhone: a.clientPhone, note: a.note };
+    $("shA").innerHTML = "<h3>Запись</h3>" + fields(f) +
+      '<div class="act"><button class="btn" id="fSave">Сохранить / перенести</button><button class="btn s" id="fCancel">Отменить запись</button><button class="btn r" id="fDel">Удалить</button><button class="btn s" data-x>Закрыть</button></div>';
+    openOv("ovA"); watchWarn(id);
+    $("fSave").onclick = function () {
+      var v = readForm(), w = overlap(v, id); if (w && !confirm(w + ". Всё равно сохранить?")) return;
+      S.updateAppointment(id, { serviceId: v.serviceId, start: v.start, end: v.end, clientName: v.clientName, clientPhone: v.clientPhone, note: v.note }).then(function () { closeOv("ovA"); toast("Сохранено"); render(); });
+    };
+    $("fCancel").onclick = function () { if (!confirm("Отменить запись? Время освободится.")) return; S.updateAppointment(id, { status: "cancelled" }).then(function () { closeOv("ovA"); toast("Запись отменена"); render(); }); };
+    $("fDel").onclick = function () { if (!confirm("Удалить запись навсегда?")) return; S.deleteAppointment(id).then(function () { closeOv("ovA"); toast("Удалено"); render(); }); };
+  }
+  $("bNew").onclick = function () { newAppt(); };
+
+  // ---------- закрыть время ----------
+  $("bBlock").onclick = function () {
+    var d = ymdOf(st.date);
+    $("shB").innerHTML = '<h3>Закрыть время</h3><p class="k" style="margin-top:6px">клиенты не смогут записаться</p><div class="two"><div><label>С</label><input id="bFrom" type="time" step="900" value="13:00"></div><div><label>До</label><input id="bTo" type="time" step="900" value="14:00"></div></div><label>Дата</label><input id="bDate" type="date" value="' + d + '"><label>Причина (по желанию)</label><input id="bWhy" placeholder="Обед, врач, личное…"><div class="act"><button class="btn s" data-x>Закрыть окно</button><button class="btn" id="bSave">Закрыть время</button></div>';
+    openOv("ovB");
+    $("bSave").onclick = function () {
+      var s = H.at($("bDate").value, $("bFrom").value), e = H.at($("bDate").value, $("bTo").value);
+      if (e <= s) { toast("Конец должен быть позже начала"); return; }
+      S.addBlock({ staffId: st.me.id, start: s.toISOString(), end: e.toISOString(), reason: $("bWhy").value.trim() }).then(function () { closeOv("ovB"); toast("Время закрыто"); st.date = s; render(); });
+    };
+  };
+
+  // ---------- настройки ----------
+  $("bSet").onclick = function () {
+    var hrs = st.hours || H.DEFAULT_HOURS, rows = "";
+    for (var i = 0; i < 7; i++) {
+      var h = hrs[i];
+      rows += '<div class="dayrow" data-i="' + i + '"><span>' + DN[i].toUpperCase() + '</span><input type="time" step="900" value="' + (h ? h[0] : "10:00") + '"' + (h ? "" : " disabled") + '><input type="time" step="900" value="' + (h ? h[1] : "20:00") + '"' + (h ? "" : " disabled") + '><input type="checkbox" ' + (h ? "checked" : "") + ' aria-label="Рабочий день" style="width:24px;height:24px"></div>';
+    }
+    $("shS").innerHTML = '<h3>Часы работы</h3><p class="k" style="margin-top:6px">отметьте рабочие дни</p>' + rows +
+      '<h3 style="margin-top:24px">Google Calendar</h3><div class="note" id="gNote" style="margin-top:10px">Проверяю…</div><div class="act"><button class="btn s" id="sReset">Сбросить демо-данные</button><button class="btn s" data-x>Закрыть</button><button class="btn" id="sSave">Сохранить</button></div>';
+    openOv("ovS");
+    $("shS").querySelectorAll(".dayrow").forEach(function (r) {
+      var cb = r.querySelector("input[type=checkbox]"), ins = r.querySelectorAll("input[type=time]");
+      cb.onchange = function () { ins.forEach(function (x) { x.disabled = !cb.checked; }); };
+    });
+    S.googleStatus().then(function (g) { $("gNote").innerHTML = g.connected ? "Подключён: записи попадают в ваш Google Calendar." : "Не подключён. " + esc(g.reason || ""); });
+    $("sSave").onclick = function () {
+      var out = [];
+      $("shS").querySelectorAll(".dayrow").forEach(function (r) { var cb = r.querySelector("input[type=checkbox]"), ins = r.querySelectorAll("input[type=time]"); out.push(cb.checked ? [ins[0].value, ins[1].value] : null); });
+      S.setHours(st.me.id, out).then(function () { closeOv("ovS"); toast("Часы сохранены"); render(); });
+    };
+    $("sReset").onclick = function () { if (!confirm("Вернуть демо-записи как было?")) return; S.resetDemo().then(function () { closeOv("ovS"); toast("Демо сброшено"); render(); }); };
+  };
+
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-x]")) { ["ovA", "ovB", "ovS"].forEach(closeOv); return; }
+    ["ovA", "ovB", "ovS"].forEach(function (id) { if (e.target === $(id)) closeOv(id); });
+  });
+  setInterval(function () { if (st.me && !$("app").classList.contains("hide") && !document.querySelector(".ov.open")) render(); }, 60000);
+  start();
+})();
+</script>
+</body>
+</html>
