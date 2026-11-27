@@ -2,6 +2,7 @@
 // Тексты в вёрстке написаны по-русски; здесь они переводятся по словарю из i18n-dict.js
 // (ключ — русский HTML элемента). Новые тексты добавляйте в словарь — остальное подхватится само.
 (function () {
+  var I18N_SRC = (document.currentScript && document.currentScript.src) || "";
   var LANGS = [["ru", "RU"], ["en", "EN"], ["he", "עב"], ["fr", "FR"]];
   var IDX = { en: 0, he: 1, fr: 2 };
   var LOCALE = { ru: "ru-RU", en: "en-GB", he: "he-IL", fr: "fr-FR" };
@@ -51,6 +52,11 @@
     "background:rgba(17,17,17,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.35);font:700 12px/1 -apple-system,'Segoe UI',Roboto,Arial,sans-serif}" +
     ".lg-pill button{all:unset;cursor:pointer;color:#cfcfcf;padding:8px 11px;border-radius:999px;letter-spacing:.04em;min-width:34px;text-align:center;box-sizing:border-box}" +
     ".lg-pill button:hover{color:#fff;background:rgba(255,255,255,.1)}" +
+    ".lg-pill .lg-acc{display:inline-flex;align-items:center;justify-content:center;min-width:34px;border-left:1px solid rgba(255,255,255,.18);border-radius:0 999px 999px 0;margin-left:3px;padding-left:12px}" +
+    ".lg-menu{position:fixed;left:50%;transform:translateX(-50%);z-index:9999;min-width:190px;background:#111;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.5);font:600 14px/1.2 system-ui,sans-serif;direction:ltr;text-align:center}" +
+    ".lg-menu .t{font:500 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:#888;padding:8px 10px 6px}" +
+    ".lg-menu a{display:block;color:#fff;text-decoration:none;padding:12px 14px;border-radius:10px}" +
+    ".lg-menu a:hover{background:rgba(255,255,255,.1)}" +
     ".lg-pill button[aria-pressed=true]{background:#fff;color:#111}" +
     "html[lang=he] .lg-pill button{font-family:Heebo,Arial,sans-serif!important}";
   document.head.appendChild(rtl);
@@ -191,6 +197,28 @@
       var b = e.target.closest("button[data-l]");
       if (b) setLang(b.getAttribute("data-l"));
     });
+    // кнопка входа: «Мои записи» (клиент) и «Для мастеров» (барбер)
+    var base = (I18N_SRC || "").replace(/assets\/i18n\.js.*$/, "");
+    var AT = { ru: ["Вход", "Мои записи", "Для мастеров"], en: ["Log in", "My bookings", "For barbers"], he: ["כניסה", "התורים שלי", "לספרים"], fr: ["Connexion", "Mes rendez-vous", "Espace barbiers"] };
+    var acc = document.createElement("button");
+    acc.type = "button"; acc.setAttribute("aria-label", "Account"); acc.className = "lg-acc";
+    acc.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>';
+    pill.appendChild(acc);
+    var menu = document.createElement("div");
+    menu.className = "lg-menu"; menu.setAttribute("translate", "no"); menu.style.display = "none";
+    document.body.appendChild(menu);
+    function drawMenu() {
+      var L = AT[lang] || AT.ru;
+      menu.innerHTML = '<div class="t">' + L[0] + '</div><a href="' + base + 'my/">' + L[1] + '</a><a href="' + base + 'staff/">' + L[2] + "</a>";
+    }
+    acc.addEventListener("click", function (e) {
+      e.stopPropagation(); drawMenu();
+      var open = menu.style.display === "none";
+      if (open) { var r = pill.getBoundingClientRect(); menu.style.bottom = (window.innerHeight - r.top + 8) + "px"; }
+      menu.style.display = open ? "block" : "none";
+    });
+    document.addEventListener("click", function () { menu.style.display = "none"; });
+    document.addEventListener("i18n:lang", drawMenu);
     document.body.appendChild(pill);
     paint();
   }
