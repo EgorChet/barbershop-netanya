@@ -132,8 +132,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128aq"></script>
-<script src="../assets/store.js?v=20261128aq"></script>
+<script src="../assets/config.js?v=20261128ar"></script>
+<script src="../assets/store.js?v=20261128ar"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -157,6 +157,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
     $("app").classList.add("hide"); $("login").classList.remove("hide");
     if (S.mode !== "demo") {
       var inv = null; try { inv = localStorage.getItem("grind-invite"); } catch (e) {}
+      if (/[?&]login=1/.test(location.search)) { inv = null; try { localStorage.removeItem("grind-invite"); } catch (e) {} }
       var q = new URLSearchParams(location.search).get("invite");
       if (q) { inv = q; try { localStorage.setItem("grind-invite", q); history.replaceState(null, "", location.pathname); } catch (e) {} }
       if (inv) { return showInvite(inv); }
@@ -185,6 +186,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
       $("who").innerHTML = '<p style="font-size:20px;font-weight:800;margin-bottom:4px">Здравствуйте, ' + esc(info.name) + '!</p><p style="color:var(--mut);margin-bottom:12px">Создайте доступ в кабинет: укажите почту и придумайте пароль.</p>' +
         '<div class="note" style="margin-bottom:14px"><b>Что будет дальше.</b> Вам придёт письмо для подтверждения почты. Пока оно стандартное: <b>на английском</b>, от «Supabase Auth», с темой «Confirm Your Signup». Это нормально. Нажмите в нём ссылку, и откроется кабинет. Если письма нет пару минут, загляните в «Спам». Красивое письмо на русском сделаем позже.</div>' +
         '<form id="invForm" style="display:grid;gap:10px"><input id="invEmail" type="email" placeholder="Ваша почта" autocomplete="email" required><input id="invPass" type="password" placeholder="Пароль (не короче 8 символов)" autocomplete="new-password" minlength="8" required><input id="invPass2" type="password" placeholder="Повторите пароль" autocomplete="new-password" minlength="8" required><button class="btn" type="submit">Создать доступ</button><p class="k" id="invMsg" style="min-height:16px"></p></form>';
+      var ob = document.createElement("button"); ob.type = "button"; ob.className = "btn s"; ob.id = "invBack"; ob.style.marginTop = "14px"; ob.textContent = "Уже есть аккаунт? Войти"; $("who").appendChild(ob);
       $("invForm").addEventListener("submit", function (e) {
         e.preventDefault();
         var em = $("invEmail").value.trim(), p1 = $("invPass").value, p2 = $("invPass2").value, msg = $("invMsg");
