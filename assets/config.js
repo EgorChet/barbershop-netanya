@@ -25,6 +25,13 @@ window.SITE_CONFIG = {
     link: ""
   },
 
+  // Сертификаты (раздел «История»). Пока пусто — показываются макеты.
+  // Когда будут сканы: положите файлы в assets/certs/ и раскомментируйте:
+  // certificates: [
+  //   { title: "Сертификат барбера", who: "Дима",      src: "assets/certs/dima-1.jpg" },
+  //   { title: "Диплом курса",       who: "Барбер №3", src: "assets/certs/b3-1.jpg" }
+  // ],
+
   contacts: {
     name: "GRIND Barbershop",
     city: "Нетания",
