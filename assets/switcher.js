@@ -1,5 +1,6 @@
 // Floating version switcher shared by all sample versions.
 (function () {
+  if (window.GRIND_PREVIEW === false) return; // закрытый режим: переключатель версий только для владельца (см. assets/gate.js)
   // Порядок в панели: любимые первыми. Номера идут подряд по этому порядку.
   var versions = [
     { id: "v8-underground", name: "Underground" },
