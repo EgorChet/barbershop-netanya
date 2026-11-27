@@ -101,7 +101,7 @@
     '<li><span class="w">Теперь</span><div><b>Свой барбершоп</b><span class="d">Основатели Дима и Таша, с ними барбер Кирилл. Свои правила: время, чай, стрижка.</span></div></li>' +
     "</ul>" +
     '<div class="st-p">' +
-    '<div class="st-c st-r"><img src="' + BASE + 'assets/img/dima2.jpg" alt="Дима" loading="lazy"><div><h3>Дима</h3><div class="r">Основатель · барбер</div><ul><li>Работал в Chop-Chop и TOPGUN (Москва)</li><li>Мужские стрижки, fade, усы и борода</li><li>«Лучший барбер в мире», по отзыву клиента</li></ul></div></div>' +
+    '<div class="st-c st-r"><img src="' + BASE + 'assets/img/dima.jpg" alt="Дима" loading="lazy"><div><h3>Дима</h3><div class="r">Основатель · барбер</div><ul><li>Работал в Chop-Chop и TOPGUN (Москва)</li><li>Мужские стрижки, fade, усы и борода</li><li>«Лучший барбер в мире», по отзыву клиента</li></ul></div></div>' +
     '<div class="st-c st-r"><img src="' + BASE + 'assets/img/tasha.jpg" alt="Таша" loading="lazy" style="object-position:center 30%"><div><h3>Таша</h3><div class="r">Основатель · барбер</div><ul><li>Опыт в лучших барбершопах Москвы</li><li>Стрижёт с 2017 года</li><li>Фейд, мужские стрижки, оформление бороды</li></ul></div></div>' +
     "</div>" +
     '<div class="st-ch"><h3>Сертификаты и дипломы</h3><small>Обучение и работа в лучших школах</small></div>' +

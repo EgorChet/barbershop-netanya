@@ -150,7 +150,7 @@ on conflict (id) do nothing;
 
 -- Почты мастеров замените на настоящие Google-аккаунты (можно и позже через Table Editor).
 insert into public.staff (id, name, role, color, img, email) values
-  ('dima','Дима','Основатель · барбер','#ff6a13','assets/img/dima2.jpg', null),
+  ('dima','Дима','Основатель · барбер','#ff6a13','assets/img/dima.jpg', null),
   ('tasha','Таша','Основатель · барбер · дреды','#d7ff1a','assets/img/tasha.jpg', null),
   ('kirill','Кирилл','Барбер','#5aa9ff','assets/img/kirill.jpg', null)
 on conflict (id) do nothing;

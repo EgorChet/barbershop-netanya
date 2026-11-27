@@ -15,7 +15,7 @@
   ];
   var MASTERS = [
     { id: "any", n: "Любой свободный", r: "ближайшее время", img: null },
-    { id: "dima", n: "Дима", r: "основатель · барбер", img: "assets/img/dima2.jpg" },
+    { id: "dima", n: "Дима", r: "основатель · барбер", img: "assets/img/dima.jpg" },
     { id: "kirill", n: "Кирилл", r: "барбер", img: "assets/img/kirill.jpg" },
     { id: "b3", n: "Таша", r: "основатель · с 2017 года", img: "assets/img/tasha.jpg" }
   ];

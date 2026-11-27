@@ -1970,6 +1970,51 @@ window.I18N_DICT = {
 "GRIND — שם עבודה",
 "GRIND — nom provisoire"
 ],
+"Зин-ксерокс: бумага, скотч, заголовок «вырезан из газеты». Чёрно-белое с жёлтым маркером.": [
+"Xerox zine: paper, tape, a headline “cut from a newspaper”. Black and white with a yellow highlighter.",
+"זין צילום: נייר, סלוטייפ, כותרת «גזורה מעיתון». שחור־לבן עם מרקר צהוב.",
+"Fanzine photocopié : papier, scotch, titre « découpé dans un journal ». Noir et blanc avec un surligneur jaune."
+],
+"Видеопарт на плёнке: REC, таймкод, полосы и видео ребят во весь экран.": [
+"A video part on tape: REC, timecode, scanlines and the guys' videos full screen.",
+"וידאו־פארט על קלטת: REC, טיים־קוד, פסי סריקה והסרטונים של החבר'ה על מסך מלא.",
+"Un video part sur cassette : REC, timecode, lignes de balayage et les vidéos des gars en plein écran."
+],
+"Бетон, оранжевый и жёсткая сетка. Без украшений: стригут по-честному.": [
+"Concrete, orange and a hard grid. No decoration: honest cuts.",
+"בטון, כתום ורשת קשיחה. בלי קישוטים: תספורות ביושר.",
+"Béton, orange et grille dure. Aucune déco : des coupes honnêtes."
+],
+"Копия": [
+"Copy",
+"העתק",
+"Copie"
+],
+"Видеопарт<span>Нетания, 2026</span>": [
+"Video part<span>Netanya, 2026</span>",
+"וידאו־פארט<span>נתניה, 2026</span>",
+"Video part<span>Netanya, 2026</span>"
+],
+"Бетон.<br>Кофе.<span>Ножницы.</span>": [
+"Concrete.<br>Coffee.<span>Scissors.</span>",
+"בטון.<br>קפה.<span>מספריים.</span>",
+"Béton.<br>Café.<span>Ciseaux.</span>"
+],
+"@GRIND — барбершоп в Нетании · Xerox": [
+"GRIND — barbershop in Netanya · Xerox",
+"GRIND — מספרת גברים בנתניה · Xerox",
+"GRIND — barbershop à Netanya · Xerox"
+],
+"@GRIND — барбершоп в Нетании · VHS": [
+"GRIND — barbershop in Netanya · VHS",
+"GRIND — מספרת גברים בנתניה · VHS",
+"GRIND — barbershop à Netanya · VHS"
+],
+"@GRIND — барбершоп в Нетании · Concrete": [
+"GRIND — barbershop in Netanya · Concrete",
+"GRIND — מספרת גברים בנתניה · Concrete",
+"GRIND — barbershop à Netanya · Concrete"
+],
 "Кто мы": [
 "Who we are",
 "מי אנחנו",
@@ -2224,6 +2269,11 @@ window.I18N_DICT = {
 "Records<br>spin",
 "תקליטים<br>מסתובבים",
 "Les disques<br>tournent"
+],
+"Копия<br>не нужна.<span>Оригинал.</span>": [
+"No copy<br>needed.<span>Original.</span>",
+"אין צורך<br>בהעתק.<span>מקור.</span>",
+"Pas de copie<br>nécessaire.<span>L'original.</span>"
 ],
 "Онлайн-запись": [
 "Online booking",

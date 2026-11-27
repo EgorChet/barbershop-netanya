@@ -18,6 +18,12 @@
   wrap.className = "hv";
   wrap.setAttribute("aria-hidden", "true");
   wrap.innerHTML = '<video autoplay muted loop playsinline preload="metadata" poster="' + base + 'media/posters/dima-1.jpg"><source src="' + base + 'media/dima-1.mp4" type="video/mp4"></video>';
+  // Post-punk: в кадре лицо, а горы (ridgeline) и текст стоят внизу, поэтому видео сдвигаем вверх, чтобы лицо оставалось чистым
+  if (/\/v7-/.test(location.pathname)) {
+    var vv = wrap.querySelector("video");
+    vv.style.objectPosition = "50% 12%"; vv.style.transform = "translateY(-20%) scale(1.1)"; vv.style.transformOrigin = "50% 0";
+    wrap.style.setProperty("--hv-o", ".8");
+  }
   var pos = getComputedStyle(hero).position;
   if (pos === "static") hero.style.position = "relative";
   hero.insertBefore(wrap, hero.firstChild);

@@ -1,17 +1,18 @@
 // Floating version switcher shared by all sample versions.
 (function () {
-  // Порядок в панели: любимые первыми. Номера остаются прежними, чтобы версии узнавались.
+  // Порядок в панели: любимые первыми. Номера идут подряд по этому порядку.
   var versions = [
-    { id: "v8-underground", n: "08", name: "Underground" },
-    { id: "v7-pleasures", n: "07", name: "Post-punk" },
-    { id: "v5-pomade", n: "05", name: "Pomade" },
-    { id: "v9-rega", n: "09", name: "Rega" },
-    { id: "v6-frant", n: "06", name: "Dandy" },
-    { id: "v1-skate", n: "01", name: "Skate" },
-    { id: "v4-clean", n: "04", name: "Clean" },
-    { id: "v2-bold", n: "02", name: "Bold" },
-    { id: "v3-club", n: "03", name: "Club" }
+    { id: "v8-underground", name: "Underground" },
+    { id: "v7-pleasures", name: "Post-punk" },
+    { id: "v10-xerox", name: "Xerox" },
+    { id: "v11-vhs", name: "VHS" },
+    { id: "v12-concrete", name: "Concrete" },
+    { id: "v9-rega", name: "Rega" },
+    { id: "v6-frant", name: "Dandy" },
+    { id: "v2-bold", name: "Bold" },
+    { id: "v3-club", name: "Club" }
   ];
+  versions.forEach(function (v, i) { v.n = (i < 9 ? "0" : "") + (i + 1); }); // номер = место в списке
   var here = location.pathname.split("/").filter(Boolean);
   var current = here[here.length - 1] === "index.html" ? here[here.length - 2] : here[here.length - 1];
 

@@ -15,7 +15,7 @@
     { id: "long", title: "Удлинённая ножницами", minutes: 90, price: 180 }
   ];
   var STAFF = [
-    { id: "dima", name: "Дима", role: "Основатель · барбер", color: "#ff6a13", img: "assets/img/dima2.jpg" },
+    { id: "dima", name: "Дима", role: "Основатель · барбер", color: "#ff6a13", img: "assets/img/dima.jpg" },
     { id: "tasha", name: "Таша", role: "Основатель · барбер · дреды", color: "#d7ff1a", img: "assets/img/tasha.jpg" },
     { id: "kirill", name: "Кирилл", role: "Барбер", color: "#5aa9ff", img: "assets/img/kirill.jpg" }
   ];

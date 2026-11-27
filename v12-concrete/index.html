@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND — барбершоп в Нетании · Concrete</title>
+<meta name="description" content="Барбершоп для своих в Нетании. Дима, Таша и Кирилл: стрижки, которые отрастают правильно, винил в колонках и кофе.">
+<meta name="theme-color" content="#c9c9c4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GRIND">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/b12-180.png">
+<link rel="icon" href="../assets/icons/b12.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#c9c9c4;--fg:#0b0b0b;--acc:#ff5a00;--accfg:#0b0b0b;--line:#0b0b0b;--bar:rgba(201,201,196,.96);--disp:Unbounded,"Archivo Black",sans-serif;--body:"Space Mono",ui-monospace,monospace;--mono:"Space Mono",ui-monospace,monospace;--bk-bg:#c9c9c4;--bk-fg:#0b0b0b;--bk-mut:#4d4d4a;--bk-line:#0b0b0b;--bk-acc:#ff5a00;--bk-acc-fg:#0b0b0b;--bk-radius:0px;--bk-head:Unbounded,sans-serif;--vsw-bottom:86px;--safe:env(safe-area-inset-bottom,0px)}
+@media(min-width:900px){:root{--vsw-bottom:16px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(76px + var(--safe))}
+@media(min-width:900px){body{padding-bottom:0}}
+a{color:inherit;text-decoration:none}img,video{display:block;max-width:100%}
+.w{max-width:1200px;margin:0 auto;padding:0 18px}
+@media(min-width:760px){.w{padding:0 36px}}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
+section{padding:clamp(60px,8vw,110px) 0}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.appbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:8px;padding:10px 12px calc(10px + var(--safe));background:var(--bar);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.appbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;font:600 11px var(--mono);text-transform:uppercase}
+.appbar a svg{width:20px;height:20px}
+.appbar a.main{background:var(--acc);color:var(--accfg);font-size:13px}
+@media(min-width:900px){.appbar{display:none}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+.top{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(10px + env(safe-area-inset-top,0px)) 0 10px;background:var(--bg);border-bottom:3px solid var(--fg)}
+.top .w{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{font-size:17px;color:var(--fg)}
+.top nav{display:none;gap:22px;font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.top nav a:hover{color:var(--acc)}
+@media(min-width:900px){.top nav{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--acc);color:#0b0b0b;font:800 14px var(--disp);text-transform:uppercase;padding:14px 22px;border:3px solid var(--fg);letter-spacing:.02em}
+.btn:active{transform:translate(3px,3px)}
+.btn.o{background:transparent;color:var(--fg)}
+.btn.s{padding:9px 14px;font-size:12px}
+.k{font:700 12px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+h2.t{font:800 clamp(34px,7.4vw,92px)/.95 var(--disp);text-transform:uppercase;margin-top:12px;letter-spacing:-.03em}
+h2.t em{font-style:normal;color:var(--acc);-webkit-text-stroke:0}
+.lead{max-width:640px;margin-top:14px;font-size:16px}
+.hz{height:22px;background:repeating-linear-gradient(135deg,#0b0b0b 0 16px,var(--acc) 16px 32px)}
+.hero{min-height:100svh;padding:110px 0 150px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+@media(min-width:900px){.hero{padding-bottom:70px}}
+.hero .w{width:100%;position:relative}
+.hero h1{font:800 clamp(38px,10.4vw,200px)/.9 var(--disp);text-transform:uppercase;letter-spacing:-.05em}
+.hero h1 span{color:var(--acc);display:block}
+.hero p.sub{max-width:520px;margin-top:22px;font-size:17px;font-weight:500}
+.big{position:absolute;right:-2vw;top:-4vw;font:800 clamp(160px,44vw,520px)/.8 var(--disp);color:#0b0b0b12;pointer-events:none;user-select:none}
+.bolt{position:absolute;width:12px;height:12px;border-radius:50%;background:#8d8d88;box-shadow:inset 0 0 0 3px #b4b4af}
+.crew{display:grid;gap:0;margin-top:34px;border:3px solid var(--fg)}
+@media(min-width:760px){.crew{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;padding:18px;border-bottom:3px solid var(--fg);background:#d6d6d0}
+@media(min-width:760px){.card{border-bottom:0;border-right:3px solid var(--fg)}.card:last-child{border-right:0}}
+.card:last-child{border-bottom:0}
+.card:before,.card:after{content:"";position:absolute;top:10px;width:10px;height:10px;border-radius:50%;background:#8d8d88;box-shadow:inset 0 0 0 3px #b4b4af;z-index:2}
+.card:before{left:10px}.card:after{right:10px}
+.card .ph{aspect-ratio:4/4.4;overflow:hidden;border:3px solid var(--fg)}
+.card .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.35)}
+.card h3{font:800 34px/1 var(--disp);text-transform:uppercase;margin-top:14px;letter-spacing:-.03em}
+.card .role{display:inline-block;margin-top:8px;background:var(--fg);color:var(--bg);font:700 11px var(--mono);text-transform:uppercase;padding:3px 7px}
+.card p{margin-top:10px;font-size:14px}.card .ig{display:inline-block;margin-top:10px;font:700 13px var(--mono);border-bottom:3px solid var(--acc)}
+.rit{background:var(--fg);color:var(--bg);--bk-bg:#0b0b0b;--bk-fg:#c9c9c4}
+.rg{display:grid;gap:0;margin-top:30px;border:3px solid #c9c9c4}
+@media(min-width:760px){.rg{grid-template-columns:repeat(4,1fr)}}
+.rg>div{padding:20px;border-bottom:3px solid #c9c9c4}
+@media(min-width:760px){.rg>div{border-bottom:0;border-right:3px solid #c9c9c4}.rg>div:last-child{border-right:0}}
+.rg>div:last-child{border-bottom:0}
+.rg .n{font:800 56px/1 var(--disp);color:var(--acc);letter-spacing:-.04em}
+.rg b{display:block;font:700 11px var(--mono);text-transform:uppercase;margin-top:6px;opacity:.7}
+.rg h4{font:800 20px/1.1 var(--disp);text-transform:uppercase;margin-top:8px}.rg p{margin-top:8px;font-size:14px;opacity:.85}
+.pl{max-width:820px;margin-top:30px;border:3px solid var(--fg)}
+.pl li{list-style:none;display:flex;gap:14px;align-items:baseline;padding:16px 20px;border-bottom:3px solid var(--fg)}
+.pl li:last-child{border-bottom:0}
+.pl b{font:800 clamp(16px,2.4vw,22px) var(--disp);text-transform:uppercase}
+.pl i{flex:1;border-bottom:3px solid var(--fg);transform:translateY(-4px);min-width:16px}
+.pl em{font:800 clamp(18px,2.8vw,26px) var(--disp);font-style:normal;white-space:nowrap}
+.pl small{display:block;font:400 12px var(--mono);opacity:.7;text-transform:none}
+.pn{display:inline-block;margin-top:20px;font:700 12px var(--mono);background:var(--acc);padding:6px 10px;border:3px solid var(--fg);text-transform:uppercase}
+.visit{background:var(--acc);color:#0b0b0b;--bk-bg:#ff5a00;--bk-fg:#0b0b0b;--bk-acc:#0b0b0b;--bk-acc-fg:#ff5a00}
+.visit h2{font:800 clamp(38px,10vw,130px)/.9 var(--disp);text-transform:uppercase;letter-spacing:-.04em}
+.visit .grid{display:grid;gap:28px;margin-top:30px}
+@media(min-width:800px){.visit .grid{grid-template-columns:1.1fr .9fr;align-items:end}}
+.vp{max-width:460px;font-size:19px;font-weight:700}
+.visit .btn{background:#0b0b0b;color:var(--acc)}.visit .btn.o{background:transparent;color:#0b0b0b}
+.visit ul{list-style:none}.visit li{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:3px solid #0b0b0b;font-weight:700}
+.visit h3{font:800 24px var(--disp);text-transform:uppercase;margin-bottom:8px}
+footer{padding:30px 0 40px;font:400 12px var(--mono)}
+footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+</style>
+<script src="../assets/brand.js?v=20261128w"></script>
+</head>
+<body>
+<header class="top"><div class="w">
+  <a class="logo" href="#">GRIND</a>
+  <nav><a href="#crew">Кто мы</a><a href="#work">Работы</a><a href="#price">Цены</a><a href="#visit">Запись</a></nav>
+  <a class="btn s" href="#visit" data-book>Записаться</a>
+</div></header>
+<div class="hero"><span class="big" aria-hidden="true">05</span><div class="w">
+  <span class="k">Барбершоп · Нетания</span>
+  <h1 style="margin-top:14px">Бетон.<br>Кофе.<span>Ножницы.</span></h1>
+  <p class="sub">Барбершоп для своих. Три барбера, винил в колонках, фильтр-кофе и стрижки, которые отрастают нормально.</p>
+  <div class="row"><a class="btn" href="#visit" data-book>Записаться</a><a class="btn o" href="#work">Смотреть работы</a></div>
+</div></div>
+<div class="hz" aria-hidden="true"></div>
+<section id="crew"><div class="w">
+  <span class="k">Трое, все свои</span>
+  <h2 class="t rv">Кто <em>мы</em></h2>
+  <div class="crew">
+    <article class="card rv"><div class="ph"><img src="../assets/img/dima.jpg" alt="Дима" loading="lazy"></div>
+      <div class="ct"><h3>Дима</h3><span class="role">Основатель · барбер</span>
+      <p>Мужские стрижки: текстура, классика и «музейная» нишевая. Слушает винил, стрижёт под него.</p>
+      <a class="ig" href="https://instagram.com/combpunk" target="_blank" rel="noopener">@combpunk</a></div></article>
+    <article class="card rv"><div class="ph"><img src="../assets/img/tasha.jpg" alt="Таша" loading="lazy" style="object-position:center 25%"></div>
+      <div class="ct"><h3>Таша</h3><span class="role">Основатель · барбер · дреды</span>
+      <p>Стрижёт с 2017 года, делает дреды. Лучшие стрижки в Нетании, по словам её клиентов.</p>
+      <a class="ig" href="https://instagram.com/tasha.msltn" target="_blank" rel="noopener">@tasha.msltn</a></div></article>
+    <article class="card rv"><div class="ph"><img src="../media/posters/kirill-1.jpg" alt="Кирилл" loading="lazy" style="object-position:center 30%"></div>
+      <div class="ct"><h3>Кирилл</h3><span class="role">Барбер</span>
+      <p>Стрижки, которые отрастают правильно. Покажет, что борода тебе идёт.</p>
+      <a class="ig" href="https://instagram.com/kirill.barber.il" target="_blank" rel="noopener">@kirill.barber.il</a></div></article>
+  </div>
+</div></section>
+<section class="rit" id="ritual"><div class="w">
+  <span class="k">Ритуал</span>
+  <h2 class="t">Ритуал,<br>а не&nbsp;процедура</h2>
+  <p class="lead">Фильтр-кофе, правильный чай в чайниках и ритуал от первого глотка до укладки. Мы делаем стрижку событием, а не процедурой.</p>
+  <div class="rg">
+    <div class="rv"><span class="n">01</span><b>Встреча</b><h4>Фильтр-кофе или чай</h4><p>Свежий фильтр-кофе или листовой чай, заваренный в чайнике, а не пакетик в кружке. Пока ждёте, а не вместо.</p></div>
+    <div class="rv"><span class="n">02</span><b>Стрижка</b><h4>Без спешки</h4><p>Консультация, мытьё головы, затем ножницы и машинка. Час на человека, чтобы форма держалась три недели.</p></div>
+    <div class="rv"><span class="n">03</span><b>Горячее полотенце</b><h4>Контур и бритьё</h4><p>Горячее полотенце, опасная бритва, масло и бальзам, в финале классический тальк Clubman. То, что отличает барбершоп от парикмахерской.</p></div>
+    <div class="rv"><span class="n">04</span><b>Финиш</b><h4>Укладка и разговор</h4><p>Уложим при вас и покажем, как повторить дома. Допить чай можно без спешки.</p></div>
+  </div>
+</div></section>
+<section class="price" id="price"><div class="w">
+  <span class="k">в шекелях</span>
+  <h2 class="t rv">Услуги и <em>цены</em></h2>
+  <ul class="pl rv">
+    <li><b>Стрижка</b><i></i><em>150 ₪</em></li>
+    <li><b>Борода</b><i></i><em>100 ₪</em></li>
+    <li><b>Стрижка + борода</b><i></i><em>230 ₪</em></li>
+    <li><div><b>Удлинённая ножницами</b><small>длинные волосы, форма, которая держится</small></div><i></i><em>180–250 ₪</em></li>
+    <li><div><b>Дреды</b><small>мастер Таша</small></div><i></i><em>по запросу</em></li>
+  </ul>
+  <span class="pn">цены ориентировочные — подтвердим до открытия</span>
+</div></section>
+<section class="visit" id="visit"><div class="w">
+  <span class="k">Запись</span>
+  <h2>Приходите<br>стричься</h2>
+  <div class="grid">
+    <div>
+      <p class="vp">Запись онлайн, без звонков. Выберите барбера, время, и всё.</p>
+      <div class="row"><a class="btn" href="#" data-book>Записаться онлайн</a><a class="btn o" href="#" data-cfg-ig target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+    <div>
+      <h3 data-cfg="address">Адрес скоро</h3>
+      <ul data-cfg-hours></ul>
+      <div class="row"><a class="btn o" href="#" data-cfg-route>Маршрут</a></div>
+    </div>
+  </div>
+</div></section>
+<footer><div class="w"><a class="logo" href="#">GRIND</a><span>© GRIND · Нетания — рабочее название. Название, адрес и цены уточняются.</span></div></footer>
+
+<nav class="appbar" aria-label="Быстрые действия">
+  <a href="#" data-cfg-ig target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>Instagram</a>
+  <a href="#" data-cfg-route><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Маршрут</a>
+  <a class="main" href="#visit" data-book>Записаться</a>
+</nav>
+
+<script src="../assets/config.js?v=20261128w"></script>
+<script>
+window.SITE_CONFIG.services = [
+  { id: "cut", t: "Стрижка", d: "60 мин", p: 150 },
+  { id: "beard", t: "Борода", d: "30 мин", p: 100 },
+  { id: "combo", t: "Стрижка + борода", d: "90 мин", p: 230 },
+  { id: "long", t: "Удлинённая ножницами", d: "90 мин", p: 180 }
+];
+</script>
+<script src="../assets/site.js?v=20261128w"></script>
+<script src="../assets/switcher.js?v=20261128w"></script>
+<script src="../assets/store.js?v=20261128w"></script>
+<script src="../assets/booking.js?v=20261128w"></script>
+<script src="../assets/brands.js?v=20261128w"></script>
+<script src="../assets/work.js?v=20261128w"></script>
+<script src="../assets/guide.js?v=20261128w"></script>
+<script src="../assets/map.js?v=20261128w"></script>
+<script>
+(function () {
+  var rv = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 });
+    rv.forEach(function (n) { io.observe(n); });
+    setTimeout(function () { rv.forEach(function (n) { n.classList.add("in"); }); }, 2600);
+  } else rv.forEach(function (n) { n.classList.add("in"); });
+
+})();
+</script>
+<script src="../assets/i18n-dict.js?v=20261128w"></script>
+<script src="../assets/i18n.js?v=20261128w"></script>
+</body>
+</html>
