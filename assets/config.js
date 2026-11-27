@@ -51,9 +51,9 @@ window.SITE_CONFIG = {
   // Косметика, с которой работают мастера (блок «Чем мы пользуемся»). Фото лежат в assets/products/.
   // Можно убирать и добавлять: { brand, name, note, img }
   products: [
-    { brand: "Reuzel", name: "Blue", note: "сильная фиксация, блеск, смывается водой", img: "assets/products/reuzel-blue.png" },
+    { brand: "Reuzel", name: "Blue", note: "сильная фиксация, блеск, смывается водой", img: "assets/products/reuzel-blue.jpg" },
     { brand: "Reuzel", name: "Clay Matte", note: "средняя фиксация, матовый финиш", img: "assets/products/reuzel-clay.jpg" },
-    { brand: "Reuzel", name: "Fiber", note: "гибкая фиксация, текстура", img: "assets/products/reuzel-fiber.png" },
+    { brand: "Reuzel", name: "Fiber", note: "гибкая фиксация, текстура", img: "assets/products/reuzel-fiber.jpg" },
     { brand: "Uppercut Deluxe", name: "Deluxe Pomade", note: "сильная фиксация, блеск", img: "assets/products/uppercut-deluxe.jpg" },
     { brand: "Uppercut Deluxe", name: "Matte Pomade", note: "средняя фиксация, матовый финиш", img: "assets/products/uppercut-matte.jpg" },
     { brand: "Uppercut Deluxe", name: "Clay", note: "сильная фиксация, матовый финиш", img: "assets/products/uppercut-clay.jpg" },

@@ -57,17 +57,23 @@
     });
   }, { threshold: .35 }) : null;
 
+  // постеры подгружаем только когда блок близко к экрану
+  var pio = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { var v = e.target; if (v.getAttribute("data-poster")) { v.poster = v.getAttribute("data-poster"); v.removeAttribute("data-poster"); } pio.unobserve(v); } });
+  }, { rootMargin: "500px 0px" }) : null;
+
   function render() {
     var lg = (window.I18N && window.I18N.lang) || "ru", L = T[lg] || T.ru;
     sec.innerHTML = '<div class="wk-in"><span class="wk-k">' + L.k + "</span><h2>" + L.t + '</h2><p class="wk-lead">' + L.lead + '</p><div class="wk-g">' +
       V.map(function (x, i) {
-        return '<div class="wk-v" style="--ar:' + x.ar + ';transform:rotate(' + ((i % 3) - 1) * .5 + 'deg)"><video muted loop playsinline preload="none" poster="' + base + "media/posters/" + x.n + '.jpg" data-src="' + base + "media/" + x.n + '.mp4"></video><span class="who">' + x.who + "</span>" +
+        return '<div class="wk-v" style="--ar:' + x.ar + ';transform:rotate(' + ((i % 3) - 1) * .5 + 'deg)"><video muted loop playsinline preload="none" data-poster="' + base + "media/posters/" + x.n + '.jpg" data-src="' + base + "media/" + x.n + '.mp4"></video><span class="who">' + x.who + "</span>" +
           (x.tag ? '<span class="tp">' + L.tags[x.tag] + "</span>" : "") + "</div>";
       }).join("") + '</div><p class="wk-note">' + L.note + "</p></div>";
     sec.setAttribute("lang", lg);
     var vs = sec.querySelectorAll("video");
     for (var i = 0; i < vs.length; i++) (function (v) {
       if (io) io.observe(v);
+      if (pio) pio.observe(v); else if (v.getAttribute("data-poster")) v.poster = v.getAttribute("data-poster");
       v.parentNode.addEventListener("click", function () { v.muted = !v.muted; v.parentNode.classList.toggle("on", !v.muted); });
     })(vs[i]);
   }

@@ -122,10 +122,14 @@
 
   window.GrindStore = demo;
   window.GrindStore.helpers = { computeSlots: computeSlots, ymd: ymd, hm: hm, toMin: toMin, fromMin: fromMin, at: at, STEP: STEP, DEFAULT_HOURS: DEFAULT_HOURS };
-  // Реальный режим: если в config.js есть own.supabaseUrl и own.anonKey, подгружаем supabase-js и assets/store-supabase.js,
-  // и они заменяют window.GrindStore (тот же интерфейс). document.write нужен, чтобы всё загрузилось до booking.js.
+  // Реальный режим: если в config.js есть own.supabaseUrl и own.anonKey, подгружаем supabase-js и assets/store-supabase.js
+  // НЕ блокируя страницу; они заменяют window.GrindStore (тот же интерфейс). Кто использует хранилище, ждёт window.GrindStoreReady.
+  window.GrindStoreReady = Promise.resolve(window.GrindStore);
   if (cfg.supabaseUrl && cfg.anonKey && document.currentScript) {
     var base = document.currentScript.src.replace(/store\.js.*$/, ""), q = (document.currentScript.src.match(/\?.*$/) || [""])[0];
-    document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script><script src="' + base + 'store-supabase.js' + q + '"><\/script>');
+    var load = function (u) { return new Promise(function (res, rej) { var t = document.createElement("script"); t.src = u; t.async = true; t.onload = res; t.onerror = rej; document.head.appendChild(t); }); };
+    window.GrindStoreReady = load("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js")
+      .then(function () { return load(base + "store-supabase.js" + q); })
+      .then(function () { return window.GrindStore; }, function () { return window.GrindStore; });
   }
 })();

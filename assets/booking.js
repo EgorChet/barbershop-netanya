@@ -228,7 +228,7 @@
     reset(master);
     if (OWN) {
       if (master && OWN_MAP[master]) master = OWN_MAP[master];
-      return ownLoad().then(function () {
+      return Promise.resolve(window.GrindStoreReady).then(ownLoad).then(function () {
         reset(master && MASTERS.some(function (x) { return x.id === master; }) ? master : null);
         render(); ov.classList.add("open"); document.documentElement.style.overflow = "hidden";
       });
