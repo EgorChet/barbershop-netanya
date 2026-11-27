@@ -155,8 +155,9 @@ footer .logo{color:var(--paper);font-size:15px}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.tick span,.arm{animation:none}}
 </style>
-<script src="../assets/gate.js?v=20261128ah"></script>
-<script src="../assets/brand.js?v=20261128ah"></script>
+<link rel="preload" as="image" href="../media/posters/dima-1.jpg">
+<script src="../assets/gate.js?v=20261128ai"></script>
+<script src="../assets/brand.js?v=20261128ai"></script>
 </head>
 <body>
 <header class="top"><div class="w">
@@ -166,7 +167,8 @@ footer .logo{color:var(--paper);font-size:15px}
 </div></header>
 
 <div class="hero">
-  <video autoplay muted loop playsinline preload="metadata" poster="../media/posters/dima-1.jpg"><source src="../media/dima-1.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline preload="auto" poster="../media/posters/dima-1.jpg"><source src="../media/hero-dima.mp4" type="video/mp4"></video>
+  <script>/* медленная сеть или экономия трафика: вместо видео остаётся постер */(function(){var c=navigator.connection;if(c&&(c.saveData||/(^|-)(2g|3g)$/.test(c.effectiveType||""))){var v=document.querySelector(".hero video");if(v&&v.parentNode)v.parentNode.removeChild(v);}})();</script>
   <span class="stk a">скоро открываемся</span>
   <span class="stk p b">Нетания 2026</span>
   <div class="w">
@@ -292,7 +294,7 @@ footer .logo{color:var(--paper);font-size:15px}
   <a class="main" href="#visit" data-book>Записаться</a>
 </nav>
 
-<script src="../assets/config.js?v=20261128ah"></script>
+<script src="../assets/config.js?v=20261128ai"></script>
 <script>
 // цены этой версии (ориентир от ребят, нужно подтвердить)
 window.SITE_CONFIG.services = [
@@ -302,10 +304,10 @@ window.SITE_CONFIG.services = [
   { id: "long", t: "Удлинённая ножницами", d: "90 мин", p: 180 }
 ];
 </script>
-<script src="../assets/site.js?v=20261128ah"></script>
-<script src="../assets/switcher.js?v=20261128ah"></script>
-<script src="../assets/store.js?v=20261128ah"></script>
-<script src="../assets/booking.js?v=20261128ah"></script>
+<script src="../assets/site.js?v=20261128ai"></script>
+<script src="../assets/switcher.js?v=20261128ai"></script>
+<script src="../assets/store.js?v=20261128ai"></script>
+<script src="../assets/booking.js?v=20261128ai"></script>
 <script>
 (function () {
   // появление при прокрутке
@@ -346,9 +348,9 @@ window.SITE_CONFIG.services = [
   });
 })();
 </script>
-<script src="../assets/guide.js?v=20261128ah"></script>
-<script src="../assets/map.js?v=20261128ah"></script>
-<script src="../assets/i18n-dict.js?v=20261128ah"></script>
-<script src="../assets/i18n.js?v=20261128ah"></script>
+<script src="../assets/guide.js?v=20261128ai"></script>
+<script src="../assets/map.js?v=20261128ai"></script>
+<script src="../assets/i18n-dict.js?v=20261128ai"></script>
+<script src="../assets/i18n.js?v=20261128ai"></script>
 </body>
 </html>
