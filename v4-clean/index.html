@@ -127,6 +127,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.rit-s{padding:clamp(60px,8vw,110px) clamp(16px,4vw,40px)}.rit-in{max-width:1200px;margin:0 auto}.rit-h{margin-bottom:34px}.rit-lead{max-width:560px;margin-top:16px;line-height:1.6}.rit-g{display:grid;gap:12px}.rit-g h4{margin:6px 0}.rit-g p{line-height:1.55;font-size:15px}.rit-g .rn{display:block;margin-bottom:6px}@media(min-width:760px){.rit-g{grid-template-columns:repeat(2,1fr)}}@media(min-width:1100px){.rit-g{grid-template-columns:repeat(5,1fr)}}
+.rit-s{background:var(--ink,#141414);color:#fff;border-radius:32px;margin:0 clamp(8px,2vw,20px)}
+.rit-k{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.rit-h h2{font-family:Unbounded,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(30px,4.5vw,60px);line-height:1.05;margin-top:12px}.rit-lead{color:#bdb8b0}
+.rit-g>div{background:#1f1f1f;border-radius:20px;padding:22px}
+.rit-g .rn{font-family:Unbounded,Arial,sans-serif;font-weight:700;font-size:14px;color:#141414;background:var(--acc);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px}
+.rit-g b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8d877c}.rit-g h4{font-family:Unbounded,Arial,sans-serif;font-weight:700;font-size:17px;line-height:1.25}.rit-g p{color:#bdb8b0}
 </style>
 </head>
 <body>
@@ -151,6 +158,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     <div class="chip"><span><span class="dot"></span><b>Сегодня есть окна</b></span><span>15:00 · 17:30 · 19:00</span></div>
   </div>
 </div></section>
+
+<section class="rit-s" id="ritual"><div class="rit-in"><div class="rit-h "><span class="rit-k">Как это бывает у нас</span><h2>Больше, чем стрижка</h2><p class="rit-lead">Фильтр-кофе, правильный чай в чайниках, нормальная мойка головы и ритуал от первого глотка до укладки. Мы делаем стрижку событием, а не процедурой.</p></div><div class="rit-g"><div class="rv"><span class="rn">01</span><b>Встреча</b><h4>Фильтр-кофе или чай</h4><p>Свежий фильтр-кофе или листовой чай, заваренный в чайнике, а не пакетик в кружке. Пока ждёте, а не вместо.</p></div><div class="rv"><span class="rn">02</span><b>Мойка</b><h4>Нормальная мойка головы</h4><p>Не «сполоснуть»: тёплая вода, шампунь под ваш тип волос, пять минут массажа кожи головы в кресле с подголовником.</p></div><div class="rv"><span class="rn">03</span><b>Стрижка</b><h4>Без спешки</h4><p>Консультация, потом ножницы и машинка. Час на человека, чтобы форма держалась три недели.</p></div><div class="rv"><span class="rn">04</span><b>Горячее полотенце</b><h4>Контур и бритьё</h4><p>Горячее полотенце, опасная бритва, масло и бальзам. То, что отличает барбершоп от парикмахерской.</p></div><div class="rv"><span class="rn">05</span><b>Финиш</b><h4>Укладка и разговор</h4><p>Уложим при вас и покажем, как повторить дома. Допить чай можно без спешки.</p></div></div></div></section>
 
 <section id="services" style="padding-top:0"><div class="wrap">
   <div class="sh rv"><h2 class="u">Услуги и цены</h2><p>Всё включено: мытьё, укладка, горячее полотенце. Цены фиксированные — без сюрпризов на кассе.</p></div>
