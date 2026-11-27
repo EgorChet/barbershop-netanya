@@ -81,7 +81,7 @@
     try { sessionStorage.setItem("bl-seen", "1"); } catch (e) {}
     var t0 = Date.now();
     var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
-    var minMs = reduced ? 250 : 1100;
+    var minMs = reduced ? 250 : 2300;
     var hide = function () {
       var wait = Math.max(0, minMs - (Date.now() - t0));
       setTimeout(function () {
@@ -90,7 +90,7 @@
       }, wait);
     };
     if (document.readyState === "complete") hide(); else window.addEventListener("load", hide);
-    setTimeout(hide, 2600); // страховка, если что-то не загрузилось
+    setTimeout(hide, 3800); // страховка, если что-то не загрузилось
   }
 
   // ---- единый логотип в шапке каждой версии ----
