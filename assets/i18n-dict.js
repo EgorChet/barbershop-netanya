@@ -2454,5 +2454,10 @@ window.I18N_DICT = {
 "<b>Brand identity:</b> logo, colours, fonts and loader — <a href=\"brand/\" style=\"color:#c9f23a\">see the brand kit</a>.",
 "<b>זהות מותג:</b> לוגו, צבעים, גופנים וטעינה — <a href=\"brand/\" style=\"color:#c9f23a\">לצפייה בערכת המותג</a>.",
 "<b>Identité de marque :</b> logo, couleurs, polices et loader — <a href=\"brand/\" style=\"color:#c9f23a\">voir le brand kit</a>."
+],
+"Значок жеста основан на Twemoji (© Twitter, Inc. и участники), лицензия CC-BY 4.0.": [
+"The gesture icon is based on Twemoji (© Twitter, Inc. and contributors), licensed CC-BY 4.0.",
+"סמל המחווה מבוסס על Twemoji (© Twitter, Inc. ותורמים), ברישיון CC-BY 4.0.",
+"L'icône du geste est basée sur Twemoji (© Twitter, Inc. et contributeurs), sous licence CC-BY 4.0."
 ]
 };

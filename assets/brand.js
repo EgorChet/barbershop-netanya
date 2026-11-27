@@ -51,6 +51,8 @@
     "#bl-load .bl-tag{font:600 11px/1 'JetBrains Mono',ui-monospace,Menlo,monospace;letter-spacing:.32em;text-transform:uppercase;color:var(--bk-mut,#999);opacity:0;animation:bl-fade .5s 1.35s forwards}" +
     "#bl-load .bl-draw{stroke-dasharray:100;stroke-dashoffset:100;animation:bl-draw .9s .15s cubic-bezier(.6,0,.2,1) forwards}" +
     "#bl-load .bl-draw2{stroke-dasharray:100;stroke-dashoffset:100;animation:bl-draw .5s .85s cubic-bezier(.7,0,.2,1) forwards}" +
+    "#bl-load .bl-pop{transform-box:fill-box;transform-origin:50% 100%;animation:bl-pop .8s .1s cubic-bezier(.2,1.3,.4,1) both}" +
+    "@keyframes bl-pop{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:1;transform:none}}" +
     "@keyframes bl-draw{to{stroke-dashoffset:0}}" +
     "@keyframes bl-wipe{to{clip-path:inset(0 0 0 0)}}" +
     "@keyframes bl-fade{to{opacity:1}}" +
