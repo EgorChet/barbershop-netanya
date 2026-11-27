@@ -74,7 +74,7 @@
     for (var i = 0; i < vs.length; i++) (function (v) {
       if (io) io.observe(v);
       if (pio) pio.observe(v); else if (v.getAttribute("data-poster")) v.poster = v.getAttribute("data-poster");
-      v.parentNode.addEventListener("click", function () { v.muted = !v.muted; v.parentNode.classList.toggle("on", !v.muted); });
+      v.parentNode.addEventListener("click", function () { var on = v.muted; document.querySelectorAll(".wk-v video, .vt video").forEach(function (o) { o.muted = true; if (o.parentNode) o.parentNode.classList.remove("on"); }); if (on) { v.muted = false; v.parentNode.classList.add("on"); } });
     })(vs[i]);
   }
   render();
