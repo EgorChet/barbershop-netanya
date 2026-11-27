@@ -2349,5 +2349,35 @@ window.I18N_DICT = {
 "From the guys' brief: Moscow underground, skate, vinyl, xerox, acid accent. Work videos, before/after, face shapes.",
 "לפי הבריף של החבר'ה: אנדרגראונד מוסקבאי, סקייט, ויניל, קסרוקס, אקסנט חומצי. סרטוני עבודות, לפני/אחרי, צורות פנים.",
 "D'après le brief des gars : underground moscovite, skate, vinyle, xerox, accent acide. Vidéos de travaux, avant/après, formes de visage."
+],
+"сильная фиксация, матовый финиш": [
+"strong hold, matte finish",
+"החזקה חזקה, גימור מט",
+"tenue forte, finition mate"
+],
+"спрей: объём и мат без липкости": [
+"spray: volume and matte without stickiness",
+"ספריי: נפח ומט בלי הדבקה",
+"spray : volume et mat sans effet collant"
+],
+"солевой спрей: лёгкая пляжная текстура": [
+"salt spray: light beachy texture",
+"ספריי מלח: טקסטורת חוף קלילה",
+"spray au sel : texture plage légère"
+],
+"масло для бороды: уход и мягкость": [
+"beard oil: care and softness",
+"שמן זקן: טיפוח ורכות",
+"huile à barbe : soin et douceur"
+],
+"помады, глина, спреи и уход за бородой": [
+"pomades, clay, sprays and beard care",
+"פומדות, חימר, ספריי וטיפוח זקן",
+"pommades, argile, sprays et soin de la barbe"
+],
+"Reuzel, Uppercut Deluxe и Clubman Pinaud — торговые марки их владельцев. Фото товаров с официальных сайтов производителей. Мы пользуемся этой косметикой, но не являемся официальным дилером.": [
+"Reuzel, Uppercut Deluxe and Clubman Pinaud are trademarks of their owners. Product photos are from the manufacturers' official websites. We use these products but are not an official dealer.",
+"Reuzel, Uppercut Deluxe ו-Clubman Pinaud הם סימנים מסחריים של בעליהם. תמונות המוצרים מהאתרים הרשמיים של היצרנים. אנחנו משתמשים בקוסמטיקה הזו אך איננו משווקים רשמיים.",
+"Reuzel, Uppercut Deluxe et Clubman Pinaud sont des marques de leurs propriétaires. Les photos des produits proviennent des sites officiels des fabricants. Nous utilisons ces produits mais ne sommes pas revendeur officiel."
 ]
 };

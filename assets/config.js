@@ -43,7 +43,9 @@ window.SITE_CONFIG = {
     { name: "Reuzel", note: "помады и матовая глина для укладки",
       imgs: ["assets/products/reuzel-blue.png","assets/products/reuzel-clay.jpg","assets/products/reuzel-fiber.png"] },
     { name: "Clubman Pinaud", note: "классический тальк Finest Powder, с 1810 года",
-      imgs: ["assets/products/clubman-powder.jpg"] }
+      imgs: ["assets/products/clubman-powder.jpg"] },
+    { name: "Uppercut Deluxe", note: "помады, глина, спреи и уход за бородой",
+      imgs: ["assets/products/uppercut-deluxe.jpg","assets/products/uppercut-clay-spray.jpg","assets/products/uppercut-salt-spray.jpg","assets/products/uppercut-beard-oil.jpg"] }
     // { name: "...", note: "...", imgs: ["assets/products/..."] }
   ],
 

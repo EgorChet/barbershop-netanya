@@ -8,6 +8,7 @@
 
   var L = {
     ru: {
+      swipe: "листайте: лицо → объяснение", ex: "Известные примеры", exNote: "Ориентир: мнения стилистов расходятся, а форма зависит от ракурса и причёски.", prev: "Назад", next: "Дальше", how: "Как это работает",
       baK: "Результат", baT: "До и <em>после</em>",
       baLead: "Настоящие работы наших барберов. Потяните ползунок, чтобы увидеть разницу.",
       soonT: "Скоро здесь будут работы", soonD: "Фото «до» и «после» от Димы, Таши и Кирилла. Пока их нет, место ждёт.",
@@ -45,6 +46,7 @@
       ]
     },
     en: {
+      swipe: "swipe: face → explanation", ex: "Famous examples", exNote: "A rough guide: stylists disagree, and shape depends on angle and hairstyle.", prev: "Back", next: "Next", how: "How it works",
       baK: "Results", baT: "Before and <em>after</em>",
       baLead: "Real work by our barbers. Drag the slider to see the difference.",
       soonT: "Work coming soon", soonD: "Before and after photos from Dima, Tasha and Kirill. The space is waiting for them.",
@@ -82,6 +84,7 @@
       ]
     },
     he: {
+      swipe: "החליקו: פנים ← הסבר", ex: "דוגמאות מפורסמות", exNote: "הערכה כללית: מעצבים חלוקים, והצורה תלויה בזווית ובתסרוקת.", prev: "הקודם", next: "הבא", how: "איך זה עובד",
       baK: "תוצאות", baT: "לפני <em>ואחרי</em>",
       baLead: "עבודות אמיתיות של הספרים שלנו. גררו את המחוון כדי לראות את ההבדל.",
       soonT: "עבודות יעלו בקרוב", soonD: "תמונות לפני ואחרי של דימה, טאשה וקיריל. המקום מחכה להן.",
@@ -119,6 +122,7 @@
       ]
     },
     fr: {
+      swipe: "glissez : visage → explication", ex: "Exemples célèbres", exNote: "À titre indicatif : les stylistes ne sont pas d'accord, et la forme dépend de l'angle et de la coiffure.", prev: "Précédent", next: "Suivant", how: "Comment ça marche",
       baK: "Résultats", baT: "Avant <em>et après</em>",
       baLead: "De vrais travaux de nos barbiers. Faites glisser le curseur pour voir la différence.",
       soonT: "Bientôt ici", soonD: "Des photos avant et après de Dima, Tasha et Kirill. La place les attend.",
@@ -157,6 +161,14 @@
     }
   };
 
+  var CE = {
+    oval: ["George Clooney", "Idris Elba"],
+    round: ["Jonah Hill", "Seth Rogen"],
+    square: ["Henry Cavill", "Brad Pitt"],
+    oblong: ["Adrien Brody", "Benedict Cumberbatch"],
+    heart: ["Ryan Gosling", "Chris Pine"],
+    diamond: ["Adam Driver", "Chris Hemsworth"]
+  };
   var SHAPES = {
     oval: '<ellipse cx="30" cy="36" rx="20" ry="30"/>',
     round: '<circle cx="30" cy="36" r="27"/>',
@@ -178,11 +190,28 @@
     ".gd-c{border:1px solid var(--bk-line,#333);border-radius:var(--bk-radius,8px);padding:20px;display:flex;flex-direction:column;gap:8px}" +
     ".gd-c h4{font-family:var(--bk-head,inherit);font-size:20px;font-weight:700;line-height:1.1}" +
     ".gd-c p{color:var(--bk-mut,#aaa);font-size:15px;line-height:1.5}" +
-    ".gd-c .r{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin-top:6px;font-size:14px;line-height:1.45}" +
-    ".gd-c .r b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding-top:2px;color:var(--bk-acc,#ff5a1f)}" +
-    ".gd-c .r b.x{color:var(--bk-mut,#999)}" +
+    ".gd-c .r,.gd-p .r{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin-top:6px;font-size:14px;line-height:1.45}" +
+    ".gd-c .r b,.gd-p .r b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding-top:2px;color:var(--bk-acc,#ff5a1f)}" +
+    ".gd-c .r b.x,.gd-p .r b.x{color:var(--bk-mut,#999)}" +
     ".gd-ic{width:54px;height:64px;margin-bottom:4px}.gd-ic *{fill:none;stroke:var(--bk-acc,#ff5a1f);stroke-width:2.5}" +
     ".gd-n{font:600 12px ui-monospace,Menlo,monospace;color:var(--bk-acc,#ff5a1f);letter-spacing:.1em}" +
+    ".gd-sl{position:relative;margin-top:28px}" +
+    ".gd-tk{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;direction:ltr;padding-bottom:4px}" +
+    ".gd-tk::-webkit-scrollbar{display:none}" +
+    ".gd-p{flex:0 0 100%;scroll-snap-align:start;border:1px solid var(--bk-line,#333);border-radius:var(--bk-radius,8px);padding:22px;min-height:380px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box}" +
+    "@media(min-width:900px){.gd-p{flex-basis:calc(50% - 6px)}}" +
+    ".gd-p.face{align-items:center;text-align:center;justify-content:center;background:linear-gradient(160deg,color-mix(in srgb,var(--bk-acc,#ff5a1f) 12%,transparent),transparent 60%)}" +
+    ".gd-big{width:min(200px,60%);height:auto}.gd-big .o{fill:none;stroke:var(--bk-acc,#ff5a1f);stroke-width:2.6}.gd-big .g{fill:none;stroke:var(--bk-mut,#888);stroke-width:1;stroke-dasharray:3 4}.gd-big .f{fill:var(--bk-fg,#fff);stroke:none}.gd-big .l{fill:none;stroke:var(--bk-fg,#fff);stroke-width:2;stroke-linecap:round}" +
+    ".gd-p p{color:var(--bk-mut,#aaa);font-size:15px;line-height:1.5}" +
+    ".gd-p h4{font-family:var(--bk-head,inherit);font-size:clamp(24px,3vw,34px);line-height:1.05}" +
+    ".gd-ce{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px}" +
+    ".gd-ce span{border:1px solid var(--bk-line,#444);border-radius:999px;padding:6px 12px;font-size:13px}" +
+    ".gd-p .gd-cap{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bk-mut,#999)}" +
+    ".gd-p .nt{font-size:12px;color:var(--bk-mut,#999);line-height:1.5;margin-top:auto}" +
+    ".gd-p .hint{font-size:12px;color:var(--bk-acc,#ff5a1f);margin-top:auto}" +
+    ".gd-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;direction:ltr}" +
+    ".gd-dots{display:flex;gap:6px;flex-wrap:wrap}.gd-dots i{width:8px;height:8px;border-radius:50%;background:var(--bk-line,#444);transition:.2s}.gd-dots i.on{background:var(--bk-acc,#ff5a1f);width:22px;border-radius:8px}" +
+    ".gd-ar{display:flex;gap:8px}.gd-ar button{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1px solid var(--bk-line,#444);display:grid;place-items:center;font-size:18px;color:var(--bk-fg,#fff)}.gd-ar button:hover{border-color:var(--bk-acc,#ff5a1f);color:var(--bk-acc,#ff5a1f)}" +
     ".gd-tip{margin-top:20px;max-width:700px;padding-inline-start:14px;border-inline-start:3px solid var(--bk-acc,#ff5a1f);line-height:1.6}" +
     ".gd-h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--bk-mut,#999);margin:34px 0 0}" +
     ".gd-ba{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:var(--bk-radius,8px);background:#222;--p:50%;direction:ltr;touch-action:pan-y}" +
@@ -225,12 +254,29 @@
     }
     return '<div class="gd-b"><span class="gd-k">' + T.baK + "</span><h2>" + T.baT + '</h2><p class="gd-lead">' + T.baLead + '</p><div class="gd-g ba">' + items + "</div></div>";
   }
+  var BIG = {
+    oval: '<ellipse cx="60" cy="74" rx="40" ry="62"/>',
+    round: '<circle cx="60" cy="74" r="52"/>',
+    square: '<rect x="14" y="20" width="92" height="108" rx="22"/>',
+    oblong: '<rect x="24" y="6" width="72" height="136" rx="36"/>',
+    heart: '<path d="M10 40Q60 -2 110 40Q106 98 60 144Q14 98 10 40Z" stroke-linejoin="round"/>',
+    diamond: '<path d="M60 4L112 76L60 144L8 76Z" stroke-linejoin="round"/>'
+  };
+  function faceSvg(id) {
+    return '<svg class="gd-big" viewBox="0 0 120 150" aria-hidden="true"><g class="o">' + BIG[id] + '</g>' +
+      '<path class="g" d="M6 40H114M6 76H114M6 112H114"/><circle class="f" cx="44" cy="68" r="3"/><circle class="f" cx="76" cy="68" r="3"/>' +
+      '<path class="l" d="M60 74V92M50 108Q60 114 70 108"/></svg>';
+  }
   function facesHtml(T) {
-    var cards = T.faces.map(function (f) {
-      return '<div class="gd-c"><svg class="gd-ic" viewBox="0 0 60 72" aria-hidden="true">' + SHAPES[f.id] + "</svg><h4>" + f.n + "</h4><p>" + f.d + "</p>" +
-        '<div class="r"><b>' + T.good + "</b><span>" + f.g + '</span><b class="x">' + T.care + "</b><span>" + f.c + "</span></div></div>";
+    var panels = T.faces.map(function (f) {
+      return '<div class="gd-p face">' + faceSvg(f.id) + "<h4>" + f.n + '</h4><span class="gd-cap">' + T.ex + '</span><div class="gd-ce">' +
+        CE[f.id].map(function (n) { return "<span>" + n + "</span>"; }).join("") + '</div><span class="hint">' + T.swipe + "</span></div>" +
+        '<div class="gd-p"><span class="gd-cap">' + T.how + "</span><h4>" + f.n + "</h4><p>" + f.d + '</p><div class="r"><b>' + T.good + "</b><span>" + f.g +
+        '</span><b class="x">' + T.care + "</b><span>" + f.c + '</span></div><span class="nt">' + T.exNote + "</span></div>";
     }).join("");
-    return '<div class="gd-b"><span class="gd-k">' + T.fK + "</span><h2>" + T.fT + '</h2><p class="gd-lead">' + T.fLead + '</p><div class="gd-g f">' + cards + '</div><p class="gd-tip">' + T.fTip + "</p></div>";
+    var dots = T.faces.map(function () { return "<i></i>"; }).join("");
+    return '<div class="gd-b"><span class="gd-k">' + T.fK + "</span><h2>" + T.fT + '</h2><p class="gd-lead">' + T.fLead + '</p><div class="gd-sl"><div class="gd-tk">' + panels +
+      '</div><div class="gd-nav"><div class="gd-dots">' + dots + '</div><div class="gd-ar"><button type="button" data-d="-1" aria-label="' + T.prev + '">←</button><button type="button" data-d="1" aria-label="' + T.next + '">→</button></div></div></div><p class="gd-tip">' + T.fTip + "</p></div>";
   }
   function trendsHtml(T) {
     function grid(arr, pre) {
@@ -247,6 +293,28 @@
     var T = L[lg] || L.ru;
     sec.innerHTML = '<div class="gd-in">' + baHtml(T) + facesHtml(T) + trendsHtml(T) + "</div>";
     sec.setAttribute("lang", lg);
+    var tk = sec.querySelector(".gd-tk");
+    if (tk) {
+      var dots = sec.querySelectorAll(".gd-dots i"), ps = tk.querySelectorAll(".gd-p");
+      var dirRtl = document.documentElement.getAttribute("dir") === "rtl";
+      for (var q = 0; q < ps.length; q++) ps[q].setAttribute("dir", dirRtl ? "rtl" : "ltr");
+      var upd = function () {
+        var w = ps[0].getBoundingClientRect().width + 12, i = Math.round(tk.scrollLeft / w);
+        var step = ps.length > 0 && window.innerWidth >= 900 ? 2 : 2; // пары: лицо + объяснение
+        var shape = Math.min(dots.length - 1, Math.floor(i / step));
+        for (var k = 0; k < dots.length; k++) dots[k].className = k === shape ? "on" : "";
+      };
+      tk.addEventListener("scroll", function () { clearTimeout(tk._t); tk._t = setTimeout(upd, 60); });
+      var go = function (d) {
+        var w = ps[0].getBoundingClientRect().width + 12;
+        var wide = window.innerWidth >= 900, per = wide ? 2 : 1;
+        var cur = Math.round(tk.scrollLeft / w);
+        tk.scrollTo({ left: Math.max(0, (cur + d * per) * w), behavior: "smooth" });
+      };
+      var bs = sec.querySelectorAll(".gd-ar button");
+      for (var m = 0; m < bs.length; m++) (function (b) { b.addEventListener("click", function () { go(parseInt(b.getAttribute("data-d"), 10)); }); })(bs[m]);
+      upd();
+    }
     var sl = sec.querySelectorAll(".gd-ba");
     for (var i = 0; i < sl.length; i++) (function (box) {
       var inp = box.querySelector("input");
