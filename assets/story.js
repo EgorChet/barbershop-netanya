@@ -79,7 +79,7 @@
     '<li><span class="w">Москва</span><div><b>Chop-Chop</b><span class="d">Первая сеть барбершопов России. Дима работал в ней мастером.</span></div></li>' +
     '<li><span class="w">Москва</span><div><b>TOPGUN</b><span class="d">Крупнейшая сеть барбершопов России и СНГ. Работа в команде с жёсткими стандартами сервиса.</span></div></li>' +
     '<li><span class="w">Нетания</span><div><b>Барбершоп в Нетании</b><span class="d">Годы практики, постоянные клиенты и десятки отзывов на пять звёзд.</span></div></li>' +
-    '<li><span class="w">Теперь</span><div><b>Свой барбершоп</b><span class="d">Семейная команда плюс Кирилл. Свои правила: время, чай, мойка, стрижка.</span></div></li>' +
+    '<li><span class="w">Теперь</span><div><b>Свой барбершоп</b><span class="d">Семейная команда плюс Кирилл. Свои правила: время, чай, стрижка.</span></div></li>' +
     "</ul>" +
     '<div class="st-p">' +
     '<div class="st-c st-r"><img src="' + BASE + 'assets/img/dima2.jpg" alt="Дима" loading="lazy"><div><h3>Дима</h3><div class="r">Основатель · барбер</div><ul><li>Работал в Chop-Chop и TOPGUN (Москва)</li><li>Мужские стрижки, fade, усы и борода</li><li>«Лучший барбер в мире», по отзыву клиента</li></ul></div></div>' +
