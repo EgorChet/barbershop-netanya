@@ -98,11 +98,11 @@
     '<li><span class="w">Москва</span><div><b>Chop-Chop</b><span class="d">Первая сеть барбершопов России. Дима работал в ней мастером.</span></div></li>' +
     '<li><span class="w">Москва</span><div><b>TOPGUN</b><span class="d">Крупнейшая сеть барбершопов России и СНГ. Работа в команде с жёсткими стандартами сервиса.</span></div></li>' +
     '<li><span class="w">Нетания</span><div><b>Барбершоп в Нетании</b><span class="d">Годы практики, постоянные клиенты и десятки отзывов на пять звёзд.</span></div></li>' +
-    '<li><span class="w">Теперь</span><div><b>Свой барбершоп</b><span class="d">Семейная команда плюс Кирилл. Свои правила: время, чай, стрижка.</span></div></li>' +
+    '<li><span class="w">Теперь</span><div><b>Свой барбершоп</b><span class="d">Основатели Дима и Таша, с ними барбер Кирилл. Свои правила: время, чай, стрижка.</span></div></li>' +
     "</ul>" +
     '<div class="st-p">' +
     '<div class="st-c st-r"><img src="' + BASE + 'assets/img/dima2.jpg" alt="Дима" loading="lazy"><div><h3>Дима</h3><div class="r">Основатель · барбер</div><ul><li>Работал в Chop-Chop и TOPGUN (Москва)</li><li>Мужские стрижки, fade, усы и борода</li><li>«Лучший барбер в мире», по отзыву клиента</li></ul></div></div>' +
-    '<div class="st-c st-r"><img src="' + BASE + 'assets/img/tasha.jpg" alt="Таша" loading="lazy" style="object-position:center 30%"><div><h3>Таша</h3><div class="r">Жена Димы · барбер</div><ul><li>Опыт в лучших барбершопах Москвы</li><li>Стрижёт с 2017 года</li><li>Фейд, мужские стрижки, оформление бороды</li></ul></div></div>' +
+    '<div class="st-c st-r"><img src="' + BASE + 'assets/img/tasha.jpg" alt="Таша" loading="lazy" style="object-position:center 30%"><div><h3>Таша</h3><div class="r">Основатель · барбер</div><ul><li>Опыт в лучших барбершопах Москвы</li><li>Стрижёт с 2017 года</li><li>Фейд, мужские стрижки, оформление бороды</li></ul></div></div>' +
     "</div>" +
     '<div class="st-ch"><h3>Сертификаты и дипломы</h3><small>Обучение и работа в лучших школах</small></div>' +
     '<div class="st-g">' + certs.map(certHtml).join("") + "</div>" +

@@ -16,8 +16,8 @@
   var MASTERS = [
     { id: "any", n: "Любой свободный", r: "ближайшее время", img: null },
     { id: "dima", n: "Дима", r: "основатель · барбер", img: "assets/img/dima2.jpg" },
-    { id: "kirill", n: "Кирилл", r: "партнёр · барбер", img: "assets/img/kirill.jpg" },
-    { id: "b3", n: "Таша", r: "с 2017 года · фейд · борода", img: "assets/img/tasha.jpg" }
+    { id: "kirill", n: "Кирилл", r: "барбер", img: "assets/img/kirill.jpg" },
+    { id: "b3", n: "Таша", r: "основатель · с 2017 года", img: "assets/img/tasha.jpg" }
   ];
   var SLOTS = ["10:00", "11:00", "12:00", "13:30", "15:00", "16:00", "17:30", "19:00"];
   var DAYS = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
