@@ -2200,6 +2200,16 @@ window.I18N_DICT = {
 "<b>הזמנת תורים עצמאית:</b> <a href=\"staff/\" style=\"color:#c9f23a\">אזור הספר</a> (יומן, העברה, ביטול) ו<a href=\"my/\" style=\"color:#c9f23a\">התורים שלי</a> ללקוחות. בינתיים במצב הדגמה, הנתונים נשמרים בדפדפן.",
 "<b>Réservation maison :</b> <a href=\"staff/\" style=\"color:#c9f23a\">espace barbier</a> (agenda, déplacer, annuler) et <a href=\"my/\" style=\"color:#c9f23a\">mes rendez-vous</a> pour les clients. Mode démo pour l'instant : les données restent dans votre navigateur."
 ],
+"Винил крутится.<span>Стрижки мутятся.</span>": [
+"Vinyl spins.<span>Cuts get made.</span>",
+"הויניל מסתובב.<span>התספורות נעשות.</span>",
+"Le vinyle tourne.<span>Les coupes se font.</span>"
+],
+"Это время только что заняли. Выберите другое.": [
+"That time was just taken. Please pick another.",
+"השעה הזו נתפסה הרגע. בחרו שעה אחרת.",
+"Ce créneau vient d'être pris. Choisissez-en un autre."
+],
 "Онлайн-запись": [
 "Online booking",
 "הזמנת תור אונליין",

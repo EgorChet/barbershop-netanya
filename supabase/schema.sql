@@ -65,24 +65,33 @@ alter table public.services enable row level security;
 alter table public.appointments enable row level security;
 alter table public.blocks enable row level security;
 
--- мастера и услуги видны всем (нужны для выбора на сайте); email мастеров публично не отдаём через вью ниже
+-- мастера и услуги видны всем (нужны для выбора на сайте), но только безопасные колонки: почта и user_id наружу не отдаются
 create policy staff_read on public.staff for select using (true);
+revoke select, update on public.staff from anon, authenticated;
+grant select (id, name, role, color, img, hours) on public.staff to anon, authenticated;
+grant select (google_calendar_id, gcal_synced) on public.staff to authenticated;
+grant update (hours) on public.staff to authenticated;
 create policy services_read on public.services for select using (active);
 
--- мастер редактирует только свой профиль
-create policy staff_update_self on public.staff for update using (user_id = auth.uid()) with check (user_id = auth.uid());
+-- Проверка «я мастер с таким id». Функция security definer: правилам не нужен прямой доступ к закрытым колонкам staff.
+create or replace function public.is_my_staff(p_staff text) returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from staff s where s.id = p_staff and s.user_id = auth.uid());
+$$;
+grant execute on function public.is_my_staff(text) to anon, authenticated;
+
+-- мастер редактирует только свой профиль (и только часы работы, см. grant выше)
+create policy staff_update_self on public.staff for update using (public.is_my_staff(id)) with check (public.is_my_staff(id));
 
 -- записи: мастер видит и меняет только свои; клиент видит только свои; чужие имена и телефоны никому не видны
 create policy appt_staff_all on public.appointments for all
-  using (exists (select 1 from public.staff s where s.id = staff_id and s.user_id = auth.uid()))
-  with check (exists (select 1 from public.staff s where s.id = staff_id and s.user_id = auth.uid()));
+  using (public.is_my_staff(staff_id)) with check (public.is_my_staff(staff_id));
 create policy appt_client_read on public.appointments for select using (client_user = auth.uid());
 create policy appt_client_cancel on public.appointments for update
   using (client_user = auth.uid() and status = 'booked') with check (client_user = auth.uid() and status in ('booked','cancelled'));
 
 create policy blocks_staff_all on public.blocks for all
-  using (exists (select 1 from public.staff s where s.id = staff_id and s.user_id = auth.uid()))
-  with check (exists (select 1 from public.staff s where s.id = staff_id and s.user_id = auth.uid()));
+  using (public.is_my_staff(staff_id)) with check (public.is_my_staff(staff_id));
 
 -- ===== Функции для сайта =====
 

@@ -121,6 +121,6 @@
   // и они заменяют window.GrindStore (тот же интерфейс). document.write нужен, чтобы всё загрузилось до booking.js.
   if (cfg.supabaseUrl && cfg.anonKey && document.currentScript) {
     var base = document.currentScript.src.replace(/store\.js.*$/, "");
-    document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"><\/script><script src="' + base + 'store-supabase.js"><\/script>');
+    document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script><script src="' + base + 'store-supabase.js"><\/script>');
   }
 })();

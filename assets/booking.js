@@ -148,6 +148,7 @@
       h += '</div><div class="bk-l">' + T("Время") + '</div><div class="bk-t">';
       var day = dayDate(s.day);
       var slots = OWN ? (s.times || []) : (day.getDay() === 5 ? SLOTS.slice(0, 4) : SLOTS);
+      if (OWN && s.err) { h += '<p style="grid-column:1/-1;text-align:center;color:var(--bk-acc,#f55);padding:6px 8px">' + T("Это время только что заняли. Выберите другое.") + "</p>"; s.err = false; }
       if (OWN && !slots.length) h += '<p style="grid-column:1/-1;text-align:center;color:var(--bk-mut,#777);padding:18px 8px;line-height:1.5">' + T("На этот день нет свободных окон. Попробуйте другой день.") + "</p>";
       slots.forEach(function (t) {
         var dis = OWN ? false : busy(s.day, t);
@@ -188,6 +189,8 @@
           if (free.indexOf(s.time) < 0) { s.time = null; s.step = 2; return ownRefresh(function () { render(); }); }
           return G.createAppointment({ staffId: sid, serviceId: s.svc, date: ds, time: s.time, clientName: s.name.trim(), clientPhone: s.phone.trim(), source: "site" }).then(function () {
             s.m = sid; s.step = 4; render();
+          }, function () { // время успели занять или нет связи: возвращаем к выбору времени
+            s.time = null; s.step = 2; s.err = true; ownRefresh(render);
           });
         });
       }

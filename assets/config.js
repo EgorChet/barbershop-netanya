@@ -28,7 +28,7 @@ window.SITE_CONFIG = {
 
   // Своя запись (provider: "own"). Пока ключи пустые — демо-режим в браузере.
   // Реальный режим: впишите Project URL и публичный anon-ключ из Supabase (инструкция: supabase/README.md).
-  own: { supabaseUrl: "", anonKey: "" },
+  own: { supabaseUrl: "https://vmhlnzxhlittbkgrnhac.supabase.co", anonKey: "sb_publishable_30xDfI7SPsebKhrhDWuFUg_Hg3WDuDZ" },
 
   // Сертификаты (раздел «История»). Пока пусто — показываются макеты.
   // Когда будут сканы: положите файлы в assets/certs/ и раскомментируйте:
