@@ -157,8 +157,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128au"></script>
-<script src="../assets/store.js?v=20261128au"></script>
+<script src="../assets/config.js?v=20261128av"></script>
+<script src="../assets/store.js?v=20261128av"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -187,7 +187,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
       if (q) { inv = q; try { localStorage.setItem("grind-invite", q); history.replaceState(null, "", location.pathname); } catch (e) {} }
       if (inv) { return showInvite(inv); }
       $("who").innerHTML = '<form id="pwForm" style="display:grid;gap:10px"><input id="pwEmail" type="email" placeholder="Почта" autocomplete="email" required><input id="pwPass" type="password" placeholder="Пароль" autocomplete="current-password" required><button class="btn" type="submit">Войти</button><p class="k" id="pwMsg" style="min-height:16px"></p></form>' +
-        '<button id="gBtn"><div><b>Войти через Google</b><span>аккаунт Google, почта которого записана в таблице мастеров</span></div></button>';
+        '<button id="gBtn"><div><b>Войти через Google</b><span>пока работает только для почт, добавленных владельцем (у сайта ещё нет своего домена, Google не пускает всех подряд). Остальным: вход по почте и паролю выше</span></div></button>';
       S.authInfo().then(function (i) { if (i.signedIn) $("loginNote").innerHTML = "Аккаунт <b>" + esc(i.email) + "</b> не привязан ни к одному мастеру. Попросите администратора вписать вашу почту в таблицу мастеров."; });
       return;
     }
