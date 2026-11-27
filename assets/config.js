@@ -32,6 +32,13 @@ window.SITE_CONFIG = {
   //   { title: "Диплом курса",       who: "Таша", src: "assets/certs/b3-1.jpg" }
   // ],
 
+  // Косметика, с которой работают мастера (блок «Чем мы пользуемся»). Только названия.
+  brands: [
+    { name: "Reuzel", note: "помады и матовая глина для укладки" },
+    { name: "Clubman Pinaud", note: "классический тальк и средства после бритья" }
+    // { name: "...", note: "..." }
+  ],
+
   contacts: {
     name: "GRIND Barbershop",
     city: "Нетания",
