@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND — барбершоп в Нетании · Post-punk</title>
+<meta name="description" content="Независимый барбершоп в Нетании для своих: скейт, панк, стрижки. Дима, Кирилл и команда.">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GRIND">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/pleasures-180.png">
+<link rel="icon" href="../assets/icons/pleasures.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000;--fg:#f1f1ee;--mut:#8b8b86;--line:#262626;
+  --sans:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  --bk-bg:#0b0b0b;--bk-fg:#f1f1ee;--bk-mut:#8b8b86;--bk-line:#2c2c2c;--bk-acc:#f1f1ee;--bk-acc-fg:#000;--bk-radius:2px;--bk-head:"Inter Tight",sans-serif;
+  --vsw-bottom:86px;--safe:env(safe-area-inset-bottom,0px)
+}
+@media(min-width:900px){:root{--vsw-bottom:16px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.45;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.wrap{max-width:1200px;margin:0 auto;padding:0 18px}
+@media(min-width:700px){.wrap{padding:0 40px}}
+[data-rv]{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
+[data-rv].in{opacity:1;transform:none}
+
+.top{position:fixed;inset:0 0 auto;z-index:40;padding-top:env(safe-area-inset-top,0px);mix-blend-mode:difference}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+.top .logo{font-weight:800;letter-spacing:.42em;font-size:15px}
+.top nav{display:flex;gap:22px}
+.top nav a:not(.b){display:none}
+@media(min-width:900px){.top nav a:not(.b){display:inline}}
+
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 18px calc(120px + var(--safe))}
+.hero canvas{width:min(78vw,420px);aspect-ratio:1/1.12}
+.hero h1{font-weight:800;font-size:clamp(30px,7vw,56px);letter-spacing:.5em;margin:30px 0 0 .5em;line-height:1}
+.hero .sub{margin-top:14px;color:var(--mut)}
+.hero .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border:1px solid var(--fg);font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,color .2s}
+.btn.f,.btn:hover{background:var(--fg);color:#000}
+.btn.f:hover{background:transparent;color:var(--fg)}
+
+section{padding:70px 0}
+@media(min-width:900px){section{padding:120px 0}}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--fg);padding-bottom:10px;margin-bottom:8px}
+.sh h2{font-weight:800;font-size:clamp(30px,6vw,64px);letter-spacing:-.02em;line-height:1}
+
+/* manifesto */
+.man p{font-weight:600;font-size:clamp(26px,5.4vw,58px);line-height:1.08;letter-spacing:-.02em;max-width:1000px}
+.man p span{color:var(--mut)}
+
+/* tracklist */
+.side{margin-top:34px}
+.side .mono{color:var(--mut);margin-bottom:6px;display:block}
+.tr{display:grid;grid-template-columns:34px 1fr auto;gap:2px 12px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);transition:background .25s,padding .25s}
+.tr:hover{background:#0d0d0d;padding-left:8px}
+.tr .n{font-family:var(--mono);font-size:12px;color:var(--mut)}
+.tr h3{font-weight:600;font-size:19px}
+.tr .d{font-family:var(--mono);font-size:13px;color:var(--mut);text-align:right}
+.tr .p{grid-column:2;font-family:var(--mono);font-size:13px;color:var(--mut)}
+.tr .b{grid-column:3;justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--fg)}
+@media(min-width:900px){.tl{display:grid;grid-template-columns:1fr 1fr;gap:60px}}
+
+/* line-up */
+.lu{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.lm{background:#000;display:grid;grid-template-columns:42% 1fr;min-height:220px}
+.lm .ph{overflow:hidden;background:#0d0d0d}
+.lm img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.2) brightness(.95);transition:transform 1s}
+.lm:hover img{transform:scale(1.04)}
+.lm .t{padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.lm h3{font-weight:800;font-size:clamp(28px,7vw,40px);letter-spacing:-.02em;line-height:.95}
+.lm .r{color:var(--mut);margin-top:6px}
+.lm q{font-size:15px;line-height:1.4;color:#cfcfca}
+@media(min-width:900px){.lu{grid-template-columns:repeat(3,1fr)}.lm{grid-template-columns:1fr;grid-template-rows:auto 1fr}.lm .ph{aspect-ratio:4/5}}
+
+/* gig poster / visit */
+.gig{border:1px solid var(--fg);padding:22px;display:grid;gap:20px;margin-top:30px}
+.gig .big{font-weight:800;font-size:clamp(40px,11vw,120px);line-height:.9;letter-spacing:-.04em}
+.gig ul{list-style:none}
+.gig li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px}
+.gig li span{color:var(--mut)}
+.gig .row{display:flex;gap:10px;flex-wrap:wrap}
+.map{border:1px solid var(--line);min-height:300px;margin-top:12px}
+.map iframe{width:100%;height:100%;min-height:300px;border:0;filter:grayscale(1) invert(.92) contrast(1.3)}
+@media(min-width:900px){.gig{grid-template-columns:1.2fr 1fr;align-items:end;padding:40px}}
+
+footer{border-top:1px solid var(--line);padding:26px 0 calc(150px + var(--safe));color:var(--mut)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(min-width:900px){footer{padding-bottom:90px}}
+
+.appbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:8px;padding:10px 12px calc(10px + var(--safe));background:rgba(0,0,0,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.appbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;font-family:var(--mono);font-size:11px;text-transform:uppercase}
+.appbar a svg{width:20px;height:20px}
+.appbar a.main{background:var(--fg);color:#000;font-size:13px;letter-spacing:.06em}
+@media(min-width:900px){.appbar{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#">GRIND</a>
+  <nav class="mono"><a href="#tracks">Прайс</a><a href="#lineup">Мастера</a><a href="#visit">Адрес</a><a class="b" href="#visit" data-book>Запись</a></nav>
+</div></header>
+
+<section class="hero">
+  <canvas id="ridge" aria-hidden="true"></canvas>
+  <h1>GRIND</h1>
+  <p class="sub mono">Barbershop · Нетания · для своих</p>
+  <div class="row"><a class="btn f" href="#visit" data-book>Записаться</a><a class="btn" href="#tracks">Сторона A</a></div>
+</section>
+
+<section class="man" style="padding-top:20px"><div class="wrap" data-rv>
+  <p>Не салон и не сеть. Три кресла, громкий пост-панк, доски на стене и мастера, которые стригут так, будто это <span>их собственная голова.</span></p>
+</div></section>
+
+<section id="tracks" style="padding-top:10px"><div class="wrap">
+  <div class="sh" data-rv><h2>Трек-лист</h2><span class="mono">₪ / мин</span></div>
+  <div class="tl">
+    <div class="side" data-rv><span class="mono">Сторона A — волосы</span>
+      <div class="tr"><span class="n">A1</span><h3>Стрижка</h3><span class="d">60:00</span><span class="p">₪120</span><a class="b" href="#visit" data-book>Запись</a></div>
+      <div class="tr"><span class="n">A2</span><h3>Fade</h3><span class="d">45:00</span><span class="p">₪100</span><a class="b" href="#visit" data-book>Запись</a></div>
+      <div class="tr"><span class="n">A3</span><h3>Женская стрижка</h3><span class="d">60:00</span><span class="p">₪150</span><a class="b" href="#visit" data-book data-master="b3">Запись</a></div>
+      <div class="tr"><span class="n">A4</span><h3>Детская</h3><span class="d">40:00</span><span class="p">₪80</span><a class="b" href="#visit" data-book>Запись</a></div>
+    </div>
+    <div class="side" data-rv><span class="mono">Сторона B — лицо</span>
+      <div class="tr"><span class="n">B1</span><h3>Борода</h3><span class="d">30:00</span><span class="p">₪70</span><a class="b" href="#visit" data-book>Запись</a></div>
+      <div class="tr"><span class="n">B2</span><h3>Усы</h3><span class="d">15:00</span><span class="p">₪40</span><a class="b" href="#visit" data-book data-master="dima">Запись</a></div>
+      <div class="tr"><span class="n">B3</span><h3>Бритьё опасной бритвой</h3><span class="d">40:00</span><span class="p">₪90</span><a class="b" href="#visit" data-book>Запись</a></div>
+      <div class="tr"><span class="n">B4</span><h3>Стрижка + борода</h3><span class="d">90:00</span><span class="p">₪170</span><a class="b" href="#visit" data-book>Запись</a></div>
+    </div>
+  </div>
+  <p class="mono" style="color:var(--mut);margin-top:16px">* цены примерные — для макета</p>
+</div></section>
+
+<section id="lineup" style="padding-top:10px"><div class="wrap">
+  <div class="sh" data-rv><h2>Лайн-ап</h2><span class="mono">3 мастера</span></div>
+  <div class="lu">
+    <a class="lm" href="#visit" data-book data-master="dima" data-rv><div class="ph"><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"></div><div class="t"><div><h3>Дима</h3><p class="r mono">основатель / барбер</p></div><q>«Искал Диму всю свою жизнь.» — Антон</q><span class="mono">Записаться →</span></div></a>
+    <a class="lm" href="#visit" data-book data-master="kirill" data-rv><div class="ph"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"></div><div class="t"><div><h3>Кирилл</h3><p class="r mono">партнёр / барбер</p></div><q>«Стрижку делает на 5+.» — Николай</q><span class="mono">Записаться →</span></div></a>
+    <a class="lm" href="#visit" data-book data-master="b3" data-rv><div class="ph"><img src="../assets/img/barber3.jpg" alt="Барбер №3" loading="lazy" style="object-position:center 30%"></div><div class="t"><div><h3>Барбер №3</h3><p class="r mono">мужские / женские / дети</p></div><q>Велосипед, Joy Division и точная форма.</q><span class="mono">Записаться →</span></div></a>
+  </div>
+</div></section>
+
+<section id="visit" style="padding-top:10px"><div class="wrap">
+  <div class="sh" data-rv><h2>Live</h2><span class="mono">каждый день, кроме субботы</span></div>
+  <div class="gig" data-rv>
+    <div><span class="mono" style="color:var(--mut)">GRIND · Нетания</span><div class="big" data-cfg="address">Адрес скоро</div></div>
+    <div>
+      <ul data-cfg-hours></ul>
+      <ul><li><span>Телефон</span><b data-cfg="phone">скоро</b></li><li><span>Instagram</span><a data-cfg-ig href="#">@combpunk</a></li></ul>
+      <div class="row" style="margin-top:16px"><a class="btn f" href="#visit" data-book>Записаться</a><a class="btn" href="#" data-cfg-route>Маршрут</a></div>
+    </div>
+  </div>
+  <div class="map" data-rv><iframe title="Карта" data-cfg-map loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</div></section>
+
+<footer><div class="wrap mono"><span>GRIND — рабочее название</span><span>Образец сайта · 2026</span></div></footer>
+
+<nav class="appbar" aria-label="Быстрые действия">
+  <a href="#" data-cfg-call><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-call-label>Звонок</span></a>
+  <a href="#" data-cfg-route><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Маршрут</a>
+  <a class="main" href="#visit" data-book>Записаться</a>
+</nav>
+
+<script>
+// Generated ridgeline: stacked noisy lines, gently animated.
+(function(){
+  var c=document.getElementById('ridge'),x=c.getContext('2d'),W,H,dpr=Math.min(devicePixelRatio||1,2),N=48,P=90,seed=[];
+  for(var i=0;i<N;i++){seed.push([Math.random()*1000,0.6+Math.random()*0.8,Math.random()*0.3-0.15])}
+  function size(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  function n(v){return Math.sin(v)*.5+Math.sin(v*2.13+1.7)*.3+Math.sin(v*4.7+.3)*.2}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function draw(t){
+    x.fillStyle='#000';x.fillRect(0,0,W,H);
+    var top=H*.08,gap=(H*.86)/N,mx=W*.12,w=W-mx*2;
+    x.lineWidth=1.15;x.strokeStyle='#f1f1ee';x.fillStyle='#000';
+    for(var i=0;i<N;i++){
+      var y0=top+i*gap,s=seed[i];x.beginPath();x.moveTo(mx,y0);
+      for(var j=0;j<=P;j++){
+        var u=j/P,cx=Math.exp(-Math.pow((u-.5-s[2])/.13,2)),
+            a=cx*gap*7*s[1]*Math.abs(n(s[0]+u*9+t*.0006))+Math.abs(n(s[0]*2+u*40))*gap*.25;
+        x.lineTo(mx+u*w,y0-a);
+      }
+      x.lineTo(mx+w,y0+gap*2);x.lineTo(mx,y0+gap*2);x.closePath();x.fill();
+      x.beginPath();x.moveTo(mx,y0);
+      for(var j=0;j<=P;j++){
+        var u=j/P,cx=Math.exp(-Math.pow((u-.5-s[2])/.13,2)),
+            a=cx*gap*7*s[1]*Math.abs(n(s[0]+u*9+t*.0006))+Math.abs(n(s[0]*2+u*40))*gap*.25;
+        x.lineTo(mx+u*w,y0-a);
+      }
+      x.stroke();
+    }
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  size();addEventListener('resize',size);requestAnimationFrame(draw);
+})();
+</script>
+<script src="../assets/config.js"></script>
+<script src="../assets/site.js"></script>
+<script src="../assets/switcher.js"></script>
+<script src="../assets/booking.js"></script>
+</body>
+</html>

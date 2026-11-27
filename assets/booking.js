@@ -176,11 +176,51 @@
     ov.classList.remove("open");
     document.documentElement.style.overflow = "";
   }
+  // ---- Provider integration (assets/config.js) ----------------------------
+  var CFG = (window.SITE_CONFIG && window.SITE_CONFIG.booking) || { provider: "demo" };
+  var P = CFG.provider || "demo";
+  var hosts = { altegio: "alteg.io", yclients: "yclients.com" };
+  var widgetOn = !!(hosts[P] && CFG.widgetId);
+
+  function providerUrl(master) {
+    var base = "https://b" + CFG.widgetId + "." + hosts[P];
+    var sid = master && CFG.staff && CFG.staff[master];
+    if (CFG.companyId && sid) return base + "/company/" + CFG.companyId + "/personal/select-master?o=m" + sid;
+    if (CFG.companyId) return base + "/company/" + CFG.companyId + "/personal/menu";
+    return base;
+  }
+
+  if (widgetOn) {
+    window.yWidgetSettings = {
+      buttonAutoShow: !!CFG.showFloatingButton,
+      buttonColor: CFG.buttonColor || "#111111",
+      buttonPosition: "bottom right"
+    };
+    var tag = function () {
+      document.querySelectorAll("[data-book]").forEach(function (el) {
+        el.classList.add("ms_booking");
+        el.setAttribute("data-url", providerUrl(el.getAttribute("data-master")));
+      });
+    };
+    tag();
+    var w = document.createElement("script");
+    w.src = "https://w" + CFG.widgetId + "." + hosts[P] + "/widgetJS";
+    w.charset = "UTF-8";
+    w.async = true;
+    document.body.appendChild(w);
+  }
+
   document.addEventListener("click", function (e) {
     var a = e.target.closest("[data-book]");
     if (!a) return;
+    if (widgetOn) return; // the Altegio/YCLIENTS widget handles .ms_booking clicks
     e.preventDefault();
+    if (P === "link" && CFG.link) { window.open(CFG.link, "_blank", "noopener"); return; }
     open(a.getAttribute("data-master"));
   });
-  window.openBooking = open;
+  window.openBooking = function (m) {
+    if (widgetOn) { window.open(providerUrl(m), "_blank", "noopener"); return; }
+    if (P === "link" && CFG.link) { window.open(CFG.link, "_blank", "noopener"); return; }
+    open(m);
+  };
 })();

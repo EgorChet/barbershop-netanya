@@ -2,54 +2,85 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GRIND Barbershop — выбор версии</title>
-<meta name="description" content="Четыре варианта сайта барбершопа в Нетании.">
+<meta name="description" content="Семь вариантов сайта барбершопа в Нетании.">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GRIND">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/grind-180.png">
+<link rel="icon" href="assets/icons/grind.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Playfair+Display+SC&family=Unbounded:wght@700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Playfair+Display+SC&family=Unbounded:wght@700&family=Manrope:wght@400;600;700&family=Spectral:ital@0;1&family=Tenor+Sans&family=Inter+Tight:wght@800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d0d0d;color:#eee;font-family:Manrope,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body{background:#0d0d0d;color:#eee;font-family:Manrope,Arial,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1280px;margin:0 auto;padding:clamp(40px,7vh,80px) clamp(16px,4vw,40px) 60px}
-.top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
-.top h1{font:400 clamp(40px,6vw,84px)/.9 "Archivo Black";letter-spacing:-.03em;text-transform:uppercase}
+.wrap{max-width:1280px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px))}
+@media(min-width:700px){.wrap{padding-left:40px;padding-right:40px;padding-top:60px}}
+.top{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:30px}
+.top h1{font:400 clamp(38px,8vw,84px)/.9 "Archivo Black";letter-spacing:-.03em;text-transform:uppercase}
 .top h1 span{color:#ff5a1f}
-.top p{color:#9a9a9a;max-width:440px;line-height:1.6;font-size:15px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:16/11;border-radius:18px;overflow:hidden;padding:26px;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;
- opacity:0;transform:translateY(30px);animation:in .8s forwards}
-.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}.card:nth-child(4){animation-delay:.3s}
+.top p{color:#9a9a9a;max-width:460px;line-height:1.6;font-size:15px}
+.lbl{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#9a9a9a;margin:34px 0 14px}
+.lbl:after{content:"";flex:1;height:1px;background:#2a2a2a}
+.lbl b{color:#c9f23a;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:760px){.grid{grid-template-columns:1fr 1fr;gap:18px}}
+@media(min-width:1100px){.grid.three{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;border-radius:18px;overflow:hidden;padding:22px;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;
+ opacity:0;transform:translateY(24px);animation:in .8s forwards}
+@media(min-width:760px){.card{min-height:0;aspect-ratio:16/11}}
+.grid.three .card{aspect-ratio:auto;min-height:340px}
+.card:nth-child(2){animation-delay:.08s}.card:nth-child(3){animation-delay:.16s}.card:nth-child(4){animation-delay:.24s}
 @keyframes in{to{opacity:1;transform:none}}
 .card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.5)}
 .card .ph{position:absolute;right:0;top:0;bottom:0;width:48%;background:center/cover;transition:transform 1s}
 .card:hover .ph{transform:scale(1.05)}
-.card .no{position:absolute;top:22px;left:26px;font:600 12px Manrope;letter-spacing:.2em;opacity:.7}
-.card .ttl{position:relative;z-index:2;font-size:clamp(42px,5vw,76px);line-height:.9}
-.card .ref{position:relative;z-index:2;margin-top:12px;font-size:13px;line-height:1.5;max-width:52%;opacity:.85}
-.card .go{position:absolute;z-index:2;top:18px;right:18px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:rgba(0,0,0,.55);color:#fff;transition:transform .3s}
+.card .no{position:absolute;top:18px;left:22px;font:600 12px Manrope;letter-spacing:.2em;opacity:.7}
+.card .ttl{position:relative;z-index:2;font-size:clamp(40px,5vw,72px);line-height:.92}
+.card .ref{position:relative;z-index:2;margin-top:10px;font-size:13px;line-height:1.5;max-width:56%;opacity:.88}
+.card .go{position:absolute;z-index:2;top:14px;right:14px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:rgba(0,0,0,.55);color:#fff;transition:transform .3s}
 .card:hover .go{transform:rotate(-45deg)}
-/* skate */
+.new{position:absolute;z-index:2;top:16px;left:58px;font:700 10px Manrope;letter-spacing:.16em;text-transform:uppercase;background:#c9f23a;color:#0c0c0b;padding:4px 8px;border-radius:999px}
+.mask .ph{mask-image:linear-gradient(90deg,transparent,#000 45%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%)}
+/* 05 pomade */
+.c5{background:#efe9df;color:#1d1a16}
+.c5 .ph{background-image:url(assets/img/dima2.jpg);filter:grayscale(1);inset:12px 12px 12px auto;width:44%;border-radius:4px}
+.c5 .ttl{font-family:Spectral,Georgia,serif;letter-spacing:-.03em}
+.c5 .ttl i{color:#b4472a}
+.c5 .go{background:#1d1a16}
+/* 06 dandy */
+.c6{background:#0c0c0b;border:1px solid #2a2926}
+.c6 .ph{background-image:url(assets/img/kirill.jpg);filter:grayscale(1) brightness(.85)}
+.c6 .ttl{font-family:"Tenor Sans",Georgia,serif;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(34px,4.4vw,60px)}
+.c6 .ttl span{color:#c9f23a}
+/* 07 post-punk */
+.c7{background:#000;border:1px solid #262626}
+.c7 .ph{background-image:url(assets/icons/pleasures-512.png);background-size:contain;background-repeat:no-repeat;background-position:center;width:46%}
+.c7 .ttl{font-family:"Inter Tight",sans-serif;font-weight:800;letter-spacing:.2em;font-size:clamp(30px,3.8vw,52px)}
+/* 01–04 */
 .c1{background:#0b0b0b;border:2px solid #222}
-.c1 .ph{background-image:url(assets/img/dima2.jpg);filter:grayscale(1) contrast(1.3);mask-image:linear-gradient(90deg,transparent,#000 40%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.c1 .ph{background-image:url(assets/img/dima2.jpg);filter:grayscale(1) contrast(1.3)}
 .c1 .ttl{font-family:"Archivo Black";text-transform:uppercase;background:linear-gradient(#ffd400,#ff7a00 55%,#e10600);-webkit-background-clip:text;background-clip:text;color:transparent;transform:rotate(-3deg);transform-origin:left}
-/* bold */
 .c2{background:radial-gradient(90% 90% at 90% 40%,#7a0008,#000 70%)}
-.c2 .ph{background-image:url(assets/img/kirill.jpg);filter:grayscale(1);mix-blend-mode:screen;opacity:.8;mask-image:linear-gradient(90deg,transparent,#000 40%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.c2 .ph{background-image:url(assets/img/kirill.jpg);filter:grayscale(1);mix-blend-mode:screen;opacity:.8}
 .c2 .ttl{font-family:"Bebas Neue";text-transform:uppercase}
 .c2 .ttl span{color:#e3000f}
-/* club */
 .c3{background:#121110;border:1px solid rgba(214,163,84,.35);color:#efe6d6}
-.c3 .ph{background-image:url(assets/img/dima.jpg);filter:sepia(.4) grayscale(.3) brightness(.8);mask-image:linear-gradient(90deg,transparent,#000 40%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%)}
-.c3 .ttl{font-family:"Playfair Display SC";color:#d6a354;font-size:clamp(36px,4.4vw,66px)}
-/* clean */
+.c3 .ph{background-image:url(assets/img/dima.jpg);filter:sepia(.4) grayscale(.3) brightness(.8)}
+.c3 .ttl{font-family:"Playfair Display SC";color:#d6a354;font-size:clamp(34px,4.4vw,62px)}
 .c4{background:#f4f2ee;color:#141414}
-.c4 .ph{background-image:url(assets/img/kirill.jpg);border-radius:14px;inset:14px 14px 14px auto;width:42%}
-.c4 .ttl{font-family:Unbounded;letter-spacing:-.03em;font-size:clamp(34px,4vw,60px)}
+.c4 .ph{background-image:url(assets/img/barber3.jpg);border-radius:14px;inset:12px 12px 12px auto;width:42%;background-position:center 30%}
+.c4 .ttl{font-family:Unbounded;letter-spacing:-.03em;font-size:clamp(32px,4vw,58px)}
 .c4 .ttl span{color:#ff5a1f}
 .c4 .go{background:#141414}
-@media(max-width:820px){.grid{grid-template-columns:1fr}.card{aspect-ratio:auto;min-height:300px}}
-footer{margin-top:36px;color:#666;font-size:12px;line-height:1.6}
+.tip{margin-top:34px;border:1px solid #2a2a2a;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;color:#bdbdbd;font-size:14px;line-height:1.6}
+.tip b{color:#fff}
+footer{margin-top:24px;color:#666;font-size:12px;line-height:1.6}
 @media(prefers-reduced-motion:reduce){.card{animation:none;opacity:1;transform:none}}
 </style>
 </head>
@@ -57,19 +88,33 @@ footer{margin-top:36px;color:#666;font-size:12px;line-height:1.6}
 <div class="wrap">
   <div class="top">
     <h1>Grind<span>.</span><br>Barbershop</h1>
-    <p>Барбершоп Димы, Кирилла и команды в Нетании. Четыре варианта сайта: каждый построен по мотивам одного референса. Выберите карточку, чтобы открыть версию. Переключаться между версиями можно панелью внизу экрана.</p>
+    <p>Барбершоп Димы, Кирилла и команды в Нетании. Семь вариантов сайта: каждый построен на одном референсе. Откройте карточку; переключаться между версиями можно панелью внизу.</p>
   </div>
+
+  <div class="lbl"><b>Новые</b>Нишевые версии</div>
+  <div class="grid three">
+    <a class="card c5" href="v5-pomade/"><div class="ph"></div><span class="no">05</span><span class="new">new</span><span class="go">→</span>
+      <div class="ttl">Pomade <i>&amp; co.</i></div><div class="ref">Референс: Pomades (Москва). Барбершоп + кофе + своя полка помад. Бумага, антиква, чек-меню.</div></a>
+    <a class="card c6 mask" href="v6-frant/"><div class="ph"></div><span class="no">06</span><span class="new">new</span><span class="go">→</span>
+      <div class="ttl">Dan<span>dy</span></div><div class="ref">Референс: «Франт». Тёмный премиум, лукбук-сторис, прайс по вкладкам, сертификат и подписка.</div></a>
+    <a class="card c7" href="v7-pleasures/"><div class="ph"></div><span class="no">07</span><span class="new">new</span><span class="go">→</span>
+      <div class="ttl">POST-<br>PUNK</div><div class="ref">Вкус Димы: Joy Division, скейт. Прайс как трек-лист, мастера как лайн-ап.</div></a>
+  </div>
+
+  <div class="lbl">Первые версии</div>
   <div class="grid">
-    <a class="card c1" href="v1-skate/"><div class="ph"></div><span class="no">01</span><span class="go">→</span>
-      <div class="ttl">Skate</div><div class="ref">Референс: Thrasher Magazine. Панк-зин, огонь, стикеры, зерно.</div></a>
-    <a class="card c2" href="v2-bold/"><div class="ph"></div><span class="no">02</span><span class="go">→</span>
-      <div class="ttl">Bold<span>.</span></div><div class="ref">Референс: TOPGUN (крупнейшая сеть РФ и СНГ). Чёрный и красный, Bebas Neue, дерзкие лозунги.</div></a>
-    <a class="card c3" href="v3-club/"><div class="ph"></div><span class="no">03</span><span class="go">→</span>
-      <div class="ttl">Club</div><div class="ref">Референс: OldBoy Barbershop. Тёмный клуб, золото, антиква, королевское бритьё.</div></a>
+    <a class="card c1 mask" href="v1-skate/"><div class="ph"></div><span class="no">01</span><span class="go">→</span>
+      <div class="ttl">Skate</div><div class="ref">Референс: Thrasher Magazine. Панк-зин, огонь, стикеры.</div></a>
+    <a class="card c2 mask" href="v2-bold/"><div class="ph"></div><span class="no">02</span><span class="go">→</span>
+      <div class="ttl">Bold<span>.</span></div><div class="ref">Референс: TOPGUN. Чёрный и красный, Bebas Neue.</div></a>
+    <a class="card c3 mask" href="v3-club/"><div class="ph"></div><span class="no">03</span><span class="go">→</span>
+      <div class="ttl">Club</div><div class="ref">Референс: OldBoy. Тёмный клуб, золото, антиква.</div></a>
     <a class="card c4" href="v4-clean/"><div class="ph"></div><span class="no">04</span><span class="go">→</span>
-      <div class="ttl">Clean<span>.</span></div><div class="ref">Референс: Chop-Chop (первый барбершоп в России), скандинавский минимализм. Светлый, простая запись.</div></a>
+      <div class="ttl">Clean<span>.</span></div><div class="ref">Референс: Chop-Chop. Светлый, простая запись.</div></a>
   </div>
-  <footer>«GRIND» — рабочее название. Цены, адрес и часы работы в макетах условные. Фото мастеров взяты из их профилей онлайн-записи.</footer>
+
+  <div class="tip"><span style="font-size:22px">📱</span><div><b>Как приложение на телефоне:</b> откройте любую версию в Safari → «Поделиться» → «На экран „Домой“». Каждая версия ставится со своей иконкой и открывается без браузерной панели.</div></div>
+  <footer>«GRIND» — рабочее название. Цены, адрес и часы работы в макетах условные. Онлайн-запись готова к подключению Altegio / YCLIENTS — см. assets/config.js.</footer>
 </div>
 </body>
 </html>

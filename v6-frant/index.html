@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND — барбершоп в Нетании · Dandy</title>
+<meta name="description" content="Барбершоп в Нетании. Стрижка — первое, что видят. Дима, Кирилл и команда.">
+<meta name="theme-color" content="#0c0c0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GRIND">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/dandy-180.png">
+<link rel="icon" href="../assets/icons/dandy.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0c0b;--bg2:#151514;--bone:#ece6da;--mut:#8d877c;--line:#2a2926;--acid:#c9f23a;
+  --head:"Tenor Sans",Georgia,serif;--sans:Manrope,system-ui,sans-serif;
+  --bk-bg:#151514;--bk-fg:#ece6da;--bk-mut:#8d877c;--bk-line:#2f2e2a;--bk-acc:#c9f23a;--bk-acc-fg:#0c0c0b;--bk-radius:14px;--bk-head:"Tenor Sans",Georgia,serif;
+  --vsw-bottom:86px;--safe:env(safe-area-inset-bottom,0px)
+}
+@media(min-width:900px){:root{--vsw-bottom:16px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--bone);font-family:var(--sans);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px}
+@media(min-width:700px){.wrap{padding:0 40px}}
+.cap{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
+.h{font-family:var(--head);font-weight:400;text-transform:uppercase;letter-spacing:.02em}
+[data-rv]{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+[data-rv].in{opacity:1;transform:none}
+
+.top{position:fixed;top:0;left:0;right:0;z-index:40;padding-top:env(safe-area-inset-top,0px);transition:background .3s}
+.top.s{background:rgba(12,12,11,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--head);font-size:22px;letter-spacing:.34em}
+.top nav{display:none;gap:30px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.top nav a:hover{color:var(--bone)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--acid);color:#0c0c0b;font-weight:700;font-size:14px;transition:transform .2s,background .2s}
+.pill:hover{transform:translateY(-1px);background:#dcff63}
+.pill.o{background:transparent;color:var(--bone);border:1px solid #4a4843}
+.pill.o:hover{border-color:var(--bone)}
+@media(min-width:900px){.top nav{display:flex}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1) contrast(1.1) brightness(.78);transform:scale(1.06);animation:zoom 14s ease-out forwards}
+@keyframes zoom{to{transform:scale(1)}}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,11,.55) 0%,rgba(12,12,11,0) 30%,rgba(12,12,11,.2) 55%,#0c0c0b 96%)}
+.hero .in{position:relative;z-index:2;width:100%;padding-bottom:calc(110px + var(--safe))}
+.hero h1{font-size:clamp(42px,11vw,150px);line-height:.95;margin:14px 0 18px}
+.hero h1 span{color:var(--acid)}
+.hero p{max-width:440px;color:#cfc8bb;font-size:16px}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+@media(min-width:900px){.hero .in{padding-bottom:80px}}
+
+section{padding:70px 0}
+@media(min-width:900px){section{padding:120px 0}}
+.sh{margin-bottom:30px}
+.sh h2{font-size:clamp(34px,6vw,72px);line-height:1;margin-top:10px}
+
+/* price tabs */
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:18px;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;font:inherit;font-size:14px;color:var(--mut);background:transparent;border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--bone);color:#0c0c0b;border-color:var(--bone)}
+.plist{display:none}
+.plist.on{display:block}
+.pr{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.pr h3{font-family:var(--head);font-weight:400;font-size:20px;text-transform:uppercase;letter-spacing:.03em}
+.pr .p{font-family:var(--head);font-size:22px}
+.pr small{color:var(--mut);font-size:14px}
+.pr a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acid)}
+@media(min-width:900px){.prices{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}}
+
+/* lookbook */
+.look{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 18px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.look::-webkit-scrollbar{display:none}
+.lk{flex:none;width:78vw;max-width:380px;scroll-snap-align:center;position:relative;aspect-ratio:3/4.4;border-radius:16px;overflow:hidden;background:var(--bg2)}
+.lk img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08);transition:transform 1.2s}
+.lk:hover img{transform:scale(1.04)}
+.lk:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.85))}
+.lk .t{position:absolute;z-index:2;left:16px;right:16px;bottom:16px}
+.lk .t b{display:block;font-family:var(--head);font-weight:400;font-size:24px;text-transform:uppercase}
+.lk .t span{font-size:13px;color:#cfc8bb}
+.lk .no{position:absolute;z-index:2;top:14px;left:16px}
+.lk.txt{background:var(--acid);color:#0c0c0b;display:flex;flex-direction:column;justify-content:space-between;padding:22px}
+.lk.txt:after{display:none}
+.lk.txt b{font-family:var(--head);font-weight:400;font-size:34px;line-height:1.05;text-transform:uppercase}
+@media(min-width:900px){.look{padding:0 40px}.lk{width:330px}}
+.hint{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+
+/* masters */
+.ms{display:grid;gap:14px}
+.mm{display:grid;grid-template-columns:96px 1fr auto;gap:14px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--bg2);transition:border-color .3s}
+.mm:hover{border-color:#4a4843}
+.mm img{width:96px;height:96px;border-radius:12px;object-fit:cover;filter:grayscale(1)}
+.mm h3{font-family:var(--head);font-weight:400;font-size:22px;text-transform:uppercase}
+.mm p{color:var(--mut);font-size:13px}
+.mm .st{color:var(--acid);font-size:12px;letter-spacing:2px;margin-top:4px}
+.mm .go{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--bone);color:#0c0c0b;font-size:18px}
+@media(min-width:900px){.ms{grid-template-columns:repeat(3,1fr)}.mm{grid-template-columns:1fr;text-align:left}.mm img{width:100%;height:auto;aspect-ratio:1}.mm .go{justify-self:start}}
+
+/* gift + club */
+.duo{display:grid;gap:14px}
+.gift{position:relative;border-radius:18px;padding:22px;aspect-ratio:1.6/1;background:linear-gradient(135deg,#1e1d1b,#0c0c0b 60%),#111;border:1px solid #3a3934;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.gift:before{content:"";position:absolute;right:-30%;top:-40%;width:90%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(201,242,58,.22),transparent 65%)}
+.gift .h{font-size:24px;letter-spacing:.3em}
+.gift .v{font-family:var(--head);font-size:clamp(34px,9vw,52px);line-height:1}
+.gift .r{display:flex;justify-content:space-between;align-items:end;position:relative}
+.club{border-radius:18px;padding:22px;background:var(--bone);color:#0c0c0b;display:flex;flex-direction:column;gap:14px}
+.club .h{font-size:28px;line-height:1.05}
+.club ul{list-style:none;font-size:15px}
+.club li{padding:9px 0;border-bottom:1px solid #cfc8bb;display:flex;gap:10px}
+.club li:before{content:"✓";font-weight:700}
+.club .pp{font-family:var(--head);font-size:40px;line-height:1}
+.club .pp small{font-family:var(--sans);font-size:14px;color:#5d584f}
+.club .pill{background:#0c0c0b;color:var(--bone);align-self:flex-start}
+@media(min-width:900px){.duo{grid-template-columns:1fr 1fr;gap:24px}}
+
+/* reviews */
+.rv{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.rv::-webkit-scrollbar{display:none}
+.rc{flex:none;width:82%;max-width:420px;scroll-snap-align:start;border:1px solid var(--line);border-radius:16px;padding:22px}
+.rc q{display:block;font-family:var(--head);font-size:21px;line-height:1.35}
+.rc span{display:block;margin-top:14px;color:var(--mut);font-size:13px}
+
+/* visit */
+.visit{display:grid;gap:14px}
+.vc{border:1px solid var(--line);border-radius:18px;padding:22px;background:var(--bg2)}
+.vc h3{font-family:var(--head);font-weight:400;font-size:26px;text-transform:uppercase;margin:10px 0 14px}
+.vc ul{list-style:none}
+.vc li{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.vc li span{color:var(--mut)}
+.vc .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.map{border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:300px;background:var(--bg2)}
+.map iframe{width:100%;height:100%;min-height:300px;border:0;filter:grayscale(1) invert(.9) contrast(1.15)}
+@media(min-width:900px){.visit{grid-template-columns:.9fr 1.1fr;gap:24px}}
+
+footer{border-top:1px solid var(--line);padding:26px 0 calc(150px + var(--safe));color:var(--mut);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(min-width:900px){footer{padding-bottom:90px}}
+
+.appbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:8px;padding:10px 12px calc(10px + var(--safe));background:rgba(12,12,11,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.appbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;border-radius:14px;font-size:12px;color:var(--bone)}
+.appbar a svg{width:20px;height:20px}
+.appbar a.main{flex-direction:row;background:var(--acid);color:#0c0c0b;font-size:15px;font-weight:700}
+@media(min-width:900px){.appbar{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="top" id="top"><div class="wrap">
+  <a class="logo" href="#">GRIND</a>
+  <nav><a href="#prices">Услуги</a><a href="#look">Lookbook</a><a href="#masters">Мастера</a><a href="#visit">Контакты</a></nav>
+  <a class="pill" href="#visit" data-book>Записаться</a>
+</div></header>
+
+<section class="hero" style="padding:0">
+  <img src="../assets/img/kirill.jpg" alt="Кирилл, барбер" fetchpriority="high">
+  <div class="in"><div class="wrap">
+    <span class="cap">Барбершоп · Нетания</span>
+    <h1 class="h">Стрижка —<br>первое, <span>что&nbsp;видят</span></h1>
+    <p>Три мастера русской школы. Точная форма, которая держится три недели и укладывается за минуту.</p>
+    <div class="row"><a class="pill" href="#visit" data-book>Онлайн-запись</a><a class="pill o" href="#look">Lookbook</a></div>
+  </div></div>
+</section>
+
+<section id="prices"><div class="wrap prices">
+  <div class="sh" data-rv><span class="cap">Услуги и цены</span><h2 class="h">Прайс</h2><p style="color:var(--mut);margin-top:14px;max-width:340px">Время и цена фиксированы. В стоимость входят мытьё, укладка и консультация по уходу.</p></div>
+  <div data-rv>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="hair">Стрижки</button>
+      <button role="tab" aria-selected="false" data-tab="beard">Борода</button>
+      <button role="tab" aria-selected="false" data-tab="her">Для неё</button>
+      <button role="tab" aria-selected="false" data-tab="kids">Дети</button>
+    </div>
+    <div class="plist on" data-list="hair">
+      <div class="pr"><h3>Мужская стрижка</h3><span class="p">₪120</span><small>60 мин · ножницы и машинка</small><a href="#visit" data-book>Записаться</a></div>
+      <div class="pr"><h3>Fade</h3><span class="p">₪100</span><small>45 мин · переход от нуля</small><a href="#visit" data-book>Записаться</a></div>
+      <div class="pr"><h3>Стрижка + борода</h3><span class="p">₪170</span><small>90 мин · полный образ</small><a href="#visit" data-book>Записаться</a></div>
+    </div>
+    <div class="plist" data-list="beard">
+      <div class="pr"><h3>Борода</h3><span class="p">₪70</span><small>30 мин · форма и контур</small><a href="#visit" data-book>Записаться</a></div>
+      <div class="pr"><h3>Королевское бритьё</h3><span class="p">₪90</span><small>40 мин · опасная бритва, горячие полотенца</small><a href="#visit" data-book>Записаться</a></div>
+    </div>
+    <div class="plist" data-list="her">
+      <div class="pr"><h3>Женская стрижка</h3><span class="p">₪150</span><small>60 мин · короткие и средние длины</small><a href="#visit" data-book data-master="b3">Записаться</a></div>
+      <div class="pr"><h3>Чёлка / освежить</h3><span class="p">₪60</span><small>20 мин · между визитами</small><a href="#visit" data-book data-master="b3">Записаться</a></div>
+    </div>
+    <div class="plist" data-list="kids">
+      <div class="pr"><h3>Детская стрижка</h3><span class="p">₪80</span><small>40 мин · до 12 лет</small><a href="#visit" data-book>Записаться</a></div>
+      <div class="pr"><h3>Отец + сын</h3><span class="p">₪190</span><small>две стрижки в одно время</small><a href="#visit" data-book>Записаться</a></div>
+    </div>
+    <p class="cap" style="margin-top:16px">* цены примерные — для макета</p>
+  </div>
+</div></section>
+
+<section id="look" style="padding-top:0">
+  <div class="wrap sh" data-rv><span class="cap">Наши работы</span><h2 class="h">Lookbook</h2></div>
+  <div class="look" data-rv>
+    <a class="lk" href="#visit" data-book data-master="dima"><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"><span class="no cap">Look 01</span><div class="t"><b>Moustache &amp; crop</b><span>Дима · стрижка + усы</span></div></a>
+    <a class="lk" href="#visit" data-book data-master="b3"><img src="../assets/img/barber3.jpg" alt="Женская стрижка" loading="lazy" style="object-position:center 30%"><span class="no cap">Look 02</span><div class="t"><b>Soft shag</b><span>Барбер №3 · женская стрижка</span></div></a>
+    <a class="lk" href="#visit" data-book data-master="kirill"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"><span class="no cap">Look 03</span><div class="t"><b>Curtain fringe</b><span>Кирилл · стрижка + борода</span></div></a>
+    <a class="lk" href="#visit" data-book data-master="dima"><img src="../assets/img/dima.jpg" alt="Дима" loading="lazy"><span class="no cap">Look 04</span><div class="t"><b>Classic quiff</b><span>Дима · классика</span></div></a>
+    <div class="lk txt"><span class="cap" style="color:#0c0c0b">Ваш образ</span><b>Следующий look — ваш.</b><a class="pill" style="background:#0c0c0b;color:var(--acid);align-self:flex-start" href="#visit" data-book>Записаться</a></div>
+  </div>
+  <div class="wrap hint"><span class="cap">← листайте →</span><a class="cap" data-cfg-ig href="#" style="color:var(--bone)">Instagram</a></div>
+</section>
+
+<section id="masters" style="padding-top:20px"><div class="wrap">
+  <div class="sh" data-rv><span class="cap">Команда</span><h2 class="h">Мастера</h2></div>
+  <div class="ms">
+    <a class="mm" href="#visit" data-book data-master="dima" data-rv><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"><div><h3>Дима</h3><p>Основатель · топ-барбер</p><div class="st">★★★★★</div></div><span class="go">→</span></a>
+    <a class="mm" href="#visit" data-book data-master="kirill" data-rv><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"><div><h3>Кирилл</h3><p>Партнёр · барбер</p><div class="st">★★★★★</div></div><span class="go">→</span></a>
+    <a class="mm" href="#visit" data-book data-master="b3" data-rv><img src="../assets/img/barber3.jpg" alt="Барбер №3" loading="lazy" style="object-position:center 30%"><div><h3>Барбер №3</h3><p>Мужские · женские · детские</p><div class="st">★★★★★</div></div><span class="go">→</span></a>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="duo">
+    <div class="gift" data-rv>
+      <div style="display:flex;justify-content:space-between;position:relative"><span class="h">GRIND</span><span class="cap">Gift card</span></div>
+      <div class="r"><div><span class="cap">Сертификат</span><div class="v">₪ 120 — 500</div></div><a class="pill" href="#visit" data-cfg-call><span data-call-label>Заказать</span></a></div>
+    </div>
+    <div class="club" data-rv>
+      <span class="cap" style="color:#5d584f">Подписка</span>
+      <div class="h">GRIND Club</div>
+      <ul><li>2 стрижки в месяц у любого мастера</li><li>Приоритетная запись на вечер и пятницу</li><li>−15% на всё с полки</li></ul>
+      <div class="pp">₪220 <small>/ месяц</small></div>
+      <a class="pill" href="#visit" data-book>Вступить</a>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sh" data-rv><span class="cap">Отзывы</span><h2 class="h">Говорят клиенты</h2></div>
+  <div class="rv" data-rv>
+    <div class="rc"><q>Впервые в Израиле я кайфанул от процесса стрижки и от результата.</q><span>Антон · о Диме</span></div>
+    <div class="rc"><q>Дима — мастер своего дела. Ожидание с реальностью попали на все 101%.</q><span>Вася · о Диме</span></div>
+    <div class="rc"><q>Классный чувак, стрижку делает на 5+.</q><span>Николай · о Кирилле</span></div>
+    <div class="rc"><q>Very great person, the best in Israel.</q><span>Josh · о Диме</span></div>
+  </div>
+</div></section>
+
+<section id="visit" style="padding-top:0"><div class="wrap">
+  <div class="sh" data-rv><span class="cap">Контакты</span><h2 class="h">Нетания</h2></div>
+  <div class="visit">
+    <div class="vc" data-rv>
+      <span class="cap">Барбершоп GRIND</span>
+      <h3 data-cfg="address">Адрес скоро</h3>
+      <ul data-cfg-hours></ul>
+      <ul><li><span>Телефон</span><b data-cfg="phone">скоро</b></li><li><span>Instagram</span><b><a data-cfg-ig href="#">@combpunk</a></b></li></ul>
+      <div class="row"><a class="pill" href="#visit" data-book>Записаться</a><a class="pill o" href="#" data-cfg-route>Маршрут</a></div>
+    </div>
+    <div class="map" data-rv><iframe title="Карта" data-cfg-map loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>© GRIND · Нетания — рабочее название</span><span>Образец сайта</span></div></footer>
+
+<nav class="appbar" aria-label="Быстрые действия">
+  <a href="#" data-cfg-call><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-call-label>Позвонить</span></a>
+  <a href="#" data-cfg-route><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Маршрут</a>
+  <a class="main" href="#visit" data-book>Записаться</a>
+</nav>
+
+<script>
+document.querySelectorAll('[data-tab]').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',x===b)});
+  document.querySelectorAll('[data-list]').forEach(function(l){l.classList.toggle('on',l.dataset.list===b.dataset.tab)});
+})});
+var top_=document.getElementById('top');addEventListener('scroll',function(){top_.classList.toggle('s',scrollY>30)},{passive:true});
+</script>
+<script src="../assets/config.js"></script>
+<script src="../assets/site.js"></script>
+<script src="../assets/switcher.js"></script>
+<script src="../assets/booking.js"></script>
+</body>
+</html>
