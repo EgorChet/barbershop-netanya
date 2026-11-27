@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Playfair+Display+SC:wght@400;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#121110;--bg2:#1a1816;--gold:#d6a354;--gold2:#a77a35;--cream:#efe6d6;--mut:#9c9384;--line:rgba(214,163,84,.28)}
+:root{--bk-bg:#1a1816;--bk-fg:#efe6d6;--bk-mut:#9c9384;--bk-line:rgba(214,163,84,.28);--bk-acc:#d6a354;--bk-acc-fg:#121110;--bk-radius:2px;--bk-head:"Cormorant Garamond",Georgia,serif;--bg:#121110;--bg2:#1a1816;--gold:#d6a354;--gold2:#a77a35;--cream:#efe6d6;--mut:#9c9384;--line:rgba(214,163,84,.28)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--cream);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
@@ -61,7 +61,7 @@ section{padding:clamp(70px,10vw,140px) clamp(16px,6vw,90px)}
 .it .p{font-size:clamp(22px,2.6vw,30px);color:var(--gold)}
 .it small{grid-column:1/-1;color:var(--mut);font-size:13px;margin-top:-8px}
 
-.masters{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px);max-width:1100px;margin:0 auto}
+.masters{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);max-width:1200px;margin:0 auto}
 .m{text-align:center}
 .m .ph{position:relative;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line);padding:12px}
 .m img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) sepia(.25);transition:filter .6s,transform 1s}
@@ -69,7 +69,8 @@ section{padding:clamp(70px,10vw,140px) clamp(16px,6vw,90px)}
 .m h3{font-size:34px;margin-top:22px;color:var(--gold)}
 .m .r{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-top:6px}
 .m blockquote{font-style:italic;font-size:20px;line-height:1.45;margin-top:16px;color:var(--cream)}
-@media(max-width:700px){.masters{grid-template-columns:1fr}}
+@media(max-width:900px){.masters{grid-template-columns:1fr 1fr}.m:nth-child(3){grid-column:1/-1;max-width:420px;justify-self:center}}
+@media(max-width:600px){.masters{grid-template-columns:1fr}}
 
 .visit{background:var(--bg2);text-align:center}
 .visit .grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto 50px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -78,6 +79,8 @@ section{padding:clamp(70px,10vw,140px) clamp(16px,6vw,90px)}
 .visit .grid b{display:block;font:400 12px Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .visit .grid span{font-size:24px}
 @media(max-width:700px){.visit .grid{grid-template-columns:1fr}.visit .grid div{border-right:0;border-bottom:1px solid var(--line)}}
+.map{max-width:1000px;height:360px;margin:0 auto 46px;border:1px solid var(--line);padding:10px}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(1) sepia(.35) invert(.88) contrast(1.05)}
 footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px;letter-spacing:.25em;text-transform:uppercase}
 .fade{opacity:0;transform:translateY(30px);transition:opacity 1.1s ease,transform 1.1s ease}
 .fade.in{opacity:1;transform:none}
@@ -88,7 +91,7 @@ footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px
 <header id="hd">
   <nav class="l"><a href="#about">О нас</a><a href="#price">Услуги</a></nav>
   <a class="logo sc" href="#">Grind<small>Barbershop · Netanya</small></a>
-  <nav class="r"><a href="#masters">Мастера</a><a class="gbtn" href="#visit">Запись</a></nav>
+  <nav class="r"><a href="#masters">Мастера</a><a class="gbtn" href="#visit" data-book>Запись</a></nav>
 </header>
 
 <section class="hero">
@@ -96,7 +99,7 @@ footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px
     <div class="orn">Est. 2026 · Нетания</div>
     <h1 class="cg">Место, где <i>время</i> замедляется</h1>
     <p>Классический барбершоп с русской школой стрижки. Горячие полотенца, опасная бритва, хороший виски и разговор по душам.</p>
-    <a class="gbtn fill" href="#visit">Записаться к мастеру</a>
+    <a class="gbtn fill" href="#visit" data-book>Записаться к мастеру</a>
   </div>
   <div class="frame">
     <img src="../assets/img/dima.jpg" alt="Дима, барбер">
@@ -111,7 +114,7 @@ footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px
   </div>
   <div class="fade">
     <p class="q cg">Искал Диму всю свою жизнь — лучший барбер, которого я встречал!</p>
-    <p>Отзыв Антона. Дима и Кирилл годами работали в одном из лучших барбершопов Нетании и теперь открывают своё место — с той же командой, тем же вниманием к деталям и новым залом.</p>
+    <p>Отзыв Антона. Дима и Кирилл годами работали в одном из лучших барбершопов Нетании и теперь открывают своё место. Вместе с ними — третий мастер, которая стрижёт мужчин, женщин и детей. Та же команда, то же внимание к деталям, новый зал.</p>
   </div>
 </section>
 
@@ -122,6 +125,7 @@ footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px
     <div class="it fade"><h3 class="cg">Стрижка усов и бороды</h3><span class="dots"></span><span class="p cg">₪70</span><small>Моделирование формы, горячее полотенце, уход маслом</small></div>
     <div class="it fade"><h3 class="cg">Королевское бритьё</h3><span class="dots"></span><span class="p cg">₪110</span><small>Опасная бритва, распаривание, холодный компресс, бальзам</small></div>
     <div class="it fade"><h3 class="cg">Стрижка + борода</h3><span class="dots"></span><span class="p cg">₪170</span><small>Полный ритуал за 90 минут</small></div>
+    <div class="it fade"><h3 class="cg">Женская стрижка</h3><span class="dots"></span><span class="p cg">₪150</span><small>Короткие и средние длины, стрижка и укладка</small></div>
     <div class="it fade"><h3 class="cg">Отец и сын</h3><span class="dots"></span><span class="p cg">₪190</span><small>Две стрижки в одно время</small></div>
     <p style="color:var(--mut);font-size:12px;margin-top:20px;text-align:center">* цены примерные — для макета</p>
   </div>
@@ -130,8 +134,9 @@ footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px
 <section id="masters" style="padding-top:0">
   <div class="head fade"><div class="orn">Мастера</div><h2 class="cg">Наши <i>барберы</i></h2></div>
   <div class="masters">
-    <div class="m fade"><div class="ph"><img src="../assets/img/dima.jpg" alt="Дима" loading="lazy"></div><h3 class="sc">Дима</h3><div class="r">Основатель · топ-барбер</div><blockquote class="cg">«Мастер своего дела. Ожидание с реальностью — на все 101%.»</blockquote></div>
+    <div class="m fade"><div class="ph"><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"></div><h3 class="sc">Дима</h3><div class="r">Основатель · топ-барбер</div><blockquote class="cg">«Мастер своего дела. Ожидание с реальностью — на все 101%.»</blockquote></div>
     <div class="m fade"><div class="ph"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"></div><h3 class="sc">Кирилл</h3><div class="r">Партнёр · барбер</div><blockquote class="cg">«Классный чувак, стрижку делает на 5+.»</blockquote></div>
+    <div class="m fade"><div class="ph"><img src="../assets/img/barber3.jpg" alt="Барбер №3" loading="lazy" style="object-position:center 30%"></div><h3 class="sc">Барбер №3</h3><div class="r">Мастер · мужские и женские</div><blockquote class="cg">«Стрижка, после которой хочется улыбаться в зеркало.»</blockquote></div>
   </div>
 </section>
 
@@ -142,7 +147,8 @@ footer{text-align:center;padding:36px 16px 110px;color:var(--mut);font-size:11px
     <div><b>Часы</b><span class="cg">Вс–Чт 10–20 · Пт 9–15</span></div>
     <div><b>Языки</b><span class="cg">RU · EN · HE</span></div>
   </div>
-  <a class="gbtn fill fade" href="#visit">Онлайн-запись</a>
+  <div class="map fade"><iframe title="Карта: Нетания" src="https://maps.google.com/maps?q=Netanya%2C%20Israel&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  <a class="gbtn fill fade" href="#visit" data-book>Онлайн-запись</a>
 </section>
 
 <footer>GRIND Barbershop · рабочее название · образец сайта</footer>
@@ -153,5 +159,6 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
 </script>
 <script src="../assets/switcher.js"></script>
+<script src="../assets/booking.js"></script>
 </body>
 </html>

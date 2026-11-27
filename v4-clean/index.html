@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f2ee;--card:#fff;--ink:#141414;--mut:#6f6b65;--line:#e1ddd5;--acc:#ff5a1f}
+:root{--bk-bg:#fff;--bk-fg:#141414;--bk-mut:#6f6b65;--bk-line:#e1ddd5;--bk-acc:#ff5a1f;--bk-acc-fg:#fff;--bk-radius:22px;--bk-head:Unbounded,Arial,sans-serif;--bg:#f4f2ee;--card:#fff;--ink:#141414;--mut:#6f6b65;--line:#e1ddd5;--acc:#ff5a1f}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
@@ -67,17 +67,19 @@ section{padding:clamp(60px,8vw,110px) 0}
 @media(max-width:900px){.svc{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.svc{grid-template-columns:1fr}}
 
-.team{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.t{background:var(--card);border-radius:28px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
-.t img{width:100%;height:100%;object-fit:cover;min-height:340px}
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.t{background:var(--card);border-radius:28px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.t img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .8s}
+.t:hover img{transform:scale(1.03)}
+.t .b{flex:1}
 .t .b{padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
 .t h3{font:700 30px Unbounded}
 .t .role{color:var(--mut);margin-top:6px}
 .t .stars{color:var(--acc);letter-spacing:2px}
 .t blockquote{font-size:16px;line-height:1.55}
 .t cite{display:block;font-style:normal;color:var(--mut);font-size:13px;margin-top:8px}
-@media(max-width:1000px){.team{grid-template-columns:1fr}}
-@media(max-width:560px){.t{grid-template-columns:1fr}.t img{min-height:0;aspect-ratio:1}}
+@media(max-width:900px){.team{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.team{grid-template-columns:1fr}}
 
 .how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:h}
 .how div{counter-increment:h;padding:28px;border-radius:22px;border:1px dashed #cfc9bf}
@@ -94,6 +96,24 @@ section{padding:clamp(60px,8vw,110px) 0}
 .cta .pill{background:var(--acc)}
 .cta .pill:hover{background:#fff;color:var(--ink)}
 @media(max-width:800px){.cta{grid-template-columns:1fr}}
+.branch{display:grid;grid-template-columns:1fr 1.3fr;gap:16px}
+.branch .bi{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:18px}
+.branch .lbl{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.branch h3{font-size:30px}
+.branch ul{list-style:none}
+.branch li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.branch li span{color:var(--mut)}
+.branch .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.branch .mp{border-radius:28px;overflow:hidden;border:1px solid var(--line);min-height:400px;background:#e8e4dc}
+.branch iframe{width:100%;height:100%;min-height:400px;border:0;filter:grayscale(.6)}
+@media(max-width:860px){.branch{grid-template-columns:1fr}}
+.faq{display:grid;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 24px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font:700 20px Unbounded;color:var(--acc);transition:transform .25s}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq p{color:var(--mut);line-height:1.6;margin-top:12px}
 footer{padding:30px 0 110px;color:var(--mut);font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -104,14 +124,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 <body>
 <header><div class="wrap">
   <a class="logo u" href="#">grind<i>.</i></a>
-  <nav><a href="#services">Услуги</a><a href="#team">Команда</a><a href="#how">Как записаться</a><a class="pill" href="#book">Записаться</a></nav>
+  <nav><a href="#services">Услуги</a><a href="#team">Команда</a><a href="#how">Как записаться</a><a class="pill" href="#book" data-book>Записаться</a></nav>
 </div></header>
 
 <section class="hero"><div class="wrap grid">
   <div>
     <h1 class="u">Хорошая стрижка — <em>это просто.</em></h1>
-    <p class="lead">Барбершоп в Нетании от Димы и Кирилла. Запишитесь онлайн за 30 секунд, приходите ко времени и уходите с причёской, которую не нужно укладывать час.</p>
-    <div class="acts"><a class="pill" href="#book">Выбрать время →</a><a class="pill ghost" href="#services">Цены</a></div>
+    <p class="lead">Барбершоп в Нетании от Димы, Кирилла и команды. Запишитесь онлайн за 30 секунд, приходите ко времени и уходите с причёской, которую не нужно укладывать час.</p>
+    <div class="acts"><a class="pill" href="#book" data-book>Выбрать время →</a><a class="pill ghost" href="#services">Цены</a></div>
     <div class="meta">
       <div><b>5.0</b><span>средняя оценка</span></div>
       <div><b>25+</b><span>отзывов клиентов</span></div>
@@ -127,21 +147,22 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 <section id="services" style="padding-top:0"><div class="wrap">
   <div class="sh rv"><h2 class="u">Услуги и цены</h2><p>Всё включено: мытьё, укладка, горячее полотенце. Цены фиксированные — без сюрпризов на кассе.</p></div>
   <div class="svc">
-    <div class="s rv"><div class="top"><span class="ic">✂️</span><span class="time">60 мин</span></div><h3>Мужская стрижка</h3><p>Консультация, мытьё, стрижка, укладка.</p><div class="pr"><b>₪120</b><a href="#book">Записаться</a></div></div>
-    <div class="s rv"><div class="top"><span class="ic">⚡</span><span class="time">45 мин</span></div><h3>Fade</h3><p>Плавный переход и чёткий контур.</p><div class="pr"><b>₪100</b><a href="#book">Записаться</a></div></div>
-    <div class="s dark rv"><div class="top"><span class="ic">★</span><span class="time">90 мин</span></div><h3>Стрижка + борода</h3><p>Самый популярный комплекс. Полный апгрейд за полтора часа.</p><div class="pr"><b>₪170</b><a href="#book">Записаться</a></div></div>
-    <div class="s rv"><div class="top"><span class="ic">🧔</span><span class="time">30 мин</span></div><h3>Борода</h3><p>Форма, контур, горячее полотенце, масло.</p><div class="pr"><b>₪70</b><a href="#book">Записаться</a></div></div>
-    <div class="s rv"><div class="top"><span class="ic">🪒</span><span class="time">40 мин</span></div><h3>Бритьё</h3><p>Опасная бритва, голова или лицо.</p><div class="pr"><b>₪90</b><a href="#book">Записаться</a></div></div>
-    <div class="s rv"><div class="top"><span class="ic">👦</span><span class="time">40 мин</span></div><h3>Детская</h3><p>Для мальчиков до 12 лет.</p><div class="pr"><b>₪80</b><a href="#book">Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">✂️</span><span class="time">60 мин</span></div><h3>Мужская стрижка</h3><p>Консультация, мытьё, стрижка, укладка.</p><div class="pr"><b>₪120</b><a href="#book" data-book>Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">⚡</span><span class="time">45 мин</span></div><h3>Fade</h3><p>Плавный переход и чёткий контур.</p><div class="pr"><b>₪100</b><a href="#book" data-book>Записаться</a></div></div>
+    <div class="s dark rv"><div class="top"><span class="ic">★</span><span class="time">90 мин</span></div><h3>Стрижка + борода</h3><p>Самый популярный комплекс. Полный апгрейд за полтора часа.</p><div class="pr"><b>₪170</b><a href="#book" data-book>Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">🧔</span><span class="time">30 мин</span></div><h3>Борода</h3><p>Форма, контур, горячее полотенце, масло.</p><div class="pr"><b>₪70</b><a href="#book" data-book>Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">🪒</span><span class="time">40 мин</span></div><h3>Бритьё</h3><p>Опасная бритва, голова или лицо.</p><div class="pr"><b>₪90</b><a href="#book" data-book>Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">💇</span><span class="time">60 мин</span></div><h3>Женская стрижка</h3><p>Короткие и средние длины, стрижка и укладка. Дети — ₪80.</p><div class="pr"><b>₪150</b><a href="#book" data-book>Записаться</a></div></div>
   </div>
   <p style="color:var(--mut);font-size:13px;margin-top:16px">* цены примерные — для макета</p>
 </div></section>
 
 <section id="team" style="padding-top:0"><div class="wrap">
-  <div class="sh rv"><h2 class="u">Команда</h2><p>Два мастера, у каждого — свои постоянные клиенты и десятки пятизвёздочных отзывов.</p></div>
+  <div class="sh rv"><h2 class="u">Команда</h2><p>Три мастера, у каждого — свои постоянные клиенты и пятизвёздочные отзывы.</p></div>
   <div class="team">
-    <div class="t rv"><img src="../assets/img/dima.jpg" alt="Дима" loading="lazy"><div class="b"><div><h3>Дима</h3><p class="role">Основатель · барбер</p></div><div><div class="stars">★★★★★</div><blockquote>«Впервые в Израиле я кайфанул от процесса стрижки и от результата.»<cite>Антон</cite></blockquote></div><a class="pill" href="#book">К Диме</a></div></div>
-    <div class="t rv"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"><div class="b"><div><h3>Кирилл</h3><p class="role">Партнёр · барбер</p></div><div><div class="stars">★★★★★</div><blockquote>«Классный чувак, стрижку делает на 5+.»<cite>Николай</cite></blockquote></div><a class="pill" href="#book">К Кириллу</a></div></div>
+    <div class="t rv"><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"><div class="b"><div><h3>Дима</h3><p class="role">Основатель · барбер</p></div><div><div class="stars">★★★★★</div><blockquote>«Впервые в Израиле я кайфанул от процесса стрижки и от результата.»<cite>Антон</cite></blockquote></div><a class="pill" href="#book" data-book data-master="dima">К Диме</a></div></div>
+    <div class="t rv"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"><div class="b"><div><h3>Кирилл</h3><p class="role">Партнёр · барбер</p></div><div><div class="stars">★★★★★</div><blockquote>«Классный чувак, стрижку делает на 5+.»<cite>Николай</cite></blockquote></div><a class="pill" href="#book" data-book data-master="kirill">К Кириллу</a></div></div>
+    <div class="t rv"><img src="../assets/img/barber3.jpg" alt="Барбер №3" loading="lazy" style="object-position:center 30%"><div class="b"><div><h3>Барбер №3</h3><p class="role">Барбер · мужские, женские, детские</p></div><div><div class="stars">★★★★★</div><blockquote>«Первая стрижка для девочки — и сразу в точку.»<cite>из портфолио мастера</cite></blockquote></div><a class="pill" href="#book" data-book data-master="b3">Записаться</a></div></div>
   </div>
 </div></section>
 
@@ -155,12 +176,37 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </div></section>
 
 <section id="book" style="padding-top:0"><div class="wrap">
-  <div class="cta rv">
-    <h2 class="u">Увидимся <em>в Нетании</em></h2>
-    <div>
-      <ul><li><b>Адрес:</b> скоро</li><li><b>Вс–Чт:</b> 10:00–20:00</li><li><b>Пт:</b> 09:00–15:00</li></ul>
-      <a class="pill" href="#book">Онлайн-запись →</a>
+  <div class="sh rv"><h2 class="u">Филиал</h2><p>Пока один — но с душой.</p></div>
+  <div class="branch rv">
+    <div class="bi">
+      <p class="lbl">GRIND · Нетания</p>
+      <h3 class="u">Адрес скоро</h3>
+      <ul>
+        <li><span>Телефон</span><b>скоро</b></li>
+        <li><span>Вс–Чт</span><b>10:00 — 20:00</b></li>
+        <li><span>Пт</span><b>09:00 — 15:00</b></li>
+        <li><span>Сб</span><b>выходной</b></li>
+        <li><span>Instagram</span><b><a href="https://www.instagram.com/combpunk/" target="_blank" rel="noopener">@combpunk</a></b></li>
+      </ul>
+      <div class="acts"><a class="pill" href="#book" data-book>Записаться</a><a class="pill ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Netanya" target="_blank" rel="noopener">Маршрут</a></div>
     </div>
+    <div class="mp"><iframe title="Карта: Нетания" src="https://maps.google.com/maps?q=Netanya%2C%20Israel&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+  <div class="sh rv"><h2 class="u">Вопросы</h2></div>
+  <div class="faq">
+    <details class="rv"><summary>Можно ли прийти без записи?</summary><p>Можно, если у мастера есть окно. Но лучше записаться онлайн — так вы точно не будете ждать.</p></details>
+    <details class="rv"><summary>Как оплатить?</summary><p>Наличными, картой или Bit. Чаевые — по желанию.</p></details>
+    <details class="rv"><summary>Стрижёте детей и девушек?</summary><p>Да. Детские стрижки — от 4 лет, женские короткие и средние стрижки — у нашего третьего мастера.</p></details>
+    <details class="rv"><summary>На каком языке говорите?</summary><p>Русский, английский, иврит.</p></details>
+    <details class="rv"><summary>Что если не понравится?</summary><p>Напишите нам в течение 7 дней — бесплатно поправим.</p></details>
+  </div>
+  <div class="cta rv" style="margin-top:56px">
+    <h2 class="u">Увидимся <em>в Нетании</em></h2>
+    <div><ul><li><b>Онлайн-запись</b> — 24/7, за 30 секунд</li><li><b>Напоминание</b> — в WhatsApp</li></ul>
+    <a class="pill" href="#book" data-book>Записаться →</a></div>
   </div>
 </div></section>
 
@@ -171,5 +217,6 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)});
 </script>
 <script src="../assets/switcher.js"></script>
+<script src="../assets/booking.js"></script>
 </body>
 </html>

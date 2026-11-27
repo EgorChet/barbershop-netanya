@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Permanent+Marker&family=Special+Elite&family=Rubik:wght@400;600;800;900&family=Caveat:wght@700&family=PT+Mono&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0b0b0b;--paper:#f2efe8;--fire1:#ffd400;--fire2:#ff7a00;--fire3:#e10600;--grey:#8a8a8a}
+:root{--bk-bg:#f2efe8;--bk-fg:#0b0b0b;--bk-mut:#555;--bk-line:#0b0b0b33;--bk-acc:#e10600;--bk-acc-fg:#fff;--bk-radius:0px;--bk-head:"Archivo Black","Rubik",sans-serif;--ink:#0b0b0b;--paper:#f2efe8;--fire1:#ffd400;--fire2:#ff7a00;--fire3:#e10600;--grey:#8a8a8a}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--paper);font-family:Rubik,Arial,sans-serif;overflow-x:hidden}
@@ -48,18 +48,20 @@ h2{font-family:"Archivo Black","Rubik",sans-serif;font-weight:900;font-size:clam
 
 .zine{background:var(--paper);color:var(--ink)}
 .zine .kicker{color:#555}
-.crew{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,5vw,72px);max-width:1200px;margin:0 auto}
+.crew{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);max-width:1300px;margin:0 auto}
 .card{position:relative}
 .card .ph{position:relative;border:4px solid #000;box-shadow:12px 12px 0 #000;overflow:hidden;aspect-ratio:4/5;background:#000}
 .card img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25);transition:filter .4s,transform .6s}
 .card:hover img{filter:grayscale(0) contrast(1.05);transform:scale(1.04)}
 .card:nth-child(1){transform:rotate(-1.5deg)}
 .card:nth-child(2){transform:rotate(1.5deg);margin-top:60px}
-.card .name{position:absolute;left:-10px;bottom:24px;background:var(--fire1);font-family:"Archivo Black","Rubik",sans-serif;font-weight:900;font-size:clamp(36px,5vw,64px);text-transform:uppercase;padding:2px 14px;border:4px solid #000;transform:rotate(-3deg)}
+.card:nth-child(3){transform:rotate(-1deg);margin-top:20px}
+.card .name{position:relative;z-index:2;display:inline-block;margin:-34px 0 0 -10px;color:#000;background:var(--fire1);font-family:"Archivo Black","Rubik",sans-serif;font-weight:900;font-size:clamp(30px,3.6vw,52px);text-transform:uppercase;padding:2px 14px;border:4px solid #000;transform:rotate(-3deg)}
 .card .role{font-family:"Permanent Marker","Caveat",cursive;font-size:22px;margin:26px 0 8px}
 .card blockquote{font-family:"Special Elite","PT Mono",monospace;font-size:16px;line-height:1.5;border-left:6px solid var(--fire3);padding-left:14px}
 .card cite{display:block;font-style:normal;color:#666;margin-top:6px;font-size:13px}
-@media(max-width:760px){.crew{grid-template-columns:1fr}.card:nth-child(2){margin-top:0}}
+@media(max-width:1000px){.crew{grid-template-columns:1fr 1fr}.card:nth-child(3){grid-column:1/-1;max-width:520px;justify-self:center}}
+@media(max-width:760px){.crew{grid-template-columns:1fr}.card:nth-child(n){margin-top:0}}
 
 .menu{max-width:1100px;margin:0 auto}
 .row{display:flex;align-items:baseline;gap:14px;padding:22px 0;border-bottom:2px dashed #333;transition:padding .3s,background .3s}
@@ -82,18 +84,21 @@ h2{font-family:"Archivo Black","Rubik",sans-serif;font-weight:900;font-size:clam
 .btn.fill{background:var(--fire1);color:#000;border-color:#000;box-shadow:6px 6px 0 var(--paper)}
 .btn:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--fire3)}
 @media(max-width:760px){.visit{grid-template-columns:1fr}}
-footer{padding:30px 20px 100px;text-align:center;font-family:"Special Elite","PT Mono",monospace;color:var(--grey);font-size:13px}
+.map{margin:0 clamp(16px,5vw,64px);border:4px solid var(--paper);box-shadow:10px 10px 0 var(--fire3);height:340px}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(.92) contrast(1.1)}
+footer{padding:40px 20px 100px;text-align:center;font-family:"Special Elite","PT Mono",monospace;color:var(--grey);font-size:13px}
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
 .reveal.in{opacity:1;transform:none}
 .card.reveal.in:nth-child(1){transform:rotate(-1.5deg)}
 .card.reveal.in:nth-child(2){transform:rotate(1.5deg)}
+.card.reveal.in:nth-child(3){transform:rotate(-1deg)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <header class="top">
   <a class="logo" href="#">GRIND</a>
-  <nav><a href="#crew">Команда</a><a href="#menu">Прайс</a><a class="cta" href="#visit">Записаться</a></nav>
+  <nav><a href="#crew">Команда</a><a href="#menu">Прайс</a><a class="cta" href="#visit" data-book>Записаться</a></nav>
 </header>
 
 <section class="hero">
@@ -110,11 +115,11 @@ footer{padding:30px 20px 100px;text-align:center;font-family:"Special Elite","PT
 <section class="zine" id="crew">
   <div style="max-width:1200px;margin:0 auto">
     <p class="kicker">Issue #01 — the crew</p>
-    <h2>Два<br>барбера</h2>
+    <h2>Три<br>барбера</h2>
   </div>
   <div class="crew">
     <article class="card reveal">
-      <div class="ph"><img src="../assets/img/dima.jpg" alt="Дима, барбер" loading="lazy"></div>
+      <div class="ph"><img src="../assets/img/dima2.jpg" alt="Дима, барбер" loading="lazy"></div>
       <div class="name">Дима</div>
       <p class="role">барбер / основатель</p>
       <blockquote>«Искал Диму всю свою жизнь — лучший барбер, которого я встречал! Профессионален и аккуратен.»<cite>— Антон, отзыв клиента</cite></blockquote>
@@ -124,6 +129,12 @@ footer{padding:30px 20px 100px;text-align:center;font-family:"Special Elite","PT
       <div class="name">Кирилл</div>
       <p class="role">барбер / партнёр</p>
       <blockquote>«Классный чувак, стрижку делает на 5+.»<cite>— Николай, отзыв клиента</cite></blockquote>
+    </article>
+    <article class="card reveal">
+      <div class="ph"><img src="../assets/img/barber3.jpg" alt="Барбер №3" loading="lazy" style="object-position:center 30%"></div>
+      <div class="name">Барбер №3</div>
+      <p class="role">барбер / женские и мужские стрижки</p>
+      <blockquote>Стрижёт всех: мужские, женские, детские. Велосипед, скейт и Joy Division прилагаются.</blockquote>
     </article>
   </div>
 </section>
@@ -137,6 +148,7 @@ footer{padding:30px 20px 100px;text-align:center;font-family:"Special Elite","PT
     <div class="row reveal"><span class="t">Борода</span><span class="d">форма, контур, горячее полотенце</span><span class="p">₪70</span></div>
     <div class="row reveal"><span class="t">Стрижка + борода</span><span class="d">полный апгрейд</span><span class="p">₪170</span></div>
     <div class="row reveal"><span class="t">Бритьё опасной бритвой</span><span class="d">голова или лицо</span><span class="p">₪90</span></div>
+    <div class="row reveal"><span class="t">Женская стрижка</span><span class="d">короткие и средние, стрижка + укладка</span><span class="p">₪150</span></div>
     <div class="row reveal"><span class="t">Детская стрижка</span><span class="d">до 12 лет</span><span class="p">₪80</span></div>
     <p class="note">* цены примерные — для макета</p>
   </div>
@@ -155,14 +167,17 @@ footer{padding:30px 20px 100px;text-align:center;font-family:"Special Elite","PT
         <li>🕙 Вс–Чт 10:00–20:00</li>
         <li>🕙 Пт 09:00–15:00</li>
         <li>💬 RU · EN · HE</li>
+        <li>✂ Дима · Кирилл · Барбер №3</li>
       </ul>
       <div class="btns">
-        <a class="btn fill" href="#visit">Записаться онлайн</a>
-        <a class="btn" href="#visit">WhatsApp</a>
+        <a class="btn fill" href="#visit" data-book>Записаться онлайн</a>
+        <a class="btn" href="https://www.instagram.com/combpunk/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
   </div>
 </section>
+
+<div class="map"><iframe title="Карта: Нетания" src="https://maps.google.com/maps?q=Netanya%2C%20Israel&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 
 <footer>GRIND Barbershop · Нетания · рабочее название — образец сайта</footer>
 
@@ -171,5 +186,6 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 </script>
 <script src="../assets/switcher.js"></script>
+<script src="../assets/booking.js"></script>
 </body>
 </html>

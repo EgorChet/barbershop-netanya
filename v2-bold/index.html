@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#000;--red:#e3000f;--red2:#7a0008;--w:#fff;--g:#9a9a9a}
+:root{--bk-bg:#0d0d0d;--bk-fg:#fff;--bk-mut:#9a9a9a;--bk-line:#2a2a2a;--bk-acc:#e3000f;--bk-acc-fg:#fff;--bk-radius:0px;--bk-head:"Bebas Neue",Oswald,sans-serif;--bg:#000;--red:#e3000f;--red2:#7a0008;--w:#fff;--g:#9a9a9a}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--w);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
@@ -58,16 +58,17 @@ section{padding:clamp(70px,10vw,140px) clamp(16px,4vw,48px)}
 @media(max-width:900px){.services{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.services{grid-template-columns:1fr}}
 
-.barbers{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.barbers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .b{position:relative;aspect-ratio:3/4;overflow:hidden;background:#111}
 .b img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);transition:transform .8s,filter .5s}
 .b:hover img{transform:scale(1.05);filter:grayscale(.2)}
 .b:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,#000e)}
 .b .cap{position:absolute;left:28px;right:28px;bottom:26px;z-index:2}
-.b .cap h3{font-size:clamp(64px,8vw,120px);line-height:.85}
+.b .cap h3{font-size:clamp(52px,6vw,96px);line-height:.85}
 .b .cap p{font-size:14px;color:#ddd;margin-top:10px;max-width:420px;line-height:1.5}
 .b .tag{position:absolute;z-index:2;top:22px;left:22px;background:var(--red);padding:8px 14px;font-size:20px}
-@media(max-width:700px){.barbers{grid-template-columns:1fr}}
+@media(max-width:900px){.barbers{grid-template-columns:1fr 1fr}.b:nth-child(3){grid-column:1/-1;aspect-ratio:16/10}}
+@media(max-width:600px){.barbers{grid-template-columns:1fr}.b:nth-child(3){aspect-ratio:3/4}}
 
 .rules{background:var(--red);color:#fff}
 .rules ol{list-style:none;counter-reset:r;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
@@ -80,6 +81,8 @@ section{padding:clamp(70px,10vw,140px) clamp(16px,4vw,48px)}
 .contact .info{font-size:18px;line-height:2;color:#ccc}
 .contact .info b{color:#fff}
 @media(max-width:800px){.contact{grid-template-columns:1fr}}
+.map{height:380px;border-top:1px solid #222}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(.9) contrast(1.2)}
 footer{border-top:1px solid #222;padding:30px clamp(16px,4vw,48px) 100px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--g);letter-spacing:.08em;text-transform:uppercase}
 .up{opacity:0;transform:translateY(50px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .up.in{opacity:1;transform:none}
@@ -89,7 +92,7 @@ footer{border-top:1px solid #222;padding:30px clamp(16px,4vw,48px) 100px;display
 <body>
 <header>
   <a class="logo bb" href="#">Grind<span style="color:var(--red)">.</span></a>
-  <nav><a href="#services">Услуги</a><a href="#barbers">Барберы</a><a href="#contact">Контакты</a><a class="book" href="#contact">Записаться</a></nav>
+  <nav><a href="#services">Услуги</a><a href="#barbers">Барберы</a><a href="#contact">Контакты</a><a class="book" href="#contact" data-book>Записаться</a></nav>
 </header>
 
 <section class="hero" style="padding-bottom:70px">
@@ -97,13 +100,13 @@ footer{border-top:1px solid #222;padding:30px clamp(16px,4vw,48px) 100px;display
   <div class="who" role="img" aria-label="Кирилл, барбер"></div>
   <div class="txt">
     <h1 class="bb">Не стрижка.<br><span>Характер.</span></h1>
-    <p>Барбершоп для своих в Нетании. Два мастера, которые знают, как должен выглядеть мужик. Без очереди, без пафоса, без компромиссов.</p>
-    <a class="cta bb" href="#contact">Записаться →</a>
+    <p>Барбершоп для своих в Нетании. Три мастера с русской школой стрижки. Без очереди, без пафоса, без компромиссов.</p>
+    <a class="cta bb" href="#contact" data-book>Записаться →</a>
   </div>
 </section>
 
 <div class="stats">
-  <div class="up"><b class="bb">2</b><span>мастера с русской школой</span></div>
+  <div class="up"><b class="bb">3</b><span>мастера с русской школой</span></div>
   <div class="up"><b class="bb">25+</b><span>отзывов на 5 звёзд</span></div>
   <div class="up"><b class="bb">60</b><span>минут на стрижку — без спешки</span></div>
   <div class="up"><b class="bb">3</b><span>языка: RU · EN · HE</span></div>
@@ -117,7 +120,7 @@ footer{border-top:1px solid #222;padding:30px clamp(16px,4vw,48px) 100px;display
     <div class="svc up"><span class="n bb">03</span><div><h3 class="bb">Борода</h3><p>Форма, контур, горячее полотенце, масло.</p></div><span class="pr bb">₪70</span></div>
     <div class="svc up"><span class="n bb">04</span><div><h3 class="bb">Комплекс</h3><p>Стрижка + борода. Самое популярное.</p></div><span class="pr bb">₪170</span></div>
     <div class="svc up"><span class="n bb">05</span><div><h3 class="bb">Бритьё</h3><p>Опасная бритва, горячие полотенца. Голова или лицо.</p></div><span class="pr bb">₪90</span></div>
-    <div class="svc up"><span class="n bb">06</span><div><h3 class="bb">Отец + сын</h3><p>Две стрижки в одно время со скидкой.</p></div><span class="pr bb">₪190</span></div>
+    <div class="svc up"><span class="n bb">06</span><div><h3 class="bb">Женская стрижка</h3><p>Короткие и средние длины. Стрижка и укладка.</p></div><span class="pr bb">₪150</span></div>
   </div>
   <p style="color:var(--g);font-size:12px;margin-top:16px">* цены примерные — для макета</p>
 </section>
@@ -125,17 +128,19 @@ footer{border-top:1px solid #222;padding:30px clamp(16px,4vw,48px) 100px;display
 <section id="barbers" style="padding-top:0">
   <h2 class="h2 bb up">Барберы<span>.</span></h2>
   <div class="barbers">
-    <div class="b up"><img src="../assets/img/dima.jpg" alt="Дима" loading="lazy"><span class="tag bb">Founder</span>
+    <div class="b up"><img src="../assets/img/dima2.jpg" alt="Дима" loading="lazy"><span class="tag bb">Founder</span>
       <div class="cap"><h3 class="bb">Дима</h3><p>«Рекомендую! Дима — мастер своего дела. Ожидание с реальностью попали на все 101%.» — Вася</p></div></div>
     <div class="b up"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"><span class="tag bb">Partner</span>
       <div class="cap"><h3 class="bb">Кирилл</h3><p>«Классный чувак, стрижку делает на 5+.» — Николай</p></div></div>
+    <div class="b up"><img src="../assets/img/barber3.jpg" alt="Барбер №3" loading="lazy" style="object-position:center 30%"><span class="tag bb">Barber</span>
+      <div class="cap"><h3 class="bb">Барбер №3</h3><p>Мужские, женские и детские стрижки. Тот же подход — без шаблонов.</p></div></div>
   </div>
 </section>
 
 <section class="rules">
   <h2 class="h2 bb up" style="color:#000">Правила<br>клуба</h2>
   <ol>
-    <li class="up"><b>Мужская территория</b>Барберы, музыка, кофе и разговоры без фильтров.</li>
+    <li class="up"><b>Своя атмосфера</b>Скейт, панк-рок, крепкий кофе и разговоры без фильтров.</li>
     <li class="up"><b>Время — твоё</b>Пришёл к назначенному — сел в кресло. Никакого ожидания.</li>
     <li class="up"><b>Результат или переделаем</b>Не понравилось — исправим бесплатно в течение недели.</li>
   </ol>
@@ -147,11 +152,14 @@ footer{border-top:1px solid #222;padding:30px clamp(16px,4vw,48px) 100px;display
     <div class="info up">
       <div><b>Адрес:</b> Нетания — скоро</div>
       <div><b>Часы:</b> Вс–Чт 10–20 · Пт 9–15</div>
-      <div><b>Запись:</b> онлайн или WhatsApp</div>
-      <a class="cta bb" href="#contact">Записаться онлайн →</a>
+      <div><b>Запись:</b> онлайн, 24/7</div>
+      <div><b>Instagram:</b> <a href="https://www.instagram.com/combpunk/" target="_blank" rel="noopener" style="text-decoration:underline">@combpunk</a></div>
+      <a class="cta bb" href="#contact" data-book>Записаться онлайн →</a>
     </div>
   </div>
 </section>
+
+<div class="map"><iframe title="Карта: Нетания" src="https://maps.google.com/maps?q=Netanya%2C%20Israel&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 
 <footer><span>GRIND Barbershop · Нетания</span><span>рабочее название · образец сайта</span></footer>
 
@@ -160,5 +168,6 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.up').forEach(function(el,i){el.style.transitionDelay=(i%3)*90+'ms';io.observe(el)});
 </script>
 <script src="../assets/switcher.js"></script>
+<script src="../assets/booking.js"></script>
 </body>
 </html>
