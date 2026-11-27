@@ -50,7 +50,7 @@
     ".st-cert .em{width:34%;aspect-ratio:1;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center;opacity:.9}" +
     ".st-cert .em svg{width:62%;height:62%}" +
     ".st-cert .is{margin-top:6%;font-size:clamp(8px,1.5vw,11px);letter-spacing:.3em;text-transform:uppercase;opacity:.6}" +
-    ".st-cert .ti{margin-top:9%;font-size:clamp(17px,3.2vw,26px);font-weight:800;letter-spacing:.22em;text-transform:uppercase}" +
+    ".st-cert .ti{margin-top:9%;font-size:clamp(14px,2.3vw,21px);font-weight:800;letter-spacing:.12em;text-transform:uppercase}" +
     ".st-cert .sb{margin-top:7%;font-size:clamp(9px,1.6vw,12px);opacity:.65}" +
     ".st-cert .nm{margin-top:3%;font-size:clamp(14px,2.6vw,21px);font-weight:700;letter-spacing:.1em;text-transform:uppercase}" +
     ".st-cert .cr{margin-top:6%;font-size:clamp(9px,1.6vw,12px);opacity:.65}" +
