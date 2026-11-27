@@ -5,6 +5,7 @@
   var host = document.getElementById("ritual");
   if (!host || document.getElementById("brands") || document.getElementById("shelf")) return;
   var cfg = window.SITE_CONFIG || {};
+  var base = /\/v\d-[^\/]*\/?/.test(location.pathname) ? "../" : "";
   var list = (cfg.brands && cfg.brands.length) ? cfg.brands : [
     { name: "Reuzel", note: "помады и матовая глина для укладки" },
     { name: "Clubman Pinaud", note: "классический тальк и средства после бритья" }
@@ -22,6 +23,7 @@
     ".bn-b:hover{border-color:var(--bk-acc,#ff5a1f)}" +
     ".bn-b b{font-family:var(--bk-head,inherit);font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:.02em;text-transform:uppercase;line-height:1}" +
     ".bn-b span{color:var(--bk-mut,#aaa);font-size:15px;line-height:1.5}" +
+    ".bn-i{display:flex;gap:10px;margin-bottom:8px}.bn-i i{flex:1;max-width:150px;aspect-ratio:1;background:#f3eee4;border-radius:calc(var(--bk-radius,8px) * .6);display:grid;place-items:center;overflow:hidden}.bn-i img{width:88%;height:88%;object-fit:contain;mix-blend-mode:multiply}" +
     ".bn-f{margin-top:18px;font-size:12px;color:var(--bk-mut,#999)}" +
     "@media(min-width:700px){.bn-g{grid-template-columns:repeat(2,1fr)}}" +
     "@media(min-width:1000px){.bn-g{grid-template-columns:repeat(3,1fr)}}";
@@ -37,7 +39,7 @@
     "<h2>Чем мы <em>пользуемся</em></h2>" +
     '<p class="bn-lead">Классика барбер-культуры. Работаем тем, что проверено годами: укладка, тальк после бритья, уход.</p>' +
     '<div class="bn-g">' +
-    list.map(function (b) { return '<div class="bn-b"><b>' + b.name + "</b><span>" + (b.note || "") + "</span></div>"; }).join("") +
-    '</div><p class="bn-f">Названия принадлежат их владельцам. Мы пользуемся этой косметикой, но не являемся официальным дилером.</p></div>';
+    list.map(function (b) { var im = (b.imgs || []).map(function (u) { return "<i><img loading=\"lazy\" alt=\"" + b.name + "\" src=\"" + base + u + "\"></i>"; }).join(""); return '<div class="bn-b">' + (im ? '<div class="bn-i">' + im + "</div>" : "") + '<b>' + b.name + "</b><span>" + (b.note || "") + "</span></div>"; }).join("") +
+    '</div><p class="bn-f">Названия и фото принадлежат их владельцам. Мы пользуемся этой косметикой, но не являемся официальным дилером.</p></div>';
   host.parentNode.insertBefore(sec, host.nextSibling);
 })();

@@ -114,15 +114,12 @@ section{padding:64px 0}
 .shelf .sh .mono{color:#b7ad9d}
 .tins{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 14px}
 .tin{text-align:center}
-.tin .c{position:relative;width:100%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
-  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25),transparent 40%),var(--c,#b4472a);
-  box-shadow:inset 0 -10px 18px rgba(0,0,0,.35),inset 0 0 0 6px rgba(0,0,0,.18),0 18px 30px -16px #000;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.tin:hover .c{transform:rotate(-8deg) scale(1.03)}
-.tin .lbl{width:66%;aspect-ratio:1;border-radius:50%;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px}
-.tin .lbl b{font-family:var(--serif);font-weight:600;font-size:clamp(15px,4vw,22px);line-height:1}
-.tin .lbl small{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-top:5px;color:var(--mut)}
+.tin .c{position:relative;width:100%;aspect-ratio:1;border-radius:6px;background:#f3eee4;display:grid;place-items:center;overflow:hidden;box-shadow:0 18px 30px -16px #000;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.tin .c img{width:86%;height:86%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s}
+.tin:hover .c img{transform:scale(1.06) rotate(-3deg)}
 .tin h4{font-weight:500;margin-top:14px;font-size:15px}
 .tin p{color:#b7ad9d;font-size:13px}
+.shelf .fine{margin-top:22px;color:#8f8677;font-size:12px;line-height:1.5}
 .shelf .note{margin-top:30px;color:#b7ad9d;font-family:var(--serif);font-style:italic;font-size:18px;max-width:560px}
 @media(min-width:800px){.tins{grid-template-columns:repeat(4,1fr);gap:30px}}
 
@@ -243,12 +240,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section class="shelf" id="shelf"><div class="wrap">
   <div class="sh" data-rv><h2>Полка</h2><span class="mono">чем мы пользуемся</span></div>
   <div class="tins">
-    <div class="tin" data-rv><div class="c" style="--c:#1f4fa3"><div class="lbl"><b>Reuzel</b><small>Помада</small></div></div><h4>Reuzel · помада</h4><p>сильная фиксация, блеск</p></div>
-    <div class="tin" data-rv><div class="c" style="--c:#3b3b38"><div class="lbl"><b>Reuzel</b><small>Матовая глина</small></div></div><h4>Reuzel · матовая глина</h4><p>текстура без блеска</p></div>
-    <div class="tin" data-rv><div class="c" style="--c:#2f5a3a"><div class="lbl"><b>Clubman</b><small>Тальк</small></div></div><h4>Clubman Pinaud · тальк</h4><p>классика после бритья</p></div>
-    <div class="tin" data-rv><div class="c" style="--c:#b4472a"><div class="lbl"><b>Reuzel</b><small>Борода</small></div></div><h4>Reuzel · для бороды</h4><p>уход и форма</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/reuzel-blue.png" alt="Reuzel Blue" loading="lazy"></div><h4>Reuzel Blue</h4><p>сильная фиксация, блеск, смывается водой</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/reuzel-red.jpg" alt="Reuzel Red" loading="lazy"></div><h4>Reuzel Red</h4><p>средняя фиксация, блеск, на воде</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/reuzel-pink.png" alt="Reuzel Pink" loading="lazy"></div><h4>Reuzel Pink</h4><p>сильная фиксация, на жировой основе</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/reuzel-clay.jpg" alt="Reuzel Clay Matte" loading="lazy"></div><h4>Reuzel Clay Matte</h4><p>средняя фиксация, матовый финиш</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/reuzel-fiber.png" alt="Reuzel Fiber" loading="lazy"></div><h4>Reuzel Fiber</h4><p>гибкая фиксация, текстура</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/reuzel-extreme.png" alt="Reuzel Extreme Hold Matte" loading="lazy"></div><h4>Reuzel Extreme Hold Matte</h4><p>максимальная фиксация, мат</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/clubman-powder.jpg" alt="Clubman Pinaud Finest Powder" loading="lazy"></div><h4>Clubman Pinaud Finest Powder</h4><p>тальк после стрижки и бритья, с 1810 года</p></div>
+    <div class="tin" data-rv><div class="c"><img src="../assets/products/clubman-powder-neutral.jpg" alt="Clubman Powder · Neutral" loading="lazy"></div><h4>Clubman Powder · Neutral</h4><p>нейтральный тон</p></div>
   </div>
   <p class="note" data-rv>Не знаете, что взять? Спросите мастера после стрижки — он покажет на ваших волосах, а не на картинке.</p>
+  <p class="fine">Reuzel и Clubman Pinaud — торговые марки их владельцев. Фото товаров с официальных сайтов производителей. Мы пользуемся этой косметикой, но не являемся официальным дилером.</p>
 </div></section>
 
 <section id="crew"><div class="wrap">
@@ -302,11 +304,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <a class="main" href="#visit" data-book>Записаться</a>
 </nav>
 
-<script src="../assets/config.js?v=20261128c"></script>
-<script src="../assets/story.js?v=20261128c"></script>
-<script src="../assets/brands.js?v=20261128c"></script>
-<script src="../assets/site.js?v=20261128c"></script>
-<script src="../assets/switcher.js?v=20261128c"></script>
-<script src="../assets/booking.js?v=20261128c"></script>
+<script src="../assets/config.js?v=20261128d"></script>
+<script src="../assets/story.js?v=20261128d"></script>
+<script src="../assets/brands.js?v=20261128d"></script>
+<script src="../assets/site.js?v=20261128d"></script>
+<script src="../assets/switcher.js?v=20261128d"></script>
+<script src="../assets/booking.js?v=20261128d"></script>
 </body>
 </html>

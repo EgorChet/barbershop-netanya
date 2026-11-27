@@ -34,9 +34,11 @@ window.SITE_CONFIG = {
 
   // Косметика, с которой работают мастера (блок «Чем мы пользуемся»). Только названия.
   brands: [
-    { name: "Reuzel", note: "помады и матовая глина для укладки" },
-    { name: "Clubman Pinaud", note: "классический тальк и средства после бритья" }
-    // { name: "...", note: "..." }
+    { name: "Reuzel", note: "помады и матовая глина для укладки",
+      imgs: ["assets/products/reuzel-blue.png","assets/products/reuzel-clay.jpg","assets/products/reuzel-fiber.png"] },
+    { name: "Clubman Pinaud", note: "классический тальк Finest Powder, с 1810 года",
+      imgs: ["assets/products/clubman-powder.jpg"] }
+    // { name: "...", note: "...", imgs: ["assets/products/..."] }
   ],
 
   contacts: {
