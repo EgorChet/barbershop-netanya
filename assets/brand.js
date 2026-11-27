@@ -93,5 +93,14 @@
       links[i].innerHTML = lockup();
     }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", place); else place();
+  function grain() {
+    if (/v8-/.test(location.pathname) || document.getElementById("bl-grain")) return;
+    var g = document.createElement("div");
+    g.id = "bl-grain";
+    g.setAttribute("aria-hidden", "true");
+    g.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:45;opacity:.12;mix-blend-mode:overlay;background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")";
+    document.body.appendChild(g);
+  }
+  function init() { place(); grain(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
