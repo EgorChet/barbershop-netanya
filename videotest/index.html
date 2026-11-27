@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Проверка видео</title>
+<style>
+body{margin:0;background:#111;color:#eee;font:15px/1.5 -apple-system,system-ui,sans-serif;padding:16px}
+h1{font-size:20px;margin:0 0 10px}
+video{width:100%;max-width:320px;display:block;background:#000;border-radius:10px}
+pre{background:#1b1b1b;padding:12px;border-radius:10px;white-space:pre-wrap;word-break:break-word;font:13px/1.5 ui-monospace,Menlo,monospace}
+button{font:inherit;padding:14px 18px;border-radius:12px;border:0;background:#d7ff1a;color:#000;font-weight:700;margin:8px 8px 8px 0}
+.ok{color:#9f9}.bad{color:#f88}
+</style>
+</head>
+<body>
+<h1>Проверка видео</h1>
+<p>Подождите 10 секунд и пришлите мне скриншот этого экрана целиком.</p>
+<video id="v" autoplay muted loop playsinline preload="auto" poster="../media/posters/dima-1.jpg"><source src="../media/hero-dima.mp4?t=1" type="video/mp4"></video>
+<button id="b">Нажать, если не играет</button>
+<pre id="s">загрузка…</pre>
+<script>
+var v=document.getElementById("v"),s=document.getElementById("s"),t0=Date.now(),playMsg="play() ещё не вызывали",playedAt=null,events=[];
+["loadstart","loadedmetadata","loadeddata","canplay","playing","waiting","stalled","error","suspend","pause","ended"].forEach(function(e){v.addEventListener(e,function(){events.push(((Date.now()-t0)/1000).toFixed(1)+"с "+e);if(e==="playing"&&!playedAt)playedAt=(Date.now()-t0)/1000;});});
+function tryPlay(){var p=v.play();if(p&&p.then)p.then(function(){playMsg="play(): ОК"},function(e){playMsg="play() отклонён: "+e.name+" — "+e.message});}
+tryPlay();
+document.getElementById("b").onclick=function(){tryPlay();};
+var c=navigator.connection;
+setInterval(function(){
+  var b=v.buffered.length?v.buffered.end(v.buffered.length-1).toFixed(1):"0";
+  s.textContent=
+   "Прошло: "+((Date.now()-t0)/1000).toFixed(0)+" с\n"+
+   "Видео начало двигаться: "+(playedAt?playedAt.toFixed(1)+" с после открытия":"ещё НЕТ")+"\n"+
+   "readyState: "+v.readyState+" (4 = готово, 0 = нет данных)\n"+
+   "networkState: "+v.networkState+" (2 = грузится, 3 = не найдено)\n"+
+   "currentTime: "+v.currentTime.toFixed(1)+"  paused: "+v.paused+"\n"+
+   "загружено секунд: "+b+" из "+(isFinite(v.duration)?v.duration.toFixed(1):"?")+"\n"+
+   "ошибка видео: "+(v.error?("код "+v.error.code):"нет")+"\n"+
+   playMsg+"\n"+
+   "Сеть: "+(c?(c.effectiveType+" / saveData="+c.saveData):"браузер не сообщает")+"\n"+
+   "Браузер: "+navigator.userAgent.replace(/\(.*?\)/,"").slice(0,60)+"\n\nСобытия:\n"+events.slice(-12).join("\n");
+},500);
+</script>
+</body>
+</html>
