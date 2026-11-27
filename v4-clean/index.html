@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRIND Barbershop — Нетания · Clean</title>
+<meta name="description" content="Барбершоп в Нетании. Дима и Кирилл. Стрижки, борода, бритьё.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f2ee;--card:#fff;--ink:#141414;--mut:#6f6b65;--line:#e1ddd5;--acc:#ff5a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.u{font-family:Unbounded,Arial,sans-serif;letter-spacing:-.02em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+header{position:sticky;top:0;z-index:30;background:rgba(244,242,238,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+header .logo{font-size:20px;font-weight:700}
+header .logo i{font-style:normal;color:var(--acc)}
+header nav{display:flex;gap:30px;align-items:center;font-size:15px;font-weight:500}
+header nav a:not(.pill):hover{color:var(--acc)}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border-radius:999px;padding:14px 24px;font-weight:700;font-size:15px;transition:background .25s,transform .25s}
+.pill:hover{background:var(--acc);transform:translateY(-1px)}
+.pill.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.pill.ghost:hover{background:var(--ink);color:#fff}
+@media(max-width:720px){header nav a:not(.pill){display:none}}
+
+.hero{padding:clamp(40px,6vw,80px) 0 clamp(50px,7vw,100px)}
+.hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,56px);align-items:stretch}
+.hero h1{font-size:clamp(44px,6.6vw,100px);line-height:.98;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero .lead{font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--mut);max-width:520px;margin:28px 0 36px}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero .meta{display:flex;gap:34px;margin-top:56px;flex-wrap:wrap}
+.hero .meta b{display:block;font:700 28px Unbounded}
+.hero .meta span{color:var(--mut);font-size:14px}
+.hero .ph{position:relative;border-radius:28px;overflow:hidden;min-height:440px;background:#ddd}
+.hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .chip{position:absolute;left:18px;bottom:18px;right:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:18px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px}
+.hero .chip b{font-weight:700}
+.dot{width:10px;height:10px;border-radius:50%;background:#1dbf5a;display:inline-block;margin-right:8px;box-shadow:0 0 0 4px rgba(29,191,90,.2);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(29,191,90,0)}}
+@media(max-width:860px){.hero .grid{grid-template-columns:1fr}.hero .ph{min-height:420px}}
+
+section{padding:clamp(60px,8vw,110px) 0}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+.sh h2{font-size:clamp(32px,4vw,56px);line-height:1.05;font-weight:700}
+.sh p{color:var(--mut);max-width:380px;line-height:1.6}
+
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.s{background:var(--card);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+.s:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,20,20,.08)}
+.s .top{display:flex;justify-content:space-between;align-items:center}
+.s .ic{width:46px;height:46px;border-radius:14px;background:var(--bg);display:grid;place-items:center;font-size:22px}
+.s .time{font-size:13px;color:var(--mut);background:var(--bg);padding:6px 12px;border-radius:999px}
+.s h3{font:700 20px/1.25 Unbounded;margin-top:14px}
+.s p{color:var(--mut);font-size:15px;line-height:1.55;flex:1}
+.s .pr{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:16px;border-top:1px solid var(--line)}
+.s .pr b{font:700 24px Unbounded}
+.s .pr a{font-weight:700;color:var(--acc)}
+.s.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.s.dark p,.s.dark .time{color:#bdb8b0}
+.s.dark .ic,.s.dark .time{background:#262626}
+.s.dark .pr{border-color:#333}
+@media(max-width:900px){.svc{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.svc{grid-template-columns:1fr}}
+
+.team{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.t{background:var(--card);border-radius:28px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
+.t img{width:100%;height:100%;object-fit:cover;min-height:340px}
+.t .b{padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.t h3{font:700 30px Unbounded}
+.t .role{color:var(--mut);margin-top:6px}
+.t .stars{color:var(--acc);letter-spacing:2px}
+.t blockquote{font-size:16px;line-height:1.55}
+.t cite{display:block;font-style:normal;color:var(--mut);font-size:13px;margin-top:8px}
+@media(max-width:1000px){.team{grid-template-columns:1fr}}
+@media(max-width:560px){.t{grid-template-columns:1fr}.t img{min-height:0;aspect-ratio:1}}
+
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:h}
+.how div{counter-increment:h;padding:28px;border-radius:22px;border:1px dashed #cfc9bf}
+.how div:before{content:counter(h);font:700 15px Unbounded;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--acc);color:#fff;margin-bottom:18px}
+.how h3{font:700 18px Unbounded;margin-bottom:8px}
+.how p{color:var(--mut);line-height:1.55}
+@media(max-width:760px){.how{grid-template-columns:1fr}}
+
+.cta{background:var(--ink);color:#fff;border-radius:32px;padding:clamp(36px,6vw,80px);display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.cta h2{font-size:clamp(32px,4.5vw,64px);line-height:1.02;font-weight:700}
+.cta h2 em{font-style:normal;color:var(--acc)}
+.cta ul{list-style:none;color:#bdb8b0;line-height:2.1;margin-bottom:24px}
+.cta ul b{color:#fff;font-weight:500}
+.cta .pill{background:var(--acc)}
+.cta .pill:hover{background:#fff;color:var(--ink)}
+@media(max-width:800px){.cta{grid-template-columns:1fr}}
+footer{padding:30px 0 110px;color:var(--mut);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo u" href="#">grind<i>.</i></a>
+  <nav><a href="#services">Услуги</a><a href="#team">Команда</a><a href="#how">Как записаться</a><a class="pill" href="#book">Записаться</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap grid">
+  <div>
+    <h1 class="u">Хорошая стрижка — <em>это просто.</em></h1>
+    <p class="lead">Барбершоп в Нетании от Димы и Кирилла. Запишитесь онлайн за 30 секунд, приходите ко времени и уходите с причёской, которую не нужно укладывать час.</p>
+    <div class="acts"><a class="pill" href="#book">Выбрать время →</a><a class="pill ghost" href="#services">Цены</a></div>
+    <div class="meta">
+      <div><b>5.0</b><span>средняя оценка</span></div>
+      <div><b>25+</b><span>отзывов клиентов</span></div>
+      <div><b>RU·EN·HE</b><span>говорим на вашем</span></div>
+    </div>
+  </div>
+  <div class="ph">
+    <img src="../assets/img/kirill.jpg" alt="Кирилл, барбер">
+    <div class="chip"><span><span class="dot"></span><b>Сегодня есть окна</b></span><span>15:00 · 17:30 · 19:00</span></div>
+  </div>
+</div></section>
+
+<section id="services" style="padding-top:0"><div class="wrap">
+  <div class="sh rv"><h2 class="u">Услуги и цены</h2><p>Всё включено: мытьё, укладка, горячее полотенце. Цены фиксированные — без сюрпризов на кассе.</p></div>
+  <div class="svc">
+    <div class="s rv"><div class="top"><span class="ic">✂️</span><span class="time">60 мин</span></div><h3>Мужская стрижка</h3><p>Консультация, мытьё, стрижка, укладка.</p><div class="pr"><b>₪120</b><a href="#book">Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">⚡</span><span class="time">45 мин</span></div><h3>Fade</h3><p>Плавный переход и чёткий контур.</p><div class="pr"><b>₪100</b><a href="#book">Записаться</a></div></div>
+    <div class="s dark rv"><div class="top"><span class="ic">★</span><span class="time">90 мин</span></div><h3>Стрижка + борода</h3><p>Самый популярный комплекс. Полный апгрейд за полтора часа.</p><div class="pr"><b>₪170</b><a href="#book">Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">🧔</span><span class="time">30 мин</span></div><h3>Борода</h3><p>Форма, контур, горячее полотенце, масло.</p><div class="pr"><b>₪70</b><a href="#book">Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">🪒</span><span class="time">40 мин</span></div><h3>Бритьё</h3><p>Опасная бритва, голова или лицо.</p><div class="pr"><b>₪90</b><a href="#book">Записаться</a></div></div>
+    <div class="s rv"><div class="top"><span class="ic">👦</span><span class="time">40 мин</span></div><h3>Детская</h3><p>Для мальчиков до 12 лет.</p><div class="pr"><b>₪80</b><a href="#book">Записаться</a></div></div>
+  </div>
+  <p style="color:var(--mut);font-size:13px;margin-top:16px">* цены примерные — для макета</p>
+</div></section>
+
+<section id="team" style="padding-top:0"><div class="wrap">
+  <div class="sh rv"><h2 class="u">Команда</h2><p>Два мастера, у каждого — свои постоянные клиенты и десятки пятизвёздочных отзывов.</p></div>
+  <div class="team">
+    <div class="t rv"><img src="../assets/img/dima.jpg" alt="Дима" loading="lazy"><div class="b"><div><h3>Дима</h3><p class="role">Основатель · барбер</p></div><div><div class="stars">★★★★★</div><blockquote>«Впервые в Израиле я кайфанул от процесса стрижки и от результата.»<cite>Антон</cite></blockquote></div><a class="pill" href="#book">К Диме</a></div></div>
+    <div class="t rv"><img src="../assets/img/kirill.jpg" alt="Кирилл" loading="lazy"><div class="b"><div><h3>Кирилл</h3><p class="role">Партнёр · барбер</p></div><div><div class="stars">★★★★★</div><blockquote>«Классный чувак, стрижку делает на 5+.»<cite>Николай</cite></blockquote></div><a class="pill" href="#book">К Кириллу</a></div></div>
+  </div>
+</div></section>
+
+<section id="how" style="padding-top:0"><div class="wrap">
+  <div class="sh rv"><h2 class="u">Как записаться</h2></div>
+  <div class="how">
+    <div class="rv"><h3>Выберите услугу</h3><p>Стрижка, борода или комплекс — цена видна сразу.</p></div>
+    <div class="rv"><h3>Выберите мастера</h3><p>Дима или Кирилл — или любой свободный.</p></div>
+    <div class="rv"><h3>Приходите</h3><p>Напомним в WhatsApp за 2 часа до визита.</p></div>
+  </div>
+</div></section>
+
+<section id="book" style="padding-top:0"><div class="wrap">
+  <div class="cta rv">
+    <h2 class="u">Увидимся <em>в Нетании</em></h2>
+    <div>
+      <ul><li><b>Адрес:</b> скоро</li><li><b>Вс–Чт:</b> 10:00–20:00</li><li><b>Пт:</b> 09:00–15:00</li></ul>
+      <a class="pill" href="#book">Онлайн-запись →</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>© GRIND Barbershop, Нетания</span><span>рабочее название · образец сайта</span></div></footer>
+
+<script>
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)});
+</script>
+<script src="../assets/switcher.js"></script>
+</body>
+</html>

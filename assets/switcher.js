@@ -1,0 +1,37 @@
+// Floating version switcher shared by all sample versions.
+(function () {
+  var versions = [
+    { id: "v1-skate", n: "01", name: "Skate" },
+    { id: "v2-bold", n: "02", name: "Bold" },
+    { id: "v3-club", n: "03", name: "Club" },
+    { id: "v4-clean", n: "04", name: "Clean" }
+  ];
+  var here = location.pathname.split("/").filter(Boolean);
+  var current = here[here.length - 1] === "index.html" ? here[here.length - 2] : here[here.length - 1];
+
+  var css =
+    ".vsw{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:4px;" +
+    "padding:5px;border-radius:999px;background:rgba(17,17,17,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);" +
+    "box-shadow:0 10px 30px rgba(0,0,0,.35);font:600 12px/1 -apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:calc(100vw - 32px)}" +
+    ".vsw a{color:#cfcfcf;text-decoration:none;padding:9px 12px;border-radius:999px;white-space:nowrap;letter-spacing:.04em;transition:background .2s,color .2s}" +
+    ".vsw a:hover{color:#fff;background:rgba(255,255,255,.1)}" +
+    ".vsw a[aria-current]{background:#fff;color:#111}" +
+    ".vsw .home{opacity:.75}" +
+    ".vsw b{font-weight:600;opacity:.55;margin-right:4px}" +
+    "@media(max-width:520px){.vsw a span{display:none}.vsw a{padding:9px 11px}}";
+  var st = document.createElement("style");
+  st.textContent = css;
+  document.head.appendChild(st);
+
+  var nav = document.createElement("nav");
+  nav.className = "vsw";
+  nav.setAttribute("aria-label", "Выбор версии");
+  var html = '<a class="home" href="../" title="Все версии">←<span>&nbsp;Все</span></a>';
+  versions.forEach(function (v) {
+    html +=
+      '<a href="../' + v.id + '/"' + (v.id === current ? ' aria-current="page"' : "") +
+      "><b>" + v.n + "</b><span>" + v.name + "</span></a>";
+  });
+  nav.innerHTML = html;
+  document.body.appendChild(nav);
+})();
