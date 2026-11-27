@@ -27,6 +27,9 @@
   function lockup() {
     return '<span class="bl" translate="no">' + mark("bl-mark") + wordmark("bl-word") + "</span>";
   }
+  // Своя марка: страница может задать window.BRAND_CUSTOM = { name, tag, mark(cls), word(cls) } до подключения этого файла.
+  var CU = window.BRAND_CUSTOM;
+  if (CU) { mark = CU.mark; wordmark = CU.word; }
   window.GRIND_BRAND = { mark: mark, wordmark: wordmark, lockup: lockup };
 
   var css =
@@ -46,6 +49,8 @@
     "#bl-load .bl-cut{stroke-dasharray:24;stroke-dashoffset:24;animation:bl-draw .35s .85s cubic-bezier(.7,0,.2,1) forwards}" +
     "#bl-load .bl-word{width:min(220px,58vw);height:auto;clip-path:inset(0 100% 0 0);animation:bl-wipe .6s 1s cubic-bezier(.7,0,.2,1) forwards}" +
     "#bl-load .bl-tag{font:600 11px/1 'JetBrains Mono',ui-monospace,Menlo,monospace;letter-spacing:.32em;text-transform:uppercase;color:var(--bk-mut,#999);opacity:0;animation:bl-fade .5s 1.35s forwards}" +
+    "#bl-load .bl-draw{stroke-dasharray:100;stroke-dashoffset:100;animation:bl-draw .9s .15s cubic-bezier(.6,0,.2,1) forwards}" +
+    "#bl-load .bl-draw2{stroke-dasharray:100;stroke-dashoffset:100;animation:bl-draw .5s .85s cubic-bezier(.7,0,.2,1) forwards}" +
     "@keyframes bl-draw{to{stroke-dashoffset:0}}" +
     "@keyframes bl-wipe{to{clip-path:inset(0 0 0 0)}}" +
     "@keyframes bl-fade{to{opacity:1}}" +
@@ -67,7 +72,7 @@
     el = document.createElement("div");
     el.id = "bl-load";
     el.setAttribute("aria-hidden", "true");
-    el.innerHTML = mark("bl-bigmark") + wordmark("bl-word") + '<div class="bl-tag">Barbershop · Netanya</div>';
+    el.innerHTML = mark("bl-bigmark") + wordmark("bl-word") + '<div class="bl-tag">' + ((CU && CU.tag) || "Barbershop · Netanya") + '</div>';
     document.documentElement.appendChild(el);
     try { sessionStorage.setItem("bl-seen", "1"); } catch (e) {}
     var t0 = Date.now();
@@ -89,7 +94,7 @@
     var links = document.querySelectorAll("a.logo");
     for (var i = 0; i < links.length; i++) {
       if (links[i].querySelector(".bl")) continue;
-      links[i].setAttribute("aria-label", "GRIND Barbershop");
+      links[i].setAttribute("aria-label", (CU && CU.name) || "GRIND Barbershop");
       links[i].innerHTML = lockup();
     }
   }

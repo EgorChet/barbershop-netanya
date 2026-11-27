@@ -2379,5 +2379,80 @@ window.I18N_DICT = {
 "Reuzel, Uppercut Deluxe and Clubman Pinaud are trademarks of their owners. Product photos are from the manufacturers' official websites. We use these products but are not an official dealer.",
 "Reuzel, Uppercut Deluxe ו-Clubman Pinaud הם סימנים מסחריים של בעליהם. תמונות המוצרים מהאתרים הרשמיים של היצרנים. אנחנו משתמשים בקוסמטיקה הזו אך איננו משווקים רשמיים.",
 "Reuzel, Uppercut Deluxe et Clubman Pinaud sont des marques de leurs propriétaires. Les photos des produits proviennent des sites officiels des fabricants. Nous utilisons ces produits mais ne sommes pas revendeur officiel."
+],
+"Что это": [
+"What it is",
+"מה זה",
+"C'est quoi"
+],
+"Секунду.<span>Сейчас всё сделаем.</span>": [
+"One sec.<span>Almost done.</span>",
+"רגע.<span>כבר מסיימים.</span>",
+"Un instant.<span>On y est presque.</span>"
+],
+"Жест «рега» знает каждый в Израиле: подожди секунду. Мы стрижём без спешки, поэтому подождать стоит.": [
+"Everyone in Israel knows the “rega” gesture: wait a second. We cut without rushing, so the wait is worth it.",
+"כל אחד בישראל מכיר את מחוות «רגע»: חכה שנייה. אנחנו גוזרים בלי למהר, אז שווה לחכות.",
+"Tout le monde en Israël connaît le geste « rega » : attends une seconde. On coiffe sans se presser, alors l'attente en vaut la peine."
+],
+"Познакомиться": [
+"Meet the team",
+"להכיר את הצוות",
+"Faire connaissance"
+],
+"Что это значит": [
+"What it means",
+"מה זה אומר",
+"Ce que ça veut dire"
+],
+"Рега — это <em>секунда</em>": [
+"Rega means <em>a second</em>",
+"רגע זה <em>שנייה</em>",
+"Rega veut dire <em>une seconde</em>"
+],
+"По-ивритски «рега» значит «момент». А ещё это жест щепоткой, которым в Израиле говорят «подожди». Хорошая стрижка не занимает секунду, но мы шутим, что она того стоит.": [
+"In Hebrew “rega” means “a moment”. It's also the pinched-fingers gesture Israelis use to say “wait”. A good haircut doesn't take a second, but we joke that it's worth it.",
+"בעברית «רגע» זה «שנייה». וזו גם מחוות הצביטה שבה אומרים בישראל «חכה». תספורת טובה לא לוקחת רגע, אבל אנחנו מתלוצצים שהיא שווה את זה.",
+"En hébreu, « rega » veut dire « un instant ». C'est aussi le geste des doigts pincés que les Israéliens font pour dire « attends ». Une bonne coupe ne prend pas une seconde, mais on plaisante : elle en vaut la peine."
+],
+"Трое, все свои": [
+"Three of us, all our own",
+"שלושה, כולם שלנו",
+"Trois, tous des nôtres"
+],
+"© Рега · Нетания — рабочее название. Название, адрес и цены уточняются.": [
+"© Rega · Netanya — working name. Name, address and prices to be confirmed.",
+"© רגע · נתניה — שם עבודה. השם, הכתובת והמחירים יאושרו.",
+"© Rega · Netanya — nom provisoire. Nom, adresse et tarifs à confirmer."
+],
+"@Рега · барбершоп в Нетании": [
+"Rega · barbershop in Netanya",
+"רגע · מספרת גברים בנתניה",
+"Rega · barbershop à Netanya"
+],
+"@Барбершоп в Нетании. Секунду, сейчас всё сделаем: Дима, Таша и Кирилл, фильтр-кофе и стрижки без спешки.": [
+"A barbershop in Netanya. One sec, almost done: Dima, Tasha and Kirill, filter coffee and haircuts without rushing.",
+"מספרת גברים בנתניה. רגע, כבר מסיימים: דימה, טאשה וקיריל, קפה פילטר ותספורות בלי למהר.",
+"Un barbershop à Netanya. Un instant, on y est presque : Dima, Tasha et Kirill, café filtre et coupes sans se presser."
+],
+"Барбершоп Димы и Таши в Нетании. Девять вариантов сайта: каждый построен на одном референсе. Откройте карточку; переключаться между версиями можно панелью внизу.": [
+"Dima and Tasha's barbershop in Netanya. Nine site concepts, each built on a single reference. Open a card; you can switch between versions with the bar at the bottom.",
+"מספרת הגברים של דימה וטאשה בנתניה. תשע גרסאות לאתר, כל אחת מבוססת על השראה אחת. פתחו כרטיס; אפשר לעבור בין הגרסאות בעזרת הסרגל שלמטה.",
+"Le barbershop de Dima et Tasha à Netanya. Neuf concepts de site, chacun inspiré d'une seule référence. Ouvrez une carte ; la barre en bas permet de passer d'une version à l'autre."
+],
+"@Девять вариантов сайта барбершопа в Нетании.": [
+"Nine website concepts for a barbershop in Netanya.",
+"תשע גרסאות לאתר של מספרת גברים בנתניה.",
+"Neuf concepts de site pour un barbershop à Netanya."
+],
+"Другой бренд: «Рега» (רגע), жест «секунду», который знает каждый в Израиле. Иврит по умолчанию, кобальт и солнце.": [
+"A different brand: “Rega” (רגע), the “one second” gesture every Israeli knows. Hebrew by default, cobalt and sun.",
+"מותג אחר: «רגע», המחווה «שנייה» שכל ישראלי מכיר. עברית כברירת מחדל, קובלט ושמש.",
+"Une autre marque : « Rega » (רגע), le geste « une seconde » que tout Israélien connaît. Hébreu par défaut, cobalt et soleil."
+],
+"<b>Фирменный стиль:</b> логотип, цвета, шрифты и лоадер — <a href=\"brand/\" style=\"color:#c9f23a\">посмотреть brand kit</a>.": [
+"<b>Brand identity:</b> logo, colours, fonts and loader — <a href=\"brand/\" style=\"color:#c9f23a\">see the brand kit</a>.",
+"<b>זהות מותג:</b> לוגו, צבעים, גופנים וטעינה — <a href=\"brand/\" style=\"color:#c9f23a\">לצפייה בערכת המותג</a>.",
+"<b>Identité de marque :</b> logo, couleurs, polices et loader — <a href=\"brand/\" style=\"color:#c9f23a\">voir le brand kit</a>."
 ]
 };

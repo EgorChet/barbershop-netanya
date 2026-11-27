@@ -8,7 +8,8 @@
     { id: "v5-pomade", n: "05", name: "Pomade" },
     { id: "v6-frant", n: "06", name: "Dandy" },
     { id: "v7-pleasures", n: "07", name: "Post-punk" },
-    { id: "v8-underground", n: "08", name: "Underground" }
+    { id: "v8-underground", n: "08", name: "Underground" },
+    { id: "v9-rega", n: "09", name: "Rega" }
   ];
   var here = location.pathname.split("/").filter(Boolean);
   var current = here[here.length - 1] === "index.html" ? here[here.length - 2] : here[here.length - 1];

@@ -17,6 +17,7 @@
     var m = location.search.match(/[?&]lang=(ru|en|he|fr)\b/);
     if (m) return m[1];
     try { var s = localStorage.getItem("bk-lang"); if (s && IDX[s] !== undefined || s === "ru") return s; } catch (e) {}
+    if (window.I18N_DEFAULT) return window.I18N_DEFAULT;
     var n = (navigator.language || "ru").slice(0, 2).toLowerCase();
     if (n === "he" || n === "iw") return "he";
     if (n === "fr") return "fr";
@@ -41,7 +42,7 @@
   // ---- Hebrew fonts + RTL fixes ----
   var rtl = document.createElement("style");
   rtl.textContent =
-    "html[lang=he] body,html[lang=he] body *{font-family:Heebo,'Arial Hebrew',Arial,sans-serif!important;letter-spacing:normal!important}" +
+    "html[lang=he]:not([data-own-font]) body,html[lang=he]:not([data-own-font]) body *{font-family:Heebo,'Arial Hebrew',Arial,sans-serif!important}html[lang=he] body,html[lang=he] body *{letter-spacing:normal!important}" +
     "html[lang=he] .fire,html[lang=he] [class*=ttl],html[lang=he] h1,html[lang=he] h2,html[lang=he] h3{font-weight:800}" +
     "html[dir=rtl] body{text-align:start}" +
     "html[dir=rtl] .vsw,html[dir=rtl] .lg-pill{direction:ltr}" +
