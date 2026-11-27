@@ -88,6 +88,26 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 .dayrow{display:grid;grid-template-columns:70px 1fr 1fr 40px;gap:8px;align-items:center;margin-top:8px}
 .dayrow span{font-weight:700}
 .warn{margin-top:10px;font-size:13px;color:#ffc14d;background:#2a2108;border:1px solid #574410;border-radius:10px;padding:10px;display:none}
+.nx{margin:12px 12px 0;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px}
+.nx.now{border-color:var(--acid)}
+.nx .big{font-size:22px;font-weight:800;line-height:1.15;margin-top:6px}
+.nx .when{color:var(--acid);font-weight:800}
+.nx .sub{color:var(--mut);font-size:14px;margin-top:4px;line-height:1.4}
+.nx .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.nx .acts a,.nx .acts button{flex:1 1 auto;text-decoration:none}
+.nx .more{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+.sum{display:flex;gap:8px;margin:10px 12px 0;flex-wrap:wrap}
+.sum span{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);background:#101010;border:1px solid var(--line);border-radius:999px;padding:7px 10px}
+.sum b{color:var(--paper)}
+.mode{margin-left:auto;display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.mode button{padding:7px 12px;font:500 11px 'JetBrains Mono',monospace;text-transform:uppercase;color:var(--mut)}
+.mode button.on{background:var(--acid);color:#0b0b0b}
+.list{margin:12px 12px 0;display:grid;gap:8px}
+.li{display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c,var(--acid));border-radius:14px;padding:12px}
+.li time{font:700 15px 'JetBrains Mono',monospace}
+.li b{display:block;font-size:15px}.li span{font-size:12px;color:var(--mut)}
+.li.past{opacity:.45}
+.li.cur{border-color:var(--acid)}
 .toast{position:fixed;left:50%;bottom:calc(92px + var(--safe));transform:translateX(-50%);background:var(--paper);color:#0b0b0b;font-weight:700;padding:10px 16px;border-radius:999px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.on{opacity:1}
 </style>
@@ -118,6 +138,9 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
     </div>
     <div class="week" id="week"></div>
   </header>
+  <div class="nx hide" id="nx"></div>
+  <div class="sum" id="sum"><div class="mode" id="mode"><button data-m="list">Список</button><button data-m="grid">Сетка</button></div></div>
+  <div class="list hide" id="list"></div>
   <div class="cal" id="cal"><div class="tm" id="tm"></div><div class="grid" id="grid"></div></div>
   <div class="empty hide" id="dayOff">Выходной. Можно изменить часы в настройках.</div>
   <div class="bar">
@@ -132,8 +155,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128ar"></script>
-<script src="../assets/store.js?v=20261128ar"></script>
+<script src="../assets/config.js?v=20261128as"></script>
+<script src="../assets/store.js?v=20261128as"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -270,9 +293,65 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
       if (ymdOf(now) === ymdOf(d)) { var nm = now.getHours() * 60 + now.getMinutes(); if (nm >= o && nm <= c) g += '<div class="now" style="top:' + ((nm - o) / 60 * PX) + 'px"></div>'; }
       $("grid").innerHTML = g;
       st.apps = apps; st.blocks = blocks;
+      var nowD = new Date();
+      $("list").innerHTML = (dayApps.length ? dayApps.slice().sort(function (a, b) { return new Date(a.start) - new Date(b.start); }).map(function (a) {
+        var s2 = new Date(a.start), e2 = new Date(a.end), cls = e2 < nowD ? " past" : (s2 <= nowD && e2 > nowD ? " cur" : "");
+        return '<button class="li' + cls + '" data-id="' + a.id + '" style="--c:' + st.me.color + '"><time>' + H.hm(s2) + '</time><div><b>' + esc(a.clientName || "Без имени") + "</b><span>" + esc(svcOf(a.serviceId).title) + (a.clientPhone ? " · " + esc(a.clientPhone) : "") + (a.note ? " · " + esc(a.note) : "") + '</span></div><span>₪' + svcOf(a.serviceId).price + "</span></button>";
+      }).join("") : '<div class="empty">' + (h ? "На этот день записей нет." : "Выходной. Часы можно изменить в настройках.") + "</div>");
+      applyMode(); renderNext();
     });
   }
   function ymdOf(d) { return H.ymd(d); }
+  var mode = "list"; try { mode = localStorage.getItem("staff-mode") || "list"; } catch (e) {}
+  function applyMode() {
+    var g = mode === "grid";
+    $("list").classList.toggle("hide", g);
+    if (!g) $("cal").classList.add("hide"); else if (st.hours && st.hours[dayStart(st.date).getDay()]) $("cal").classList.remove("hide");
+    if (!g) $("dayOff").classList.add("hide");
+    $("mode").querySelectorAll("button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-m") === mode); });
+  }
+  $("mode").addEventListener("click", function (e) { var b = e.target.closest("button[data-m]"); if (!b) return; mode = b.getAttribute("data-m"); try { localStorage.setItem("staff-mode", mode); } catch (x) {} render(); });
+
+  // ---------- «следующая запись» ----------
+  function pDigits(p) { var d = String(p || "").replace(/\D/g, ""); if (!d) return ""; if (d.indexOf("00") === 0) d = d.slice(2); else if (d.charAt(0) === "0") d = "972" + d.slice(1); return d; }
+  function rel(a, now) {
+    var s = new Date(a.start), mins = Math.round((s - now) / 60000), td = ymdOf(now), tm = ymdOf(addDays(now, 1));
+    if (mins < 1) return "сейчас";
+    if (mins < 60) return "через " + mins + " мин";
+    if (ymdOf(s) === td) return "сегодня в " + H.hm(s) + " (через " + Math.floor(mins / 60) + " ч" + (mins % 60 ? " " + (mins % 60) + " мин" : "") + ")";
+    if (ymdOf(s) === tm) return "завтра в " + H.hm(s);
+    return WD[s.getDay()].toLowerCase() + ", " + s.getDate() + " " + MN[s.getMonth()] + " в " + H.hm(s);
+  }
+  function card(a, now, cur) {
+    var s = new Date(a.start), e = new Date(a.end), sv = svcOf(a.serviceId), d = pDigits(a.clientPhone), tg = String(a.clientTelegram || "").replace(/^@/, "");
+    var acts = "";
+    if (a.clientPhone) acts += '<a class="btn sm" href="tel:' + esc(String(a.clientPhone).replace(/[^\d+]/g, "")) + '">Позвонить</a>';
+    if (d) acts += '<a class="btn sm s" target="_blank" rel="noopener" href="https://wa.me/' + d + '">WhatsApp</a>';
+    if (tg) acts += '<a class="btn sm s" target="_blank" rel="noopener" href="https://t.me/' + esc(tg) + '">Telegram</a>';
+    acts += '<button class="btn sm s" data-open="' + a.id + '">Открыть</button>';
+    return '<span class="k">' + (cur ? "Сейчас идёт · до " + H.hm(e) : "Следующая запись") + '</span><div class="big">' + (cur ? "" : '<span class="when">' + rel(a, now) + "</span><br>") + esc(a.clientName || "Без имени") + '</div><div class="sub">' + H.hm(s) + "–" + H.hm(e) + " · " + esc(sv.title) + " · ₪" + sv.price + (a.note ? "<br>Заметка: " + esc(a.note) : "") + '</div><div class="acts">' + acts + "</div>";
+  }
+  function renderNext() {
+    if (!st.me) return;
+    var now = new Date(), from = dayStart(now);
+    S.listAppointments(st.me.id, from.toISOString(), addDays(from, 30).toISOString()).then(function (list) {
+      st.far = list;
+      var live = list.filter(function (a) { return a.status !== "cancelled" && new Date(a.end) > now; }).sort(function (a, b) { return new Date(a.start) - new Date(b.start); });
+      var today = list.filter(function (a) { return a.status !== "cancelled" && ymdOf(new Date(a.start)) === ymdOf(now); });
+      var left = today.filter(function (a) { return new Date(a.end) > now; });
+      var money = left.reduce(function (t, a) { return t + (svcOf(a.serviceId).price || 0); }, 0);
+      var cur = live[0] && new Date(live[0].start) <= now ? live[0] : null, nxt = cur ? live[1] : live[0], el = $("nx");
+      var html = "";
+      if (cur) html = '<div class="' + "cur" + '">' + card(cur, now, true) + "</div>" + (nxt ? '<div class="more">Дальше: <b style="color:var(--paper)">' + esc(nxt.clientName || "Без имени") + "</b> · " + rel(nxt, now) + "</div>" : "");
+      else if (nxt) html = card(nxt, now, false);
+      else html = '<span class="k">Следующая запись</span><div class="big">Ближайшие 30 дней свободны</div><div class="sub">Новые записи появятся здесь сами.</div>';
+      el.innerHTML = html; el.classList.remove("hide"); el.classList.toggle("now", !!cur);
+      var sm = $("sum"), m = $("mode"); sm.innerHTML = "<span>Сегодня: <b>" + today.length + "</b></span><span>Осталось: <b>" + left.length + "</b></span><span>Ожидается: <b>₪" + money + "</b></span>"; sm.appendChild(m);
+      applyMode();
+    });
+  }
+  $("nx").addEventListener("click", function (e) { var b = e.target.closest("[data-open]"); if (b) editAppt(b.getAttribute("data-open")); });
+  $("list").addEventListener("click", function (e) { var b = e.target.closest(".li"); if (b) editAppt(b.getAttribute("data-id")); });
   $("bPrev").onclick = function () { st.date = addDays(st.date, -1); render(); };
   $("bNext").onclick = function () { st.date = addDays(st.date, 1); render(); };
   $("bToday").onclick = function () { st.date = new Date(); render(); };
@@ -323,7 +402,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
     };
   }
   function editAppt(id) {
-    var a = st.apps.filter(function (x) { return x.id === id; })[0]; if (!a) return;
+    var a = st.apps.concat(st.far || []).filter(function (x) { return x.id === id; })[0]; if (!a) return;
     var s = new Date(a.start), f = { serviceId: a.serviceId, date: ymdOf(s), time: H.hm(s), clientName: a.clientName, clientPhone: a.clientPhone, clientEmail: a.clientEmail, clientTelegram: a.clientTelegram, note: a.note };
     $("shA").innerHTML = "<h3>Запись</h3>" + fields(f) +
       '<div class="act"><button class="btn" id="fSave">Сохранить / перенести</button><button class="btn s" id="fCancel">Отменить запись</button><button class="btn r" id="fDel">Удалить</button><button class="btn s" data-x>Закрыть</button></div>';
@@ -376,7 +455,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
     if (e.target.closest("[data-x]")) { ["ovA", "ovB", "ovS"].forEach(closeOv); return; }
     ["ovA", "ovB", "ovS"].forEach(function (id) { if (e.target === $(id)) closeOv(id); });
   });
-  setInterval(function () { if (st.me && !$("app").classList.contains("hide") && !document.querySelector(".ov.open")) render(); }, 60000);
+  setInterval(function () { if (st.me && !$("app").classList.contains("hide") && !document.querySelector(".ov.open")) render(); }, 30000);
   // хранилище может подгружаться асинхронно (Supabase): ждём, потом берём актуальное
   Promise.resolve(window.GrindStoreReady).then(function () { S = window.GrindStore; start(); });
 })();
