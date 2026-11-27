@@ -69,7 +69,7 @@ h2.t em{font-style:normal;color:var(--tomato)}
 .mean{background:var(--navy);color:var(--stone);--bk-bg:#161616;--bk-fg:#f1ebdd}
 .mean .w{display:grid;gap:28px;align-items:center}
 @media(min-width:800px){.mean .w{grid-template-columns:.7fr 1.3fr}}
-.mean .hand svg{width:min(48vw,240px);transform:none;animation:none}
+.mw{font:900 clamp(110px,30vw,240px)/.85 var(--f);color:var(--tomato);text-align:center;letter-spacing:-.02em}
 .mean .lead{color:#bdb5a3}
 .mean h2.t em{color:var(--sun)}
 /* команда */
@@ -123,8 +123,8 @@ footer .logo{color:var(--stone);font-size:17px}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hand svg,.tick span{animation:none}}
 </style>
-<script src="../assets/brand-rega.js?v=20261128n"></script>
-<script src="../assets/brand.js?v=20261128n"></script>
+<script src="../assets/brand-rega.js?v=20261128o"></script>
+<script src="../assets/brand.js?v=20261128o"></script>
 </head>
 <body>
 <header class="top"><div class="w">
@@ -149,7 +149,7 @@ footer .logo{color:var(--stone);font-size:17px}
 <div class="tick"><span>רגע · סבבה · יאללה · אחי · בלי למהר · רגע · סבבה · יאללה · אחי · בלי למהר · רגע · סבבה · יאללה · אחי · בלי למהר · רגע · סבבה · יאללה · אחי · בלי למהר ·</span></div>
 
 <section class="mean" id="about"><div class="w">
-  <div class="hand" id="mean-hand" aria-hidden="true"></div>
+  <div class="mw" aria-hidden="true">רגע</div>
   <div>
     <span class="k" style="color:#a8a08e">Что это значит</span>
     <h2 class="t">Рега — это <em>секунда</em></h2>
@@ -229,7 +229,7 @@ footer .logo{color:var(--stone);font-size:17px}
   <a class="main" href="#visit" data-book>Записаться</a>
 </nav>
 
-<script src="../assets/config.js?v=20261128n"></script>
+<script src="../assets/config.js?v=20261128o"></script>
 <script>
 window.SITE_CONFIG.services = [
   { id: "cut", t: "Стрижка", d: "60 мин", p: 150 },
@@ -239,18 +239,17 @@ window.SITE_CONFIG.services = [
 ];
 window.I18N_DEFAULT = "he";
 </script>
-<script src="../assets/site.js?v=20261128n"></script>
-<script src="../assets/switcher.js?v=20261128n"></script>
-<script src="../assets/booking.js?v=20261128n"></script>
-<script src="../assets/brands.js?v=20261128n"></script>
-<script src="../assets/work.js?v=20261128n"></script>
-<script src="../assets/guide.js?v=20261128n"></script>
-<script src="../assets/map.js?v=20261128n"></script>
+<script src="../assets/site.js?v=20261128o"></script>
+<script src="../assets/switcher.js?v=20261128o"></script>
+<script src="../assets/booking.js?v=20261128o"></script>
+<script src="../assets/brands.js?v=20261128o"></script>
+<script src="../assets/work.js?v=20261128o"></script>
+<script src="../assets/guide.js?v=20261128o"></script>
+<script src="../assets/map.js?v=20261128o"></script>
 <script>
 (function () {
   var B = window.GRIND_BRAND;
   document.getElementById("hero-hand").innerHTML = B.mark("bl-mark");
-  document.getElementById("mean-hand").innerHTML = B.mark("bl-mark");
   var rv = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 });
@@ -259,7 +258,7 @@ window.I18N_DEFAULT = "he";
   } else rv.forEach(function (n) { n.classList.add("in"); });
 })();
 </script>
-<script src="../assets/i18n-dict.js?v=20261128n"></script>
-<script src="../assets/i18n.js?v=20261128n"></script>
+<script src="../assets/i18n-dict.js?v=20261128o"></script>
+<script src="../assets/i18n.js?v=20261128o"></script>
 </body>
 </html>
