@@ -25,9 +25,9 @@
   var css =
     ".bk-ov{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}" +
     ".bk-ov.open{opacity:1;pointer-events:auto}" +
-    ".bk{--r:var(--bk-radius,18px);width:min(560px,100%);max-height:92vh;overflow:auto;background:var(--bk-bg,#fff);color:var(--bk-fg,#141414);border-radius:var(--r) var(--r) 0 0;padding:22px 20px 26px;transform:translateY(40px);transition:transform .35s cubic-bezier(.2,.7,.2,1);font-family:inherit}" +
-    ".bk-ov.open .bk{transform:none}" +
-    "@media(min-width:640px){.bk-ov{align-items:center}.bk{border-radius:var(--r);padding:28px}}" +
+    ".bk-sheet{--r:var(--bk-radius,18px);width:min(560px,100%);max-height:92vh;overflow:auto;background:var(--bk-bg,#fff);color:var(--bk-fg,#141414);border-radius:var(--r) var(--r) 0 0;padding:22px 20px 26px;transform:translateY(40px);transition:transform .35s cubic-bezier(.2,.7,.2,1);font-family:inherit}" +
+    ".bk-ov.open .bk-sheet{transform:none}" +
+    "@media(min-width:640px){.bk-ov{align-items:center}.bk-sheet{border-radius:var(--r);padding:28px}}" +
     ".bk-h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}" +
     ".bk-h b{font-family:var(--bk-head,inherit);font-size:24px;font-weight:700;line-height:1.1}" +
     ".bk-x{border:0;background:transparent;color:inherit;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px;opacity:.7}" +
@@ -50,8 +50,8 @@
     ".bk-t button{padding:11px 0;border:1px solid var(--bk-line,#e5e5e5);border-radius:calc(var(--r) * .6);background:transparent;color:inherit;cursor:pointer;font:inherit;font-size:14px}" +
     ".bk-t button.sel{border-color:var(--bk-acc,#ff5a1f);background:var(--bk-acc,#ff5a1f);color:var(--bk-acc-fg,#fff)}" +
     ".bk-t button:disabled{opacity:.3;text-decoration:line-through;cursor:default}" +
-    ".bk input{width:100%;padding:14px;border:1px solid var(--bk-line,#e5e5e5);border-radius:calc(var(--r) * .6);background:transparent;color:inherit;font:inherit;font-size:16px;margin-bottom:10px}" +
-    ".bk input:focus{outline:2px solid var(--bk-acc,#ff5a1f);outline-offset:1px}" +
+    ".bk-sheet input{width:100%;padding:14px;border:1px solid var(--bk-line,#e5e5e5);border-radius:calc(var(--r) * .6);background:transparent;color:inherit;font:inherit;font-size:16px;margin-bottom:10px}" +
+    ".bk-sheet input:focus{outline:2px solid var(--bk-acc,#ff5a1f);outline-offset:1px}" +
     ".bk-sum{border:1px dashed var(--bk-line,#ddd);border-radius:calc(var(--r) * .6);padding:14px;font-size:14px;line-height:1.8;margin-bottom:14px}" +
     ".bk-sum b{float:right}" +
     ".bk-f{display:flex;gap:10px;margin-top:18px}" +
@@ -66,7 +66,7 @@
 
   var ov = document.createElement("div");
   ov.className = "bk-ov";
-  ov.innerHTML = '<div class="bk" role="dialog" aria-modal="true" aria-label="Онлайн-запись"></div>';
+  ov.innerHTML = '<div class="bk-sheet" role="dialog" aria-modal="true" aria-label="Онлайн-запись"></div>';
   document.body.appendChild(ov);
   var box = ov.firstChild;
   var s;
