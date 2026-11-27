@@ -89,7 +89,7 @@
       return demo.listServices().then(function (list) {
         var svc = list.filter(function (x) { return x.id === a.serviceId; })[0] || list[0];
         var st = a.start ? new Date(a.start) : at(a.date, a.time), en = new Date(st.getTime() + (a.minutes || svc.minutes) * 60000);
-        var rec = { id: uid(), staffId: a.staffId, serviceId: svc.id, start: st.toISOString(), end: en.toISOString(), clientName: a.clientName || "", clientPhone: a.clientPhone || "", note: a.note || "", status: "booked", source: a.source || "site" };
+        var rec = { id: uid(), staffId: a.staffId, serviceId: svc.id, start: st.toISOString(), end: en.toISOString(), clientName: a.clientName || "", clientPhone: a.clientPhone || "", clientEmail: a.clientEmail || "", clientTelegram: a.clientTelegram || "", note: a.note || "", status: "booked", source: a.source || "site" };
         s.apps.push(rec); save(s); return rec;
       });
     },
@@ -115,7 +115,7 @@
         if (d.length >= 9 && v.replace(/\D/g, "").slice(-9) === d) return true;
         return c.length > 3 && v.replace(/^@/, "") === c.replace(/^@/, "");
       }
-      return resolve(s.apps.filter(function (a) { return same(a.clientPhone); }).sort(function (a, b) { return new Date(b.start) - new Date(a.start); }));
+      return resolve(s.apps.filter(function (a) { return same(a.clientPhone) || same(a.clientEmail) || same(a.clientTelegram); }).sort(function (a, b) { return new Date(b.start) - new Date(a.start); }));
     },
     resetDemo: function () { var s = seed(); save(s); return resolve(true); }
   };
@@ -125,7 +125,7 @@
   // Реальный режим: если в config.js есть own.supabaseUrl и own.anonKey, подгружаем supabase-js и assets/store-supabase.js,
   // и они заменяют window.GrindStore (тот же интерфейс). document.write нужен, чтобы всё загрузилось до booking.js.
   if (cfg.supabaseUrl && cfg.anonKey && document.currentScript) {
-    var base = document.currentScript.src.replace(/store\.js.*$/, "");
-    document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script><script src="' + base + 'store-supabase.js"><\/script>');
+    var base = document.currentScript.src.replace(/store\.js.*$/, ""), q = (document.currentScript.src.match(/\?.*$/) || [""])[0];
+    document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script><script src="' + base + 'store-supabase.js' + q + '"><\/script>');
   }
 })();

@@ -2285,6 +2285,21 @@ window.I18N_DICT = {
 "מספיק אמצעי קשר אחד",
 "Un seul moyen de contact suffit"
 ],
+"Почта (необязательно)": [
+"Email (optional)",
+"אימייל (לא חובה)",
+"E-mail (facultatif)"
+],
+"Telegram @ник (необязательно)": [
+"Telegram @username (optional)",
+"Telegram @שם־משתמש (לא חובה)",
+"Telegram @pseudo (facultatif)"
+],
+"Телефон нужен для связи, остальное по желанию": [
+"Phone is needed to reach you, the rest is optional",
+"הטלפון נדרש ליצירת קשר, השאר לבחירתכם",
+"Le téléphone sert à vous joindre, le reste est facultatif"
+],
 "Онлайн-запись": [
 "Online booking",
 "הזמנת תור אונליין",

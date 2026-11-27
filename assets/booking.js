@@ -44,17 +44,15 @@
       ownRefresh(function () { if (!(s.times && s.times.length) && i < 13) { i++; return next(); } if (!(s.times && s.times.length)) s.day = 0; render(); });
     })();
   }
-  // Контакт: телефон ИЛИ почта ИЛИ ник в Telegram — достаточно одного
-  function contactOk(v) {
-    v = String(v || "").trim();
-    return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v) || /^@?[A-Za-z0-9_]{5,32}$/.test(v) && /[A-Za-z]/.test(v) || v.replace(/\D/g, "").length >= 9;
+  // Контакты: телефон обязателен, почта и Telegram по желанию
+  var RE_MAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/, RE_TG = /^@?[A-Za-z0-9_]{5,32}$/;
+  function phoneOk(v) { return String(v || "").replace(/\D/g, "").length >= 9; }
+  function formOk() {
+    var e = String(s.email || "").trim(), t = String(s.tg || "").trim();
+    return s.name.trim().length > 1 && phoneOk(s.phone) && (!e || RE_MAIL.test(e)) && (!t || (RE_TG.test(t) && /[A-Za-z]/.test(t)));
   }
-  function contactNorm(v) {
-    v = String(v || "").trim();
-    if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return v.toLowerCase();
-    if (/^@?[A-Za-z0-9_]{5,32}$/.test(v) && /[A-Za-z]/.test(v)) return "@" + v.replace(/^@/, "");
-    return v;
-  }
+  function mailNorm(v) { return String(v || "").trim().toLowerCase(); }
+  function tgNorm(v) { v = String(v || "").trim(); return v ? "@" + v.replace(/^@/, "") : ""; }
   function ownStaffIds() { return s.m === "any" ? MASTERS.filter(function (x) { return x.id !== "any"; }).map(function (x) { return x.id; }) : [s.m]; }
   function ownRefresh(cb) {
     var G = window.GrindStore, ds = G.helpers.ymd(dayDate(s.day)), mins = (svc() && svc().min) || 60, ids = ownStaffIds();
@@ -116,7 +114,7 @@
 
   function reset(master) {
     var d = new Date();
-    s = { step: 0, svc: null, m: master || null, day: 0, time: null, name: "", phone: "", base: d };
+    s = { step: 0, svc: null, m: master || null, day: 0, time: null, name: "", phone: "", email: "", tg: "", base: d };
   }
   function dayDate(i) { var d = new Date(s.base); d.setDate(d.getDate() + i); return d; }
   function isOff(d) { if (OWN && s.m) return ownStaffIds().every(function (id) { return !(hoursBy[id] && hoursBy[id][d.getDay()]); }); return d.getDay() === 6; } // Saturday closed
@@ -172,9 +170,11 @@
       h += '<div class="bk-sum">' + T(svc().t) + "<b>₪" + svc().p + "</b><br>" + T("Мастер") + "<b>" + T(mst().n) + "</b><br>" + T("Когда") + "<b>" +
         d2.toLocaleDateString(LOC(), { day: "numeric", month: "long" }) + ", " + s.time + "</b></div>";
       h += '<input data-in="name" placeholder="' + T("Имя") + '" autocomplete="name" value="' + s.name.replace(/"/g, "&quot;") + '">';
-      h += '<input data-in="phone" placeholder="' + T("Телефон, почта или @telegram") + '" type="text" inputmode="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" value="' + s.phone.replace(/"/g, "&quot;") + '">';
-      h += '<p style="font-size:12px;color:var(--bk-mut,#777);margin:-4px 0 12px">' + T("Достаточно одного способа связи") + "</p>";
-      h += foot(s.name.trim().length > 1 && contactOk(s.phone), T("Записаться"));
+      h += '<input data-in="phone" placeholder="' + T("Телефон (+972…)") + '" type="tel" inputmode="tel" autocomplete="tel" value="' + s.phone.replace(/"/g, "&quot;") + '">';
+      h += '<input data-in="email" placeholder="' + T("Почта (необязательно)") + '" type="email" inputmode="email" autocapitalize="none" autocomplete="email" value="' + s.email.replace(/"/g, "&quot;") + '">';
+      h += '<input data-in="tg" placeholder="' + T("Telegram @ник (необязательно)") + '" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" value="' + s.tg.replace(/"/g, "&quot;") + '">';
+      h += '<p style="font-size:12px;color:var(--bk-mut,#777);margin:-4px 0 12px">' + T("Телефон нужен для связи, остальное по желанию") + "</p>";
+      h += foot(formOk(), T("Записаться"));
     } else {
       h = '<div class="bk-h"><b></b><button class="bk-x" data-x aria-label="' + T("Закрыть") + '">×</button></div>' +
         '<div class="bk-ok"><div class="ic">✓</div><b style="font-size:24px;font-family:var(--bk-head,inherit)">' + T("Вы записаны!") + '</b>' +
@@ -199,7 +199,7 @@
         b.disabled = true;
         return G.slots(sid, ds, svc().min || 60).then(function (free) {
           if (free.indexOf(s.time) < 0) { s.time = null; s.step = 2; return ownRefresh(function () { render(); }); }
-          return G.createAppointment({ staffId: sid, serviceId: s.svc, date: ds, time: s.time, clientName: s.name.trim(), clientPhone: contactNorm(s.phone), source: "site" }).then(function () {
+          return G.createAppointment({ staffId: sid, serviceId: s.svc, date: ds, time: s.time, clientName: s.name.trim(), clientPhone: s.phone.trim(), clientEmail: mailNorm(s.email), clientTelegram: tgNorm(s.tg), source: "site" }).then(function () {
             s.m = sid; s.step = 4; render();
           }, function () { // время успели занять или нет связи: возвращаем к выбору времени
             s.time = null; s.step = 2; s.err = true; ownRefresh(render);
@@ -219,7 +219,7 @@
     if (!k) return;
     s[k] = e.target.value;
     var nb = box.querySelector("[data-next]");
-    if (nb) nb.disabled = !(s.name.trim().length > 1 && contactOk(s.phone));
+    if (nb) nb.disabled = !formOk();
   });
   ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && ov.classList.contains("open")) close(); });

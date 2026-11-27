@@ -128,8 +128,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128x"></script>
-<script src="../assets/store.js?v=20261128x"></script>
+<script src="../assets/config.js?v=20261128z"></script>
+<script src="../assets/store.js?v=20261128z"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -244,14 +244,15 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
   function fields(a, isNew) {
     var svcOpts = st.svc.map(function (s) { return '<option value="' + s.id + '"' + (a.serviceId === s.id ? " selected" : "") + ">" + esc(s.title) + " · " + s.minutes + " мин · ₪" + s.price + "</option>"; }).join("");
     return '<label>Клиент</label><input id="fName" value="' + esc(a.clientName) + '" placeholder="Имя">' +
-      '<label>Контакт</label><input id="fPhone" type="text" value="' + esc(a.clientPhone) + '" placeholder="Телефон, почта или @telegram">' +
+      '<label>Телефон</label><input id="fPhone" type="tel" value="' + esc(a.clientPhone) + '" placeholder="+972…">' +
+      '<div class="two"><div><label>Почта</label><input id="fEmail" type="email" value="' + esc(a.clientEmail) + '" placeholder="необязательно"></div><div><label>Telegram</label><input id="fTg" type="text" value="' + esc(a.clientTelegram) + '" placeholder="@ник"></div></div>' +
       '<label>Услуга</label><select id="fSvc">' + svcOpts + "</select>" +
       '<div class="two"><div><label>Дата</label><input id="fDate" type="date" value="' + a.date + '"></div><div><label>Время</label><input id="fTime" type="time" step="900" value="' + a.time + '"></div></div>' +
       '<label>Заметка</label><textarea id="fNote" rows="2" placeholder="Например: машинка 3, без укладки">' + esc(a.note) + '</textarea><div class="warn" id="fWarn"></div>';
   }
   function readForm() {
     var svc = svcOf($("fSvc").value), start = H.at($("fDate").value, $("fTime").value);
-    return { staffId: st.me.id, serviceId: $("fSvc").value, minutes: svc.minutes, start: start.toISOString(), end: new Date(start.getTime() + svc.minutes * 60000).toISOString(), clientName: $("fName").value.trim(), clientPhone: $("fPhone").value.trim(), note: $("fNote").value.trim() };
+    return { staffId: st.me.id, serviceId: $("fSvc").value, minutes: svc.minutes, start: start.toISOString(), end: new Date(start.getTime() + svc.minutes * 60000).toISOString(), clientName: $("fName").value.trim(), clientPhone: $("fPhone").value.trim(), clientEmail: $("fEmail").value.trim(), clientTelegram: $("fTg").value.trim(), note: $("fNote").value.trim() };
   }
   function overlap(v, exceptId) {
     var s = new Date(v.start), e = new Date(v.end);
@@ -265,7 +266,7 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
     f();
   }
   function newAppt(time) {
-    var a = { serviceId: st.svc[0].id, date: ymdOf(st.date), time: time || "12:00", clientName: "", clientPhone: "", note: "" };
+    var a = { serviceId: st.svc[0].id, date: ymdOf(st.date), time: time || "12:00", clientName: "", clientPhone: "", clientEmail: "", clientTelegram: "", note: "" };
     $("shA").innerHTML = "<h3>Новая запись</h3>" + fields(a, true) + '<div class="act"><button class="btn s" data-x>Закрыть</button><button class="btn" id="fSave">Сохранить</button></div>';
     openOv("ovA"); watchWarn(null);
     $("fSave").onclick = function () {
@@ -276,13 +277,13 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
   }
   function editAppt(id) {
     var a = st.apps.filter(function (x) { return x.id === id; })[0]; if (!a) return;
-    var s = new Date(a.start), f = { serviceId: a.serviceId, date: ymdOf(s), time: H.hm(s), clientName: a.clientName, clientPhone: a.clientPhone, note: a.note };
+    var s = new Date(a.start), f = { serviceId: a.serviceId, date: ymdOf(s), time: H.hm(s), clientName: a.clientName, clientPhone: a.clientPhone, clientEmail: a.clientEmail, clientTelegram: a.clientTelegram, note: a.note };
     $("shA").innerHTML = "<h3>Запись</h3>" + fields(f) +
       '<div class="act"><button class="btn" id="fSave">Сохранить / перенести</button><button class="btn s" id="fCancel">Отменить запись</button><button class="btn r" id="fDel">Удалить</button><button class="btn s" data-x>Закрыть</button></div>';
     openOv("ovA"); watchWarn(id);
     $("fSave").onclick = function () {
       var v = readForm(), w = overlap(v, id); if (w && !confirm(w + ". Всё равно сохранить?")) return;
-      S.updateAppointment(id, { serviceId: v.serviceId, start: v.start, end: v.end, clientName: v.clientName, clientPhone: v.clientPhone, note: v.note }).then(function () { closeOv("ovA"); toast("Сохранено"); render(); });
+      S.updateAppointment(id, { serviceId: v.serviceId, start: v.start, end: v.end, clientName: v.clientName, clientPhone: v.clientPhone, clientEmail: v.clientEmail, clientTelegram: v.clientTelegram, note: v.note }).then(function () { closeOv("ovA"); toast("Сохранено"); render(); });
     };
     $("fCancel").onclick = function () { if (!confirm("Отменить запись? Время освободится.")) return; S.updateAppointment(id, { status: "cancelled" }).then(function () { closeOv("ovA"); toast("Запись отменена"); render(); }); };
     $("fDel").onclick = function () { if (!confirm("Удалить запись навсегда?")) return; S.deleteAppointment(id).then(function () { closeOv("ovA"); toast("Удалено"); render(); }); };

@@ -9,9 +9,9 @@
   var hoursCache = {};
 
   function fail(r) { if (r.error) throw new Error(r.error.message); return r.data; }
-  function app(r) { return { id: r.id, staffId: r.staff_id, serviceId: r.service_id, start: r.start_at, end: r.end_at, clientName: r.client_name, clientPhone: r.client_phone, note: r.note, status: r.status, source: r.source }; }
+  function app(r) { return { id: r.id, staffId: r.staff_id, serviceId: r.service_id, start: r.start_at, end: r.end_at, clientName: r.client_name, clientPhone: r.client_phone, clientEmail: r.client_email || "", clientTelegram: r.client_telegram || "", note: r.note, status: r.status, source: r.source }; }
   function toRow(p) {
-    var m = { serviceId: "service_id", start: "start_at", end: "end_at", clientName: "client_name", clientPhone: "client_phone", note: "note", status: "status" }, o = {};
+    var m = { serviceId: "service_id", start: "start_at", end: "end_at", clientName: "client_name", clientPhone: "client_phone", clientEmail: "client_email", clientTelegram: "client_telegram", note: "note", status: "status" }, o = {};
     Object.keys(p).forEach(function (k) { if (m[k]) o[m[k]] = p[k]; });
     return o;
   }
@@ -48,9 +48,9 @@
       var start = a.start ? new Date(a.start) : H.at(a.date, a.time);
       if (a.source === "staff") { // мастер вносит запись сам: обычная вставка под его правами
         var minutes = a.minutes || 60;
-        return sb.from("appointments").insert({ staff_id: a.staffId, service_id: a.serviceId, start_at: start.toISOString(), end_at: new Date(start.getTime() + minutes * 60000).toISOString(), client_name: a.clientName || "", client_phone: a.clientPhone || "", note: a.note || "", source: "staff" }).select().single().then(fail).then(app);
+        return sb.from("appointments").insert({ staff_id: a.staffId, service_id: a.serviceId, start_at: start.toISOString(), end_at: new Date(start.getTime() + minutes * 60000).toISOString(), client_name: a.clientName || "", client_phone: a.clientPhone || "", client_email: a.clientEmail || "", client_telegram: a.clientTelegram || "", note: a.note || "", source: "staff" }).select().single().then(fail).then(app);
       }
-      return sb.rpc("book_appointment", { p_staff: a.staffId, p_service: a.serviceId, p_start: start.toISOString(), p_name: a.clientName, p_phone: a.clientPhone, p_note: a.note || "" }).then(fail).then(app);
+      return sb.rpc("book_appointment", { p_staff: a.staffId, p_service: a.serviceId, p_start: start.toISOString(), p_name: a.clientName, p_phone: a.clientPhone, p_note: a.note || "", p_email: a.clientEmail || "", p_telegram: a.clientTelegram || "" }).then(fail).then(app);
     },
     updateAppointment: function (id, patch) { return sb.from("appointments").update(toRow(patch)).eq("id", id).select().single().then(fail).then(app); },
     deleteAppointment: function (id) { return sb.from("appointments").delete().eq("id", id).then(fail).then(function () { return true; }); },
