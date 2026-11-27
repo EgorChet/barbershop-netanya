@@ -9,6 +9,7 @@
     ".hv{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}" +
     ".hv video{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.2);opacity:var(--hv-o,.55)}" +
     ".hv:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--bk-bg,#000) -10%,transparent 35%,transparent 55%,var(--bk-bg,#000) 105%)}" +
+    "@media(min-width:900px){.hv video{object-fit:contain!important;transform:none!important;background:#000}}" +
     "@media(prefers-reduced-motion:reduce){.hv video{display:none}}";
   var st = document.createElement("style");
   st.textContent = css;

@@ -48,6 +48,11 @@ header nav a:hover{color:var(--acid)}
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding:110px 0 150px}
 @media(min-width:900px){.hero{padding-bottom:54px}}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25) brightness(.62)}
+@media(min-width:900px){
+  .hero:before{background:linear-gradient(90deg,#0b0b0b 0,#0b0b0b00 55%)}
+  .hero h1{font-size:clamp(40px,8.4vw,128px)!important}
+  .hero video{inset:auto;right:clamp(28px,7vw,130px);top:50%;transform:translateY(-50%) rotate(2deg);height:min(76vh,720px);width:auto;aspect-ratio:9/16;border:3px solid var(--paper);box-shadow:10px 10px 0 var(--acid);filter:grayscale(1) contrast(1.2) brightness(.88);z-index:0}
+}
 .hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0b0b0b66,#0b0b0bcc 70%,#0b0b0b)}
 .hero .w{position:relative;z-index:2;width:100%}
 .hero h1{font:400 clamp(40px,10.5vw,150px)/.92 var(--disp);text-transform:uppercase;letter-spacing:-.02em}
@@ -156,8 +161,8 @@ footer .logo{color:var(--paper);font-size:15px}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.tick span,.arm{animation:none}}
 </style>
 <link rel="preload" as="image" href="../media/posters/dima-1.jpg">
-<script src="../assets/gate.js?v=20261128ak"></script>
-<script src="../assets/brand.js?v=20261128ak"></script>
+<script src="../assets/gate.js?v=20261128an"></script>
+<script src="../assets/brand.js?v=20261128an"></script>
 </head>
 <body>
 <header class="top"><div class="w">
@@ -294,7 +299,7 @@ footer .logo{color:var(--paper);font-size:15px}
   <a class="main" href="#visit" data-book>Записаться</a>
 </nav>
 
-<script src="../assets/config.js?v=20261128ak"></script>
+<script src="../assets/config.js?v=20261128an"></script>
 <script>
 // цены этой версии (ориентир от ребят, нужно подтвердить)
 window.SITE_CONFIG.services = [
@@ -304,10 +309,10 @@ window.SITE_CONFIG.services = [
   { id: "long", t: "Удлинённая ножницами", d: "90 мин", p: 180 }
 ];
 </script>
-<script src="../assets/site.js?v=20261128ak"></script>
-<script src="../assets/switcher.js?v=20261128ak"></script>
-<script src="../assets/store.js?v=20261128ak"></script>
-<script src="../assets/booking.js?v=20261128ak"></script>
+<script src="../assets/site.js?v=20261128an"></script>
+<script src="../assets/switcher.js?v=20261128an"></script>
+<script src="../assets/store.js?v=20261128an"></script>
+<script src="../assets/booking.js?v=20261128an"></script>
 <script>
 (function () {
   // появление при прокрутке
@@ -348,10 +353,10 @@ window.SITE_CONFIG.services = [
   });
 })();
 </script>
-<script src="../assets/guide.js?v=20261128ak"></script>
-<script src="../assets/map.js?v=20261128ak"></script>
-<script src="../assets/autoplay.js?v=20261128ak"></script>
-<script src="../assets/i18n-dict.js?v=20261128ak"></script>
-<script src="../assets/i18n.js?v=20261128ak"></script>
+<script src="../assets/guide.js?v=20261128an"></script>
+<script src="../assets/map.js?v=20261128an"></script>
+<script src="../assets/autoplay.js?v=20261128an"></script>
+<script src="../assets/i18n-dict.js?v=20261128an"></script>
+<script src="../assets/i18n.js?v=20261128an"></script>
 </body>
 </html>
