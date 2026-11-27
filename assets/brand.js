@@ -110,6 +110,22 @@
     g.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:45;opacity:.12;mix-blend-mode:overlay;background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")";
     document.body.appendChild(g);
   }
-  function init() { place(); grain(); }
+  // ---- тихая полоска внизу: вход для клиентов и мастеров (не мешает посетителям) ----
+  function access() {
+    if (!/\/v\d+-[^\/]*\/?/.test(location.pathname) || document.getElementById("bl-access")) return;
+    var src = (document.currentScript && document.currentScript.src) || (function () { var t = document.querySelectorAll("script[src*='brand.js']"); return t.length ? t[0].src : ""; })();
+    var base = src.replace(/assets\/brand\.js.*$/, "");
+    var T = { ru: ["Мои записи", "Для мастеров"], en: ["My bookings", "For barbers"], he: ["התורים שלי", "לספרים"], fr: ["Mes rendez-vous", "Espace barbiers"] };
+    var el = document.createElement("div");
+    el.id = "bl-access";
+    el.style.cssText = "display:flex;justify-content:center;gap:22px;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));background:var(--bk-bg,#0d0d0d);color:var(--bk-mut,#888);font:500 11px/1 'JetBrains Mono',ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;direction:ltr;border-top:1px solid var(--bk-line,#222)";
+    function draw() {
+      var lg = (window.I18N && window.I18N.lang) || "ru", L = T[lg] || T.ru;
+      el.innerHTML = '<a href="' + base + 'my/" style="color:inherit;text-decoration:none;opacity:.8">' + L[0] + '</a><a href="' + base + 'staff/" style="color:inherit;text-decoration:none;opacity:.8">' + L[1] + "</a>";
+    }
+    draw(); document.addEventListener("i18n:lang", draw);
+    document.body.appendChild(el);
+  }
+  function init() { place(); grain(); access(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
