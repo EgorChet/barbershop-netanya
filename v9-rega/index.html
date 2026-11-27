@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Рега · барбершоп в Нетании</title>
 <meta name="description" content="Барбершоп в Нетании. Секунду, сейчас всё сделаем: Дима, Таша и Кирилл, фильтр-кофе и стрижки без спешки.">
-<meta name="theme-color" content="#1b3aa8">
+<meta name="theme-color" content="#111111">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,9 +17,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --stone:#f3ead8;--cobalt:#1b3aa8;--navy:#14205f;--tomato:#e8432e;--sun:#ffc933;
+  --stone:#f1ebdd;--cobalt:#111111;--navy:#161616;--tomato:#ff6a13;--sun:#ff6a13;
   --f:Rubik,"Arial Hebrew",system-ui,sans-serif;
-  --bk-bg:#f3ead8;--bk-fg:#14205f;--bk-mut:#5d6385;--bk-line:#d9ccb0;--bk-acc:#e8432e;--bk-acc-fg:#fff;--bk-radius:14px;--bk-head:Rubik,sans-serif;
+  --bk-bg:#f1ebdd;--bk-fg:#161616;--bk-mut:#6b665a;--bk-line:#d6ccb6;--bk-acc:#ff6a13;--bk-acc-fg:#fff;--bk-radius:14px;--bk-head:Rubik,sans-serif;
   --vsw-bottom:86px;--safe:env(safe-area-inset-bottom,0px)
 }
 @media(min-width:900px){:root{--vsw-bottom:16px}}
@@ -30,12 +30,12 @@ body{background:var(--stone);color:var(--navy);font-family:var(--f);line-height:
 a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
 .w{max-width:1200px;margin:0 auto;padding:0 18px}
 @media(min-width:760px){.w{padding:0 36px}}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--tomato);color:#fff;font:700 15px var(--f);padding:14px 24px;border-radius:999px;border:0;cursor:pointer;transition:transform .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--tomato);color:#111;font:700 15px var(--f);padding:14px 24px;border-radius:999px;border:0;cursor:pointer;transition:transform .15s}
 .btn:active{transform:scale(.97)}
 .btn.o{background:transparent;color:inherit;border:2px solid currentColor}
 .btn.sun{background:var(--sun);color:var(--navy)}
 /* шапка */
-header.top{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(10px + env(safe-area-inset-top,0px)) 0 10px;background:linear-gradient(#1b3aa8ee,#1b3aa800);color:var(--stone);--bk-bg:#1b3aa8}
+header.top{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(10px + env(safe-area-inset-top,0px)) 0 10px;background:linear-gradient(#111111ee,#11111100);color:var(--stone);--bk-bg:#111111}
 header .w{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .logo{font-size:20px;color:var(--stone)}
 header nav{display:none;gap:26px;font:500 15px var(--f)}
@@ -43,13 +43,13 @@ header nav a:hover{color:var(--sun)}
 @media(min-width:900px){header nav{display:flex}}
 header .btn{padding:10px 18px;font-size:14px;background:var(--sun);color:var(--navy)}
 /* hero */
-.hero{position:relative;min-height:100svh;background:var(--cobalt);color:var(--stone);display:flex;align-items:center;overflow:hidden;padding:110px 0 150px;--bk-bg:#1b3aa8;--bk-fg:#f3ead8}
+.hero{--bk-acc:#f1ebdd;position:relative;min-height:100svh;background:var(--cobalt);color:var(--stone);display:flex;align-items:center;overflow:hidden;padding:110px 0 150px;--bk-bg:#111111;--bk-fg:#f1ebdd}
 @media(min-width:900px){.hero{padding-bottom:70px}}
 .hero .w{position:relative;z-index:2;display:grid;gap:30px;align-items:center;width:100%}
 @media(min-width:900px){.hero .w{grid-template-columns:1.2fr .8fr}}
 .hero h1{font:900 clamp(46px,11vw,130px)/.95 var(--f);letter-spacing:-.02em}
 .hero h1 span{display:block;color:var(--sun)}
-.hero p{max-width:520px;margin-top:20px;font-size:18px;color:#e5e8fb}
+.hero p{max-width:520px;margin-top:20px;font-size:18px;color:#e8e2d4}
 .hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 .hand{display:grid;place-items:center;color:var(--sun)}
 .hand svg{width:min(62vw,330px);height:auto;transform:rotate(-8deg);animation:bob 3.2s ease-in-out infinite;overflow:visible}
@@ -64,23 +64,23 @@ section{padding:clamp(60px,8vw,110px) 0}
 .k{font:500 12px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--bk-mut)}
 h2.t{font:900 clamp(32px,6vw,70px)/1 var(--f);margin-top:10px;letter-spacing:-.01em}
 h2.t em{font-style:normal;color:var(--tomato)}
-.lead{max-width:640px;margin-top:16px;font-size:18px;color:#3b4372}
+.lead{max-width:640px;margin-top:16px;font-size:18px;color:#3a3a36}
 /* что значит */
-.mean{background:var(--navy);color:var(--stone);--bk-bg:#14205f;--bk-fg:#f3ead8}
+.mean{background:var(--navy);color:var(--stone);--bk-bg:#161616;--bk-fg:#f1ebdd}
 .mean .w{display:grid;gap:28px;align-items:center}
 @media(min-width:800px){.mean .w{grid-template-columns:.7fr 1.3fr}}
 .mean .hand svg{width:min(48vw,240px);transform:none;animation:none}
-.mean .lead{color:#c9cdee}
+.mean .lead{color:#bdb5a3}
 .mean h2.t em{color:var(--sun)}
 /* команда */
 .crew{display:grid;gap:18px;margin-top:34px}
 @media(min-width:760px){.crew{grid-template-columns:repeat(3,1fr)}}
-.card{background:#fff;border-radius:28px;padding:14px 14px 22px;box-shadow:0 14px 30px -18px #14205f66}
-.card .ph{aspect-ratio:4/4.6;border-radius:20px;overflow:hidden;background:#dfd3b8}
+.card{background:#fff;border-radius:28px;padding:14px 14px 22px;box-shadow:0 14px 30px -18px #1111118866}
+.card .ph{aspect-ratio:4/4.6;border-radius:20px;overflow:hidden;background:#d6ccb6}
 .card .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
 .card h3{font:900 30px/1 var(--f);margin:16px 6px 0}
 .card .role{display:inline-block;margin:8px 6px 0;background:var(--sun);font:700 12px var(--f);padding:4px 10px;border-radius:999px}
-.card p{margin:10px 6px 0;color:#3b4372;font-size:15px}
+.card p{margin:10px 6px 0;color:#3a3a36;font-size:15px}
 .card .ig{display:inline-block;margin:12px 6px 0;font:700 13px var(--f);color:var(--cobalt);direction:ltr}
 /* ритуал */
 .rit{background:#fff}
@@ -90,41 +90,41 @@ h2.t em{font-style:normal;color:var(--tomato)}
 .rg .n{font:900 36px var(--f);color:var(--tomato)}
 .rg b{display:block;font:500 12px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--bk-mut);margin-top:4px}
 .rg h4{font:900 20px/1.15 var(--f);margin-top:8px}
-.rg p{margin-top:8px;font-size:15px;color:#3b4372}
+.rg p{margin-top:8px;font-size:15px;color:#3a3a36}
 /* цены */
 .pl{max-width:760px;margin-top:30px;background:#fff;border:3px solid var(--navy);border-radius:26px;overflow:hidden}
-.pl li{list-style:none;display:flex;gap:14px;align-items:baseline;padding:18px 22px;border-bottom:2px dashed #14205f33}
+.pl li{list-style:none;display:flex;gap:14px;align-items:baseline;padding:18px 22px;border-bottom:2px dashed #16161633}
 .pl li:last-child{border-bottom:0}
 .pl b{font:900 clamp(18px,2.6vw,24px) var(--f)}
-.pl i{flex:1;border-bottom:3px dotted #14205f55;transform:translateY(-5px);min-width:20px}
+.pl i{flex:1;border-bottom:3px dotted #16161655;transform:translateY(-5px);min-width:20px}
 .pl em{font:900 clamp(18px,2.8vw,26px) var(--f);font-style:normal;color:var(--tomato);white-space:nowrap}
 .pl small{display:block;font:400 13px var(--f);color:var(--bk-mut)}
 .pn{display:inline-block;margin-top:20px;background:var(--sun);font:700 13px var(--f);padding:8px 14px;border-radius:999px;transform:rotate(-2deg)}
 /* запись */
-.visit{background:var(--tomato);color:#fff;--bk-bg:#e8432e;--bk-fg:#fff}
+.visit{background:var(--tomato);color:#111;--bk-bg:#ff6a13;--bk-fg:#111}
 .visit h2{font:900 clamp(38px,9vw,120px)/.92 var(--f)}
 .visit .grid{display:grid;gap:28px;margin-top:30px}
 @media(min-width:800px){.visit .grid{grid-template-columns:1.1fr .9fr;align-items:end}}
 .visit .btn{background:var(--navy);color:var(--stone);font-size:17px;padding:18px 28px}
-.visit .btn.o{background:transparent;color:#fff;border-color:#fff}
+.visit .btn.o{background:transparent;color:#111;border-color:#111}
 .visit ul{list-style:none}
-.visit li{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:2px solid #ffffff55;font-weight:700}
+.visit li{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:2px solid #11111155;font-weight:700}
 .visit h3{font:900 26px var(--f);margin-bottom:8px}
 .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-footer{background:var(--navy);color:#c9cdee;padding:34px 0 40px;font-size:13px;--bk-bg:#14205f}
+footer{background:var(--navy);color:#bdb5a3;padding:34px 0 40px;font-size:13px;--bk-bg:#161616}
 footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 footer .logo{color:var(--stone);font-size:17px}
 /* панель */
 .appbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:8px;padding:10px 12px calc(10px + var(--safe));background:rgba(243,234,216,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--bk-line)}
 .appbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;font:700 11px var(--f)}
 .appbar a svg{width:20px;height:20px}
-.appbar a.main{background:var(--tomato);color:#fff;font-size:14px;border-radius:999px}
+.appbar a.main{background:var(--tomato);color:#111;font-size:14px;border-radius:999px}
 @media(min-width:900px){.appbar{display:none}}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hand svg,.tick span{animation:none}}
 </style>
-<script src="../assets/brand-rega.js?v=20261128m"></script>
-<script src="../assets/brand.js?v=20261128m"></script>
+<script src="../assets/brand-rega.js?v=20261128n"></script>
+<script src="../assets/brand.js?v=20261128n"></script>
 </head>
 <body>
 <header class="top"><div class="w">
@@ -137,7 +137,7 @@ footer .logo{color:var(--stone);font-size:17px}
   <span class="big" aria-hidden="true">רגע</span>
   <div class="w">
     <div>
-      <span class="k" style="color:#c9d2ff">Барбершоп · Нетания</span>
+      <span class="k" style="color:#cfc8b8">Барбершоп · Нетания</span>
       <h1>Секунду.<span>Сейчас всё сделаем.</span></h1>
       <p>Жест «рега» знает каждый в Израиле: подожди секунду. Мы стрижём без спешки, поэтому подождать стоит.</p>
       <div class="row"><a class="btn sun" href="#visit" data-book>Записаться</a><a class="btn o" href="#crew">Познакомиться</a></div>
@@ -151,7 +151,7 @@ footer .logo{color:var(--stone);font-size:17px}
 <section class="mean" id="about"><div class="w">
   <div class="hand" id="mean-hand" aria-hidden="true"></div>
   <div>
-    <span class="k" style="color:#aab3ec">Что это значит</span>
+    <span class="k" style="color:#a8a08e">Что это значит</span>
     <h2 class="t">Рега — это <em>секунда</em></h2>
     <p class="lead">По-ивритски «рега» значит «момент». А ещё это жест щепоткой, которым в Израиле говорят «подожди». Хорошая стрижка не занимает секунду, но мы шутим, что она того стоит.</p>
   </div>
@@ -202,7 +202,7 @@ footer .logo{color:var(--stone);font-size:17px}
 </div></section>
 
 <section class="visit" id="visit"><div class="w">
-  <span class="k" style="color:#ffd9d2">Запись</span>
+  <span class="k" style="color:#161616">Запись</span>
   <h2>Приходите<br>стричься</h2>
   <div class="grid">
     <div>
@@ -229,7 +229,7 @@ footer .logo{color:var(--stone);font-size:17px}
   <a class="main" href="#visit" data-book>Записаться</a>
 </nav>
 
-<script src="../assets/config.js?v=20261128m"></script>
+<script src="../assets/config.js?v=20261128n"></script>
 <script>
 window.SITE_CONFIG.services = [
   { id: "cut", t: "Стрижка", d: "60 мин", p: 150 },
@@ -239,13 +239,13 @@ window.SITE_CONFIG.services = [
 ];
 window.I18N_DEFAULT = "he";
 </script>
-<script src="../assets/site.js?v=20261128m"></script>
-<script src="../assets/switcher.js?v=20261128m"></script>
-<script src="../assets/booking.js?v=20261128m"></script>
-<script src="../assets/brands.js?v=20261128m"></script>
-<script src="../assets/work.js?v=20261128m"></script>
-<script src="../assets/guide.js?v=20261128m"></script>
-<script src="../assets/map.js?v=20261128m"></script>
+<script src="../assets/site.js?v=20261128n"></script>
+<script src="../assets/switcher.js?v=20261128n"></script>
+<script src="../assets/booking.js?v=20261128n"></script>
+<script src="../assets/brands.js?v=20261128n"></script>
+<script src="../assets/work.js?v=20261128n"></script>
+<script src="../assets/guide.js?v=20261128n"></script>
+<script src="../assets/map.js?v=20261128n"></script>
 <script>
 (function () {
   var B = window.GRIND_BRAND;
@@ -259,7 +259,7 @@ window.I18N_DEFAULT = "he";
   } else rv.forEach(function (n) { n.classList.add("in"); });
 })();
 </script>
-<script src="../assets/i18n-dict.js?v=20261128m"></script>
-<script src="../assets/i18n.js?v=20261128m"></script>
+<script src="../assets/i18n-dict.js?v=20261128n"></script>
+<script src="../assets/i18n.js?v=20261128n"></script>
 </body>
 </html>

@@ -2459,5 +2459,10 @@ window.I18N_DICT = {
 "The gesture icon is based on Twemoji (© Twitter, Inc. and contributors), licensed CC-BY 4.0.",
 "סמל המחווה מבוסס על Twemoji (© Twitter, Inc. ותורמים), ברישיון CC-BY 4.0.",
 "L'icône du geste est basée sur Twemoji (© Twitter, Inc. et contributeurs), sous licence CC-BY 4.0."
+],
+"Другой бренд: «Рега» (רגע), жест «секунду», который знает каждый в Израиле. Иврит по умолчанию, чёрный, бумага и оранжевый.": [
+"A different brand: “Rega” (רגע), the “one second” gesture every Israeli knows. Hebrew by default, black, paper and orange.",
+"מותג אחר: «רגע», המחווה «שנייה» שכל ישראלי מכיר. עברית כברירת מחדל, שחור, נייר וכתום.",
+"Une autre marque : « Rega » (רגע), le geste « une seconde » que tout Israélien connaît. Hébreu par défaut, noir, papier et orange."
 ]
 };
