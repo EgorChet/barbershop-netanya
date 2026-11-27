@@ -9,9 +9,9 @@
   var BASE = (document.currentScript && document.currentScript.src.replace(/assets\/story\.js.*$/, "")) || "../";
   var C = (window.SITE_CONFIG && window.SITE_CONFIG.certificates) || null;
   var certs = (C && C.length) ? C : [
-    { title: "Сертификат барбера", who: "Дима" },
-    { title: "Диплом курса", who: "Барбер №3" },
-    { title: "Повышение квалификации", who: "Команда" }
+    { kind: "dk", t: "Сертификат", course: "Мужские стрижки. Fade", cap: "Курс по мужской стрижке" },
+    { kind: "lt", t: "Диплом", course: "Барбер: классика, борода и бритьё", cap: "Барбер-курс" },
+    { kind: "dk", t: "Свидетельство", course: "Повышение квалификации", cap: "Повышение квалификации" }
   ];
 
   var css =
@@ -40,30 +40,49 @@
     ".st-ch{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:50px 0 16px;flex-wrap:wrap}" +
     ".st-ch h3{font-family:var(--bk-head,inherit);font-size:clamp(24px,3.4vw,36px);font-weight:700}" +
     ".st-ch small{color:var(--bk-mut,#aaa);font-size:13px}" +
-    ".st-g{display:grid;gap:14px}" +
-    ".st-cert{position:relative;aspect-ratio:4/3;border-radius:calc(var(--bk-radius,10px) * .5);overflow:hidden;background:#f5efe0;color:#3a3326;box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}" +
+    ".st-g{display:grid;gap:18px;max-width:1000px}.st-g figure{max-width:340px;width:100%}" +
+    ".st-cert{position:relative;aspect-ratio:3/4;overflow:hidden;box-shadow:0 18px 34px -16px rgba(0,0,0,.7);font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif}" +
     ".st-cert img{width:100%;height:100%;object-fit:cover}" +
-    ".st-cert .fr{position:absolute;inset:9px;border:2px double #b79a55;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px;text-align:center}" +
-    ".st-cert .t{font-family:Georgia,'Times New Roman',serif;font-size:clamp(15px,2.4vw,22px);letter-spacing:.14em;text-transform:uppercase;font-weight:700}" +
-    ".st-cert .n{font-family:Georgia,serif;font-style:italic;font-size:15px}" +
-    ".st-cert .ln{width:70%;height:6px;border-radius:3px;background:#d9cfb4}.st-cert .ln.s{width:46%}" +
-    ".st-cert .seal{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e6c874,#a98a3d);display:grid;place-items:center;color:#fff;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.3)}" +
-    ".st-cert .mk{position:absolute;top:16px;right:-34px;transform:rotate(35deg);background:#c0392b;color:#fff;font:700 11px/1 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:6px 40px}" +
+    ".st-cert.dk{background:#101010;color:#f2f2f0;border:1px solid #2a2a2a;border-radius:3px}" +
+    ".st-cert.dk:before{content:'';position:absolute;inset:10px;border:1px solid #3a3a3a;pointer-events:none}" +
+    ".st-cert.lt{background:#f6f5f1;color:#161616;border:9px solid #2b1f16;box-shadow:inset 0 0 0 2px #8a6b45,0 18px 34px -16px rgba(0,0,0,.7)}" +
+    ".st-cert .ct{position:absolute;inset:0;padding:8% 9% 7%;display:flex;flex-direction:column;align-items:center;text-align:center}" +
+    ".st-cert .em{width:34%;aspect-ratio:1;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center;opacity:.9}" +
+    ".st-cert .em svg{width:62%;height:62%}" +
+    ".st-cert .is{margin-top:6%;font-size:clamp(8px,1.5vw,11px);letter-spacing:.3em;text-transform:uppercase;opacity:.6}" +
+    ".st-cert .ti{margin-top:9%;font-size:clamp(17px,3.2vw,26px);font-weight:800;letter-spacing:.22em;text-transform:uppercase}" +
+    ".st-cert .sb{margin-top:7%;font-size:clamp(9px,1.6vw,12px);opacity:.65}" +
+    ".st-cert .nm{margin-top:3%;font-size:clamp(14px,2.6vw,21px);font-weight:700;letter-spacing:.1em;text-transform:uppercase}" +
+    ".st-cert .cr{margin-top:6%;font-size:clamp(9px,1.6vw,12px);opacity:.65}" +
+    ".st-cert .co{margin-top:2%;font-size:clamp(12px,2.2vw,17px);font-weight:600;font-style:italic;line-height:1.3}" +
+    ".st-cert .ft{margin-top:auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;font-size:clamp(8px,1.4vw,10px);opacity:.7}" +
+    ".st-cert .ft i{display:block;height:1px;background:currentColor;opacity:.6;margin-bottom:4px}.st-cert .ft div{flex:1;text-align:center}" +
+    ".st-cert .bar{position:absolute;left:0;right:0;bottom:0;height:7px;background:repeating-linear-gradient(135deg,#c0392b 0 8px,#f6f5f1 8px 16px,#1f4fa3 16px 24px,#f6f5f1 24px 32px)}" +
+    ".st-cert .mk{position:absolute;top:22px;right:-38px;transform:rotate(38deg);background:#c0392b;color:#fff;font:700 10px/1 Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:6px 44px;z-index:2}" +
     ".st-cap{padding:10px 2px 0;font-size:13px;color:var(--bk-mut,#aaa)}.st-cap b{color:var(--bk-fg,#fff);font-weight:600}" +
     ".st-note{margin-top:18px;font-size:13px;color:var(--bk-mut,#aaa);border:1px dashed var(--bk-line,#333);border-radius:var(--bk-radius,10px);padding:12px 14px;line-height:1.5}" +
     ".st-r{opacity:0;transform:translateY(16px);transition:opacity .8s,transform .8s}.st-r.in{opacity:1;transform:none}" +
-    "@media(min-width:760px){.st-g{grid-template-columns:repeat(3,1fr)}.st-p{grid-template-columns:1fr 1fr}.st-tl{grid-template-columns:repeat(2,1fr);column-gap:50px}.st-c{grid-template-columns:150px 1fr}.st-c img{width:150px}}" +
+    "@media(min-width:760px){.st-g{grid-template-columns:repeat(3,1fr);gap:22px}.st-p{grid-template-columns:1fr 1fr}.st-tl{grid-template-columns:repeat(2,1fr);column-gap:50px}.st-c{grid-template-columns:150px 1fr}.st-c img{width:150px}}" +
     "@media(max-width:420px){.st-tl li{grid-template-columns:1fr}}" +
     "@media(prefers-reduced-motion:reduce){.st-r{opacity:1;transform:none;transition:none}}";
   var st = document.createElement("style");
   st.textContent = css;
   document.head.appendChild(st);
 
+  var EM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="6.5" cy="17.5" r="2.6"/><circle cx="17.5" cy="17.5" r="2.6"/><path d="M8.2 15.4 17 3M15.8 15.4 7 3"/></svg>';
   function certHtml(c) {
-    var body = c.src
-      ? '<img src="' + (/^https?:/.test(c.src) ? c.src : BASE + c.src) + '" alt="' + (c.title || "Сертификат") + '" loading="lazy">'
-      : '<div class="fr"><div class="seal">★</div><div class="t">' + c.title + '</div><div class="ln"></div><div class="n">' + (c.who || "") + '</div><div class="ln s"></div></div><div class="mk">макет</div>';
-    return '<figure class="st-r"><div class="st-cert">' + body + '</div><figcaption class="st-cap"><b>' + (c.title || "") + "</b>" + (c.who ? " · " + c.who : "") + "</figcaption></figure>";
+    var body;
+    if (c.src) {
+      body = '<div class="st-cert"><img src="' + (/^https?:/.test(c.src) ? c.src : BASE + c.src) + '" alt="' + (c.title || "Сертификат") + '" loading="lazy"></div>';
+    } else {
+      body = '<div class="st-cert ' + (c.kind || "dk") + '"><div class="ct">' +
+        '<div class="em">' + EM + '</div><div class="is">Название школы</div>' +
+        '<div class="ti">' + c.t + '</div><div class="sb">подтверждает, что</div><div class="nm">Имя Фамилия</div>' +
+        '<div class="cr">успешно прошёл(а) курс</div><div class="co">«' + c.course + '»</div>' +
+        '<div class="ft"><div><i></i>дата</div><div><i></i>подпись</div></div></div>' +
+        (c.kind === "lt" ? '<div class="bar"></div>' : "") + '<div class="mk">макет</div></div>';
+    }
+    return '<figure class="st-r">' + body + '<figcaption class="st-cap"><b>' + (c.src ? (c.title || "") : c.cap) + "</b>" + (c.src ? (c.who ? " · " + c.who : "") : " · макет") + "</figcaption></figure>";
   }
 
   var sec = document.createElement("section");
@@ -87,7 +106,7 @@
     "</div>" +
     '<div class="st-ch"><h3>Сертификаты и дипломы</h3><small>Обучение и работа в лучших школах</small></div>' +
     '<div class="st-g">' + certs.map(certHtml).join("") + "</div>" +
-    (C && C.length ? "" : '<p class="st-note">Это макеты. Настоящие сертификаты Димы и его жены загрузим сюда, когда появятся сканы: положить в <code>assets/certs/</code> и добавить в <code>assets/config.js</code>.</p>') +
+    (C && C.length ? "" : '<p class="st-note">Это макеты в стиле сертификатов барбер-школ (без чужих логотипов). Настоящие сертификаты Димы и его жены загрузим сюда, когда появятся сканы: положить в <code>assets/certs/</code> и добавить в <code>assets/config.js</code>.</p>') +
     "</div>";
   host.parentNode.insertBefore(sec, host);
 
