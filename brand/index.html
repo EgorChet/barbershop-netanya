@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRIND — фирменный стиль</title>
+<meta name="theme-color" content="#0d0d0d">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&family=Heebo:wght@400;800&display=swap" rel="stylesheet">
+<style>
+:root{--bk-bg:#0d0d0d;--bk-fg:#f4f2ee;--bk-mut:#9a9a9a;--bk-acc:#ff5a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;color:#f4f2ee;font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding:calc(28px + env(safe-area-inset-top,0px)) 16px calc(60px + env(safe-area-inset-bottom,0px))}
+.w{max-width:1100px;margin:0 auto}
+a{color:inherit}
+.k{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#9a9a9a}
+h1{font:400 clamp(34px,7vw,72px)/.95 'Archivo Black';text-transform:uppercase;letter-spacing:-.02em;margin:10px 0 14px}
+h2{font:800 13px Manrope;letter-spacing:.18em;text-transform:uppercase;color:#9a9a9a;margin:46px 0 14px;display:flex;gap:12px;align-items:center}
+h2:after{content:"";flex:1;height:1px;background:#2a2a2a}
+p.l{max-width:620px;color:#bdbdbd;line-height:1.6}
+.g{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:700px){.g.two{grid-template-columns:1fr 1fr}.g.four{grid-template-columns:repeat(4,1fr)}}
+.c{border-radius:16px;padding:34px 22px;display:grid;place-items:center;min-height:170px;font-size:44px}
+.c.dk{background:#0d0d0d;border:1px solid #2a2a2a;color:#f4f2ee}
+.c.lt{background:#efe9df;color:#0d0d0d;--bk-acc:#ff5a1f}
+.c.or{background:#ff5a1f;color:#0d0d0d;--bk-acc:#0d0d0d}
+.c.mk{font-size:84px}
+.sw{border-radius:14px;padding:18px;min-height:120px;display:flex;flex-direction:column;justify-content:flex-end;font:500 12px 'JetBrains Mono',monospace;letter-spacing:.06em}
+.ty{border:1px solid #2a2a2a;border-radius:16px;padding:22px}
+.ty b{display:block;font:400 44px/1 'Archivo Black';text-transform:uppercase;letter-spacing:-.02em;margin:10px 0}
+.ty .he{font:800 34px/1.2 Heebo;direction:rtl}
+.ty .m{font:500 14px 'JetBrains Mono';color:#bdbdbd}
+button{all:unset;cursor:pointer;background:#ff5a1f;color:#0d0d0d;font:800 14px Manrope;padding:14px 22px;border-radius:999px;margin-top:16px;display:inline-block}
+.row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:14px;color:#bdbdbd}
+</style>
+<script src="../assets/brand.js?v=20261128f"></script>
+</head>
+<body>
+<div class="w">
+  <a class="k" href="../">← все версии</a>
+  <h1>GRIND<br>Brand kit</h1>
+  <p class="l">Единый фирменный стиль для всех версий сайта: знак, логотип, цвета, шрифты и лоадер. «GRIND» — рабочее название: когда будет настоящее, меняется один файл <b>assets/brand.js</b>, и новый логотип появится на всех страницах.</p>
+
+  <h2>Логотип</h2>
+  <div class="g two">
+    <div class="c dk" id="l1"></div>
+    <div class="c lt" id="l2"></div>
+    <div class="c or" id="l3"></div>
+    <div class="c dk mk" id="l4"></div>
+  </div>
+  <p class="l" style="margin-top:14px">Слово нарисовано линиями, а не шрифтом: одинаково выглядит на любом телефоне и в любом языке. Знак — квадратная «G» с углом, срезанным бритвой. Цвет логотипа берётся из версии сайта, акцентная точка и срез — цвет акцента.</p>
+
+  <h2>Цвета</h2>
+  <div class="g four">
+    <div class="sw" style="background:#0d0d0d;border:1px solid #2a2a2a">INK<br>#0D0D0D</div>
+    <div class="sw" style="background:#efe9df;color:#0d0d0d">PAPER<br>#EFE9DF</div>
+    <div class="sw" style="background:#ff5a1f;color:#0d0d0d">SIGNAL<br>#FF5A1F</div>
+    <div class="sw" style="background:#c9f23a;color:#0d0d0d">LIME<br>#C9F23A</div>
+  </div>
+  <p class="l" style="margin-top:14px">В каждой версии сайта (Skate, Bold, Club, Clean, Pomade, Dandy, Post-punk) свои цвета, но логотип и лоадер подстраиваются под них автоматически.</p>
+
+  <h2>Шрифты</h2>
+  <div class="g two">
+    <div class="ty"><span class="k">Заголовки</span><b>Archivo Black</b><span class="m">Manrope — основной текст · JetBrains Mono — метки и цены</span></div>
+    <div class="ty"><span class="k">Иврит</span><div class="he">מספרה בנתניה</div><span class="m">Heebo — подключается автоматически при выборе иврита</span></div>
+  </div>
+
+  <h2>Лоадер</h2>
+  <p class="l">Показывается один раз за визит: знак «прорисовывается», бритва делает срез, затем появляется слово. Занимает около двух секунд, подстраивается под цвета версии и отключается при «уменьшении движения» в настройках телефона.</p>
+  <button id="replay">Показать лоадер</button>
+  <div class="row"><span class="bl-spin"></span><span>маленький спиннер для кнопок и форм: <code>&lt;span class="bl-spin"&gt;</code></span></div>
+</div>
+<script>
+var B=window.GRIND_BRAND;
+document.getElementById('l1').innerHTML=B.lockup();
+document.getElementById('l2').innerHTML=B.lockup();
+document.getElementById('l3').innerHTML=B.lockup();
+document.getElementById('l4').innerHTML=B.mark('bl-mark');
+document.getElementById('replay').onclick=function(){try{sessionStorage.removeItem('bl-seen')}catch(e){}location.search='?loader=1'};
+</script>
+</body>
+</html>

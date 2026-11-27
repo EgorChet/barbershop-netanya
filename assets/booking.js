@@ -19,6 +19,8 @@
     { id: "kirill", n: "Кирилл", r: "барбер", img: "assets/img/kirill.jpg" },
     { id: "b3", n: "Таша", r: "основатель · с 2017 года", img: "assets/img/tasha.jpg" }
   ];
+  function T(x) { return window.T ? window.T(x) : x; }
+  function LOC() { return window.I18N ? window.I18N.locale() : "ru-RU"; }
   var SLOTS = ["10:00", "11:00", "12:00", "13:30", "15:00", "16:00", "17:30", "19:00"];
   var DAYS = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
@@ -66,7 +68,7 @@
 
   var ov = document.createElement("div");
   ov.className = "bk-ov";
-  ov.innerHTML = '<div class="bk-sheet" role="dialog" aria-modal="true" aria-label="Онлайн-запись"></div>';
+  ov.innerHTML = '<div class="bk-sheet" role="dialog" aria-modal="true" aria-label="' + T("Онлайн-запись") + '"></div>';
   document.body.appendChild(ov);
   var box = ov.firstChild;
   var s;
@@ -84,36 +86,36 @@
   function head(title) {
     var bars = "";
     for (var i = 0; i < 4; i++) bars += "<i" + (i <= s.step ? ' class="on"' : "") + "></i>";
-    return '<div class="bk-h"><b>' + title + '</b><button class="bk-x" data-x aria-label="Закрыть">×</button></div><div class="bk-steps">' + bars + "</div>";
+    return '<div class="bk-h"><b>' + title + '</b><button class="bk-x" data-x aria-label="' + T("Закрыть") + '">×</button></div><div class="bk-steps">' + bars + "</div>";
   }
   function foot(canNext, label) {
     return '<div class="bk-f">' + (s.step > 0 ? '<button class="bk-btn sec" data-back>←</button>' : "") +
-      '<button class="bk-btn" data-next ' + (canNext ? "" : "disabled") + ">" + (label || "Дальше") + "</button></div>";
+      '<button class="bk-btn" data-next ' + (canNext ? "" : "disabled") + ">" + (label || T("Дальше")) + "</button></div>";
   }
   function render() {
     var h = "";
     if (s.step === 0) {
-      h = head("Выберите услугу");
+      h = head(T("Выберите услугу"));
       SERVICES.forEach(function (x) {
-        h += '<button class="bk-o' + (s.svc === x.id ? " sel" : "") + '" data-svc="' + x.id + '"><span class="g">' + x.t + "<small>" + x.d + '</small></span><span class="pr">₪' + x.p + "</span></button>";
+        h += '<button class="bk-o' + (s.svc === x.id ? " sel" : "") + '" data-svc="' + x.id + '"><span class="g">' + T(x.t) + "<small>" + T(x.d) + '</small></span><span class="pr">₪' + x.p + "</span></button>";
       });
       h += foot(!!s.svc);
     } else if (s.step === 1) {
-      h = head("Выберите мастера");
+      h = head(T("Выберите мастера"));
       MASTERS.forEach(function (x) {
         h += '<button class="bk-o' + (s.m === x.id ? " sel" : "") + '" data-m="' + x.id + '">' +
           (x.img ? '<img src="' + BASE + x.img + '" alt="">' : '<span class="av">✂</span>') +
-          '<span class="g">' + x.n + "<small>" + x.r + "</small></span></button>";
+          '<span class="g">' + T(x.n) + "<small>" + T(x.r) + "</small></span></button>";
       });
       h += foot(!!s.m);
     } else if (s.step === 2) {
-      h = head("Дата и время");
-      h += '<div class="bk-l">День</div><div class="bk-days">';
+      h = head(T("Дата и время"));
+      h += '<div class="bk-l">' + T("День") + '</div><div class="bk-days">';
       for (var i = 0; i < 14; i++) {
         var d = dayDate(i);
-        h += '<button class="bk-d' + (i === s.day ? " sel" : "") + (isOff(d) ? " off" : "") + '" data-day="' + i + '"><small>' + (i === 0 ? "Сегодня" : DAYS[d.getDay()]) + "</small><b>" + d.getDate() + "</b></button>";
+        h += '<button class="bk-d' + (i === s.day ? " sel" : "") + (isOff(d) ? " off" : "") + '" data-day="' + i + '"><small>' + (i === 0 ? T("Сегодня") : T(DAYS[d.getDay()])) + "</small><b>" + d.getDate() + "</b></button>";
       }
-      h += '</div><div class="bk-l">Время</div><div class="bk-t">';
+      h += '</div><div class="bk-l">' + T("Время") + '</div><div class="bk-t">';
       var day = dayDate(s.day);
       var slots = day.getDay() === 5 ? SLOTS.slice(0, 4) : SLOTS;
       slots.forEach(function (t) {
@@ -122,21 +124,21 @@
       });
       h += "</div>" + foot(!!s.time);
     } else if (s.step === 3) {
-      h = head("Ваши контакты");
+      h = head(T("Ваши контакты"));
       var d2 = dayDate(s.day);
-      h += '<div class="bk-sum">' + svc().t + "<b>₪" + svc().p + "</b><br>Мастер<b>" + mst().n + "</b><br>Когда<b>" +
-        d2.toLocaleDateString("ru-RU", { day: "numeric", month: "long" }) + ", " + s.time + "</b></div>";
-      h += '<input data-in="name" placeholder="Имя" autocomplete="name" value="' + s.name.replace(/"/g, "&quot;") + '">';
-      h += '<input data-in="phone" placeholder="Телефон (+972…)" type="tel" autocomplete="tel" value="' + s.phone.replace(/"/g, "&quot;") + '">';
-      h += foot(s.name.trim().length > 1 && s.phone.replace(/\D/g, "").length >= 9, "Записаться");
+      h += '<div class="bk-sum">' + T(svc().t) + "<b>₪" + svc().p + "</b><br>" + T("Мастер") + "<b>" + T(mst().n) + "</b><br>" + T("Когда") + "<b>" +
+        d2.toLocaleDateString(LOC(), { day: "numeric", month: "long" }) + ", " + s.time + "</b></div>";
+      h += '<input data-in="name" placeholder="' + T("Имя") + '" autocomplete="name" value="' + s.name.replace(/"/g, "&quot;") + '">';
+      h += '<input data-in="phone" placeholder="' + T("Телефон (+972…)") + '" type="tel" autocomplete="tel" value="' + s.phone.replace(/"/g, "&quot;") + '">';
+      h += foot(s.name.trim().length > 1 && s.phone.replace(/\D/g, "").length >= 9, T("Записаться"));
     } else {
-      h = '<div class="bk-h"><b></b><button class="bk-x" data-x aria-label="Закрыть">×</button></div>' +
-        '<div class="bk-ok"><div class="ic">✓</div><b style="font-size:24px;font-family:var(--bk-head,inherit)">Вы записаны!</b>' +
-        "<p>" + mst().n + " ждёт вас " + dayDate(s.day).toLocaleDateString("ru-RU", { day: "numeric", month: "long" }) + " в " + s.time +
-        ".<br>Напомним в WhatsApp за 2 часа до визита.</p></div>" +
-        '<div class="bk-f"><button class="bk-btn" data-x>Готово</button></div>';
+      h = '<div class="bk-h"><b></b><button class="bk-x" data-x aria-label="' + T("Закрыть") + '">×</button></div>' +
+        '<div class="bk-ok"><div class="ic">✓</div><b style="font-size:24px;font-family:var(--bk-head,inherit)">' + T("Вы записаны!") + '</b>' +
+        "<p>" + T("{n} ждёт вас {d} в {t}.").replace("{n}", T(mst().n)).replace("{d}", dayDate(s.day).toLocaleDateString(LOC(), { day: "numeric", month: "long" })).replace("{t}", s.time) +
+        "<br>" + T("Напомним в WhatsApp за 2 часа до визита.") + "</p></div>" +
+        '<div class="bk-f"><button class="bk-btn" data-x>' + T("Готово") + '</button></div>';
     }
-    h += '<div class="bk-demo">Демо записи — на реальном сайте подключим онлайн-запись</div>';
+    h += '<div class="bk-demo">' + T("Демо записи — на реальном сайте подключим онлайн-запись") + '</div>';
     box.innerHTML = h;
   }
 
@@ -223,4 +225,5 @@
     if (P === "link" && CFG.link) { window.open(CFG.link, "_blank", "noopener"); return; }
     open(m);
   };
+  document.addEventListener("i18n:lang", function () { if (ov && ov.classList.contains("open")) render(); });
 })();
