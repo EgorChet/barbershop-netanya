@@ -157,8 +157,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
 <div class="ov" id="ovS"><div class="sheet" id="shS"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="../assets/config.js?v=20261128aw"></script>
-<script src="../assets/store.js?v=20261128aw"></script>
+<script src="../assets/config.js?v=20261128ax"></script>
+<script src="../assets/store.js?v=20261128ax"></script>
 <script>
 (function () {
   var S = window.GrindStore, H = S.helpers, $ = function (id) { return document.getElementById(id); };
@@ -206,7 +206,8 @@ label{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12e
     S.inviteInfo(token).then(function (info) {
       if (!info) {
         try { localStorage.removeItem("grind-invite"); } catch (e) {}
-        $("who").innerHTML = '<p class="l" style="color:var(--mut)">Ссылка-приглашение недействительна или уже использована. Попросите администратора прислать новую.</p><button class="btn s" id="invBack">Войти обычным способом</button>';
+        showLogin();
+        var ln = $("loginNote"); if (ln) ln.innerHTML = "Эта ссылка-приглашение уже использована или устарела. Если вы уже создавали доступ, просто войдите по почте и паролю выше. Если нет, попросите администратора прислать новую.";
         return;
       }
       $("who").innerHTML = '<p style="font-size:20px;font-weight:800;margin-bottom:4px">Здравствуйте, ' + esc(info.name) + '!</p><p style="color:var(--mut);margin-bottom:12px">Создайте доступ в кабинет: укажите почту и придумайте пароль.</p>' +
